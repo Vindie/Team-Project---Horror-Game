@@ -29,36 +29,64 @@ public class FPS_Controller : PlayerController {
 
     public virtual void LookHorizontal(float value)
     {
-        
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if(FPP)
+        {
+            FPP.LookHorizontal(value);
+        }
     }
 
     public virtual void LookVertical(float value)
     {
-
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.LookVertical(value);
+        }
     }
 
     public override void Horizontal(float value)
     {
-        
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.MoveHorizontal(value);
+        }
     }
 
     public override void Vertical(float value)
     {
-        
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.MoveVertical(value);
+        }
     }
 
     public override void Fire1(bool value)
     {
-        
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.Interact(value);
+        }
     }
 
     public override void Fire2(bool value)
     {
-
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.Examine(value);
+        }
     }
 
     public override void Fire3(bool value)
     {
-        
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.Crouch(value);
+        }
     }
 }
