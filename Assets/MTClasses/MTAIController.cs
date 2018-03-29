@@ -13,4 +13,13 @@ public class MTAIController : AIController {
 	void Update () {
 		
 	}
+    /*
+     * create behavior functions
+     * Randomly selects different behaviors
+     * puts out torches in passing
+     *
+     * 
+     * 
+     * */
+
 }
