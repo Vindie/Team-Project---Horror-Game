@@ -21,7 +21,7 @@ public class FPS_Pawn : Pawn {
 
     protected float _forwardVelocity = 0.0f;
     protected float _strafeVelocity = 0.0f;
-    protected float _zoomPercent = 0.0f;
+    public float _zoomPercent = 0.0f;
     #endregion
 
     protected virtual void Start()
@@ -63,11 +63,13 @@ public class FPS_Pawn : Pawn {
     public virtual void Interact(bool value)
     {
         //highLighted.getComponent<Interactable>().interact(this);
+        if(value) LOG("Interact!");
     }
 
     public virtual void Examine(bool value)
     {
         doExamine = value;
+        if (value) LOG("Examine!");
     }
 
     public virtual void Crouch(bool value)
@@ -82,6 +84,8 @@ public class FPS_Pawn : Pawn {
             //Crouch: Set collider size to crouching.
             isCrouching = true;
         }
+
+        if (value) LOG("Crouching: " + isCrouching);
     }
 
     protected virtual Vector3 GetMoveVelocity() //Known issue: moving diagonally is faster than moving on other axes.
@@ -99,17 +103,17 @@ public class FPS_Pawn : Pawn {
 
         if (playerCamera)
         {
-            if (doExamine && _zoomPercent > 0.0f)
+            if (doExamine && _zoomPercent < 1.0f)
             {
                 _zoomPercent += Time.deltaTime * zoomSpeed;
             }
-            else if (_zoomPercent < 1.0f)
+            else if (!doExamine && _zoomPercent > 0.0f)
             {
                 _zoomPercent -= Time.deltaTime * zoomSpeed;
             }
 
         
-            playerCamera.fieldOfView = Mathf.Lerp(zoomedFOV, defaultFOV, _zoomPercent);
+            playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
         }
     }
 }
