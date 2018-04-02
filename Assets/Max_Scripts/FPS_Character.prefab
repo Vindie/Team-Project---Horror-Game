@@ -138,11 +138,12 @@ MonoBehaviour:
   IgnoresDamage: 1
   LogDamageEvents: 1
   IsSpectator: 1
-  moveSpeed: 1
+  moveSpeed: 3.5
   head: {fileID: 1943093433475652}
-  defaultFOV: 60
-  zoomedFOV: 40
-  zoomSpeed: 0
+  defaultFOV: 72
+  zoomedFOV: 30
+  zoomSpeed: 3
+  _zoomPercent: 0
 --- !u!124 &124768257748221524
 Behaviour:
   m_ObjectHideFlags: 1

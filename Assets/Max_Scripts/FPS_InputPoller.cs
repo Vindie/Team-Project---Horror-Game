@@ -8,8 +8,8 @@ public class FPS_InputPoller : InputPoller {
     {
         // Example Input binding. 
         InputState IS = InputState.GetBlankState();
-        IS.AddAxis("LookHorizontal", Input.GetAxis("Horizontal"));  //Mouse?
-        IS.AddAxis("LookVertical", Input.GetAxis("Vertical"));      //Mouse?
+        IS.AddAxis("LookHorizontal", Input.GetAxis("Mouse Y"));  //Mouse?
+        IS.AddAxis("LookVertical", Input.GetAxis("Mouse X"));      //Mouse?
         IS.AddAxis("MoveHorizontal", Input.GetAxis("Horizontal"));
         IS.AddAxis("MoveVertical", Input.GetAxis("Vertical"));
         IS.AddButton("Fire1", Input.GetButton("Fire1"));

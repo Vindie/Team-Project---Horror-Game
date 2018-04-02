@@ -5,11 +5,18 @@ using UnityEngine;
 public class FPS_Pawn : Pawn {
 
     #region Pawn Properties
-    public float moveSpeed = 1.0f;
-    public GameObject head;
-    public float defaultFOV = 60;
-    public float zoomedFOV = 40;
+    
+    public float defaultFOV = 60.0f;
+    public float zoomedFOV = 40.0f;
     public float zoomSpeed;
+
+    public float moveSpeed = 1.0f;
+
+    public GameObject head;
+    public float look_xSensitivity = 2.0f;
+    public float look_ySensitivity = 2.0f;
+    public float look_maxVerticalRotation = -90.0f;
+    public float look_minVerticalRotation = 90.0f;
     #endregion
 
     #region Pawn member vars
@@ -21,18 +28,31 @@ public class FPS_Pawn : Pawn {
 
     protected float _forwardVelocity = 0.0f;
     protected float _strafeVelocity = 0.0f;
-    public float _zoomPercent = 0.0f;
+    protected float _zoomPercent = 0.0f;
+
+    protected float _inputXRotation = 0.0f;
+    protected float _inputYRotation = 0.0f;
+    protected Quaternion _desiredBodyRotation;
+    protected Quaternion _desiredCameraRotation;
     #endregion
 
     protected virtual void Start()
     {
         _rb = gameObject.AddComponent<Rigidbody>();
         _rb.freezeRotation = true;
+
+        _desiredBodyRotation = transform.rotation;
+        if(!head)
+        {
+            LOG_ERROR("No head object assigned to " + name);
+        }
+        _desiredCameraRotation = head.transform.rotation;
     }
 
     protected virtual void Update()
     {
         CameraZoom();
+        HandleLookRotation();
     }
 
     protected virtual void FixedUpdate()
@@ -42,12 +62,12 @@ public class FPS_Pawn : Pawn {
 
     public virtual void LookHorizontal(float value)
     {
-
+        _inputXRotation = value * look_xSensitivity;
     }
 
     public virtual void LookVertical(float value)
     {
-
+        _inputYRotation = value * look_ySensitivity;
     }
 
     public virtual void MoveHorizontal(float value)
@@ -114,6 +134,48 @@ public class FPS_Pawn : Pawn {
 
         
             playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
+        }
+    }
+
+    protected virtual void HandleLookRotation()
+    {
+        _desiredBodyRotation *= Quaternion.Euler(0.0f, _inputYRotation, 0.0f);
+        _desiredCameraRotation *= Quaternion.Euler(-_inputXRotation, 0.0f, 0.0f);
+
+        //Clamping rotation doesn't work yet
+        //_desiredCameraRotation = ClampRotationAroundX(_desiredCameraRotation);
+
+        transform.localRotation = _desiredBodyRotation;
+        head.transform.localRotation = _desiredCameraRotation;
+    }
+
+    protected virtual Quaternion ClampRotationAroundX(Quaternion q)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+
+        angleX = Mathf.Clamp(angleX, look_minVerticalRotation, look_maxVerticalRotation);
+
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        return q;
+    }
+
+    public virtual void SetCursorLock(bool newLockState)
+    {
+        if(newLockState)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
