@@ -32,6 +32,7 @@ public class FPS_Pawn : Pawn {
     protected float _forwardVelocity = 0.0f;
     protected float _strafeVelocity = 0.0f;
     protected float _playerHeight;
+    protected float _playerInitialScale;
     protected float _crouchPercent = 0.0f;
     protected float _zoomPercent = 0.0f;
     protected float _inputXRotation = 0.0f;
@@ -43,6 +44,8 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Start()
     {
+        _playerInitialScale = transform.localScale.y;
+
         _rb = gameObject.AddComponent<Rigidbody>();
         _rb.freezeRotation = true;
 
@@ -145,7 +148,7 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void HandleCrouching()
     {
-        float playerHeightScale = Mathf.Lerp(1.0f, 0.5f, _crouchPercent);
+        float playerHeightScale = Mathf.Lerp(_playerInitialScale, _playerInitialScale * 0.5f, _crouchPercent);
         transform.localScale = new Vector3(1.0f, playerHeightScale, 1.0f);
 
         if(_isCrouching && _crouchPercent < 1.0f)
