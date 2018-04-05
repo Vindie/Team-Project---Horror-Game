@@ -13,10 +13,10 @@ public class MTAIController : AIController {
 	}
 	
 	// Update is called once per frame
-	override void Update ()
-    {
-        followPlayer();
-	}
+	//override void Update ()
+    //{
+     //   followPlayer();
+	//}
     /*
      * create behavior functions
      * Randomly selects different behaviors
