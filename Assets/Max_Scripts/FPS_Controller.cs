@@ -25,6 +25,7 @@ public class FPS_Controller : PlayerController {
         AddButton("Fire1", Fire1);
         AddButton("Fire2", Fire2);
         AddButton("Fire3", Fire3);
+        AddButton("Cancel", Cancel);
     }
 
     public virtual void LookHorizontal(float value)
@@ -68,7 +69,7 @@ public class FPS_Controller : PlayerController {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
         if (FPP)
         {
-            FPP.Interact(value);
+            FPP.Fire1(value);
         }
     }
 
@@ -77,7 +78,7 @@ public class FPS_Controller : PlayerController {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
         if (FPP)
         {
-            FPP.Examine(value);
+            FPP.Fire2(value);
         }
     }
 
@@ -86,7 +87,16 @@ public class FPS_Controller : PlayerController {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
         if (FPP)
         {
-            FPP.Crouch(value);
+            FPP.Fire3(value);
+        }
+    }
+
+    public virtual void Cancel(bool value)
+    {
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP && value)
+        {
+            FPP.SetCursorLock(false);
         }
     }
 }

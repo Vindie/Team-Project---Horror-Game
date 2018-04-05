@@ -80,19 +80,27 @@ public class FPS_Pawn : Pawn {
         _forwardVelocity = value;
     }
 
-    public virtual void Interact(bool value)
+    public virtual void Fire1(bool value)
     {
+        //highLighted = raycast(head.forward)
         //highLighted.getComponent<Interactable>().interact(this);
         if(value) LOG("Interact!");
+        if(value)
+        {
+            SetCursorLock(true);
+        }
     }
 
-    public virtual void Examine(bool value)
+    public virtual void Fire2(bool value)
     {
         doExamine = value;
-        if (value) LOG("Examine!");
+        if (value)
+        {
+            SetCursorLock(true);
+        }
     }
 
-    public virtual void Crouch(bool value)
+    public virtual void Fire3(bool value)
     {
         if (isCrouching && !value)
         {
@@ -142,8 +150,7 @@ public class FPS_Pawn : Pawn {
         _desiredBodyRotation *= Quaternion.Euler(0.0f, _inputYRotation, 0.0f);
         _desiredCameraRotation *= Quaternion.Euler(-_inputXRotation, 0.0f, 0.0f);
 
-        //Clamping rotation doesn't work yet
-        //_desiredCameraRotation = ClampRotationAroundX(_desiredCameraRotation);
+        _desiredCameraRotation = ClampRotationAroundX(_desiredCameraRotation);
 
         transform.localRotation = _desiredBodyRotation;
         head.transform.localRotation = _desiredCameraRotation;
