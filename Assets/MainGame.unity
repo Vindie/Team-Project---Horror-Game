@@ -133,8 +133,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 4242277}
   m_LocalRotation: {x: 0.034497887, y: -0, z: -0.0000000037252899, w: 0.9994048}
-  m_LocalPosition: {x: 0.50200146, y: 4.1000004, z: 0}
-  m_LocalScale: {x: 2.012315, y: 7.5398917, z: 0.25802985}
+  m_LocalPosition: {x: 0.502, y: 4.1, z: 0.2}
+  m_LocalScale: {x: 2.012315, y: 7.5398917, z: -0.00513952}
   m_Children: []
   m_Father: {fileID: 1442069783}
   m_RootOrder: 14
@@ -559,13 +559,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 283055046}
-  m_LocalRotation: {x: -0.0031941936, y: -0.0003842711, z: -0.0016530454, w: 0.9999935}
-  m_LocalPosition: {x: 0.502, y: 2.8, z: 14.7}
-  m_LocalScale: {x: 2.0123172, y: 7.554536, z: 0.25853103}
+  m_LocalRotation: {x: -0.0022667043, y: -0.00038582087, z: -0.001652689, w: 0.999996}
+  m_LocalPosition: {x: 0.502, y: 2.8, z: 14.8}
+  m_LocalScale: {x: 2.0123172, y: 7.554536, z: 0.074157774}
   m_Children: []
   m_Father: {fileID: 1442069783}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: -0.36600003, y: -0.043, z: -0.18900001}
+  m_LocalEulerAnglesHint: {x: -179.74, y: -180.044, z: 179.811}
 --- !u!23 &283055048
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1656,6 +1656,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 915888686}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1008721986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1008721987}
+  m_Layer: 0
+  m_Name: ruinroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008721987
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1008721986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1036.6271, y: -249.23737, z: -856.9849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1107523361
 Prefab:
   m_ObjectHideFlags: 0
