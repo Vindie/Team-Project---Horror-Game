@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MTAIController : AIController {
 
-	// Use this for initialization
-	void Start () {
+    public GameObject playerPawn;
+    Vector3 movementDirection;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	//override void Update ()
+    //{
+     //   followPlayer();
+	//}
     /*
      * create behavior functions
      * Randomly selects different behaviors
@@ -26,5 +30,8 @@ public class MTAIController : AIController {
      * check player's vision to detemine if monster can snuff out light(dot product)
      * 
      * */
-
+     public void followPlayer()
+    {
+        
+    }
 }
