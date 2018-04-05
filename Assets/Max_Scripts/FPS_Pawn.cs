@@ -135,8 +135,6 @@ public class FPS_Pawn : Pawn {
         {
             _isCrouching = true;
         }
-
-        if (value) LOG("Crouching: " + _isCrouching);
     }
     #endregion
 
