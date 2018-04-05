@@ -13,8 +13,8 @@ public class FPS_Pawn : Pawn {
     public float moveSpeed = 1.0f;
 
     public GameObject head;
-    public GameObject handDominant;
-    public GameObject handSubordinate;
+    public Socket handDominant;
+    public Socket handSubordinate;
 
     public float look_xSensitivity = 2.0f;
     public float look_ySensitivity = 2.0f;
@@ -250,11 +250,15 @@ public class FPS_Pawn : Pawn {
 
     public virtual bool Equip(Item item)
     {
-        if(handDominant)
+        if (!handDominant)
         {
-            
+            return false;
         }
 
-        
+        if(handDominant.HasItem)
+        {
+            handDominant.Unequip();
+        }
+        return handDominant.Equip(item);
     }
 }
