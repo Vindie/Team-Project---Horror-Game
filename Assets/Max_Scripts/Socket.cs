@@ -6,6 +6,7 @@ public class Socket : MonoBehaviour {
 
     protected Item equippedItem;
     protected Transform oldParent;
+    protected Rigidbody itemRB;
 
     public virtual bool HasItem
     {
@@ -22,6 +23,14 @@ public class Socket : MonoBehaviour {
         oldParent = item.transform.parent;
         item.transform.parent = transform;
         equippedItem = item;
+
+        itemRB = item.GetComponent<Rigidbody>();
+        if(itemRB)
+        {
+            itemRB.detectCollisions = false;
+            itemRB.useGravity = false;
+        }
+        
         return true;
     }
 
@@ -40,9 +49,16 @@ public class Socket : MonoBehaviour {
         {
             equippedItem.transform.parent = null;
         }
-
         equippedItem = null;
         oldParent = null;
+
+        if (itemRB)
+        {
+            itemRB.detectCollisions = true;
+            itemRB.useGravity = true;
+        }
+        itemRB = null;
+        
         return true;
     }
 }

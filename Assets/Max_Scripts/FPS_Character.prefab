@@ -254,8 +254,8 @@ MonoBehaviour:
   zoomSpeed: 3
   moveSpeed: 3.5
   head: {fileID: 1330231263068620}
-  handDominant: {fileID: 0}
-  handSubordinate: {fileID: 0}
+  handDominant: {fileID: 114404318855027572}
+  handSubordinate: {fileID: 114426674438448680}
   look_xSensitivity: 4
   look_ySensitivity: 5
   look_maxVerticalRotation: 90
