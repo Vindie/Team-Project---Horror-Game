@@ -17,21 +17,26 @@ public class FPS_Pawn : Pawn {
     public float look_ySensitivity = 2.0f;
     public float look_maxVerticalRotation = -90.0f;
     public float look_minVerticalRotation = 90.0f;
+
+    public float crouchSpeed = 0.2f;
     #endregion
 
-    #region Pawn member vars
+    #region Pawn Member Variables
     protected Rigidbody _rb;
-    protected GameObject highlightedObject;
+    protected GameObject _highlightedObject;
+    protected CapsuleCollider _col;
 
-    protected bool doExamine = false;
-    protected bool isCrouching = false;
+    protected bool _doExamine = false;
+    protected bool _isCrouching = false;
 
     protected float _forwardVelocity = 0.0f;
     protected float _strafeVelocity = 0.0f;
+    protected float _playerHeight;
+    protected float _crouchPercent = 0.0f;
     protected float _zoomPercent = 0.0f;
-
     protected float _inputXRotation = 0.0f;
     protected float _inputYRotation = 0.0f;
+
     protected Quaternion _desiredBodyRotation;
     protected Quaternion _desiredCameraRotation;
     #endregion
@@ -47,6 +52,9 @@ public class FPS_Pawn : Pawn {
             LOG_ERROR("No head object assigned to " + name);
         }
         _desiredCameraRotation = head.transform.rotation;
+
+        _col = gameObject.GetComponentInChildren<CapsuleCollider>();
+        _playerHeight = _col.height;
     }
 
     protected virtual void Update()
@@ -58,8 +66,10 @@ public class FPS_Pawn : Pawn {
     protected virtual void FixedUpdate()
     {
         _rb.velocity = GetMoveVelocity();
+        HandleCrouching();
     }
 
+    #region Pawn's Controller Inputs
     public virtual void LookHorizontal(float value)
     {
         _inputXRotation = value * look_xSensitivity;
@@ -93,7 +103,7 @@ public class FPS_Pawn : Pawn {
 
     public virtual void Fire2(bool value)
     {
-        doExamine = value;
+        _doExamine = value;
         if (value)
         {
             SetCursorLock(true);
@@ -102,49 +112,53 @@ public class FPS_Pawn : Pawn {
 
     public virtual void Fire3(bool value)
     {
-        if (isCrouching && !value)
+        if (_isCrouching && !value)
         {
-            //Uncrouch: Do a Physics.CapsuleCast() to see if the default Capsule height would collide with anything. If it would, don't uncrouch. Else, set collider size to standing and lerp camera height.
-            isCrouching = false;
+            RaycastHit hitInfo;
+            Vector3 p1 = _col.transform.position + Vector3.up * 0.01f;
+            Vector3 p2 = p1 + Vector3.up * _playerHeight * 0.5f;
+            Physics.CapsuleCast(p1, p2, _col.radius * 0.99f, Vector3.up, out hitInfo, LayerMask.NameToLayer("Player"));
+            
+            if(!hitInfo.collider)
+            {
+                _isCrouching = false;
+            }
         }
         else if (value)
         {
-            //Crouch: Set collider size to crouching.
-            isCrouching = true;
+            _isCrouching = true;
         }
 
-        if (value) LOG("Crouching: " + isCrouching);
+        //if (value) LOG("Crouching: " + _isCrouching);
     }
+    #endregion
 
     protected virtual Vector3 GetMoveVelocity() //Known issue: moving diagonally is faster than moving on other axes.
     {
-        Vector3 moveVelocity = new Vector3(0.0f, _rb.velocity.y, 0.0f);
+        Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         moveVelocity += transform.forward * _forwardVelocity + transform.right * _strafeVelocity;
         moveVelocity *= moveSpeed;
+        moveVelocity.y += _rb.velocity.y;
 
         return moveVelocity;
     }
 
-    protected virtual void CameraZoom()
+    protected virtual void HandleCrouching()
     {
-        Camera playerCamera = head.GetComponent<Camera>();
+        float playerHeightScale = Mathf.Lerp(1.0f, 0.5f, _crouchPercent);
+        transform.localScale = new Vector3(1.0f, playerHeightScale, 1.0f);
 
-        if (playerCamera)
+        if(_isCrouching && _crouchPercent < 1.0f)
         {
-            if (doExamine && _zoomPercent < 1.0f)
-            {
-                _zoomPercent += Time.deltaTime * zoomSpeed;
-            }
-            else if (!doExamine && _zoomPercent > 0.0f)
-            {
-                _zoomPercent -= Time.deltaTime * zoomSpeed;
-            }
-
-        
-            playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
+            _crouchPercent += Time.fixedDeltaTime * crouchSpeed;
+        }
+        else if(!_isCrouching && _crouchPercent > 0.0f)
+        {
+            _crouchPercent -= Time.fixedDeltaTime * crouchSpeed;
         }
     }
 
+    #region Mouselook
     protected virtual void HandleLookRotation()
     {
         _desiredBodyRotation *= Quaternion.Euler(0.0f, _inputYRotation, 0.0f);
@@ -183,6 +197,27 @@ public class FPS_Pawn : Pawn {
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+    #endregion
+
+    protected virtual void CameraZoom()
+    {
+        Camera playerCamera = head.GetComponent<Camera>();
+
+        if (playerCamera)
+        {
+            if (_doExamine && _zoomPercent < 1.0f)
+            {
+                _zoomPercent += Time.deltaTime * zoomSpeed;
+            }
+            else if (!_doExamine && _zoomPercent > 0.0f)
+            {
+                _zoomPercent -= Time.deltaTime * zoomSpeed;
+            }
+
+
+            playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
         }
     }
 }

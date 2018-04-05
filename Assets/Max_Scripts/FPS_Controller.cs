@@ -10,11 +10,6 @@ public class FPS_Controller : PlayerController {
         LogInputStateInfo = false;
         LogHUDUpdateError = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Unused
-	}
 
     public override void DefaultBinds()
     {
