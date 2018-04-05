@@ -18,6 +18,8 @@ public class FPS_Pawn : Pawn {
     public float look_maxVerticalRotation = -90.0f;
     public float look_minVerticalRotation = 90.0f;
 
+    public float interactRange = 2.0f;
+
     public float crouchSpeed = 0.2f;
     #endregion
 
@@ -97,10 +99,25 @@ public class FPS_Pawn : Pawn {
     {
         //highLighted = raycast(head.forward)
         //highLighted.getComponent<Interactable>().interact(this);
-        if(value) LOG("Interact!");
         if(value)
         {
             SetCursorLock(true);
+
+            //Raycast to determine what player is looking at
+            int layermask = 1 << LayerMask.NameToLayer("Player");
+            layermask = ~layermask;
+
+            RaycastHit hitInfo;
+            Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask);
+
+            if(hitInfo.collider)
+            {
+                Interactable other = hitInfo.collider.GetComponentInChildren<Interactable>();
+                if(other)
+                {
+                    other.InteractWith(this, controller);
+                }
+            }
         }
     }
 
