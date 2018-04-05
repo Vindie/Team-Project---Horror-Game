@@ -13,6 +13,9 @@ public class FPS_Pawn : Pawn {
     public float moveSpeed = 1.0f;
 
     public GameObject head;
+    public GameObject handDominant;
+    public GameObject handSubordinate;
+
     public float look_xSensitivity = 2.0f;
     public float look_ySensitivity = 2.0f;
     public float look_maxVerticalRotation = -90.0f;
@@ -155,6 +158,7 @@ public class FPS_Pawn : Pawn {
     }
     #endregion
 
+    #region Movement Related Methods
     protected virtual Vector3 GetMoveVelocity() //Known issue: moving diagonally is faster than moving on other axes.
     {
         Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
@@ -179,6 +183,7 @@ public class FPS_Pawn : Pawn {
             _crouchPercent -= Time.fixedDeltaTime * crouchSpeed;
         }
     }
+    #endregion
 
     #region Mouselook
     protected virtual void HandleLookRotation()
@@ -241,5 +246,15 @@ public class FPS_Pawn : Pawn {
 
             playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
         }
+    }
+
+    public virtual bool Equip(Item item)
+    {
+        if(handDominant)
+        {
+            
+        }
+
+        
     }
 }
