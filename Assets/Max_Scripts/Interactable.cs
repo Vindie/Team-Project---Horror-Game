@@ -7,14 +7,21 @@ public class Interactable : Actor {
     public bool IgnoresInteraction = false;
     public bool LogInteractEvents = true;
 
-    public virtual bool InteractWith(Actor source, string verb = "uses", Controller instigator = null)
+    public virtual bool InteractWith(Actor source, Controller instigator = null, string verb = "uses")
     {
         if(IgnoresInteraction)
         {
             return true;
         }
 
-        INTERACTLOG(instigator.name + " " + verb + " " + ActorName);
+        if(instigator)
+        {
+            INTERACTLOG(instigator.name + " " + verb + " " + ActorName);
+        }
+        else
+        {
+            INTERACTLOG("Someone " + verb + " " + ActorName);
+        }
 
         return ProcessInteraction(source, instigator);
     }
