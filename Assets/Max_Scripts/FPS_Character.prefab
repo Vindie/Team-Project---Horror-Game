@@ -168,6 +168,7 @@ MonoBehaviour:
   IgnoresDamage: 1
   LogDamageEvents: 1
   IsSpectator: 1
+  markerObj: {fileID: 1341431331770520, guid: 4bac0be272021f94ca53ef8a44a788e3, type: 2}
   defaultFOV: 72
   zoomedFOV: 30
   zoomSpeed: 3
@@ -192,6 +193,7 @@ MonoBehaviour:
   IgnoresDamage: 1
   LogDamageEvents: 1
   IsSpectator: 1
+  markerObj: {fileID: 0}
   defaultFOV: 72
   zoomedFOV: 30
   zoomSpeed: 3

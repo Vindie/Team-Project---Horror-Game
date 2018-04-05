@@ -147,10 +147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAI: 0
   IsHuman: 0
-  StartWithSpectator: 0
+  StartWithSpectator: 1
   SpawnPreFab: {fileID: 1562268594349112, guid: ec581c182378a264a8b8bbcbe699d253,
     type: 2}
-  SpectatorPreFab: {fileID: 0}
+  SpectatorPreFab: {fileID: 1562268594349112, guid: ec581c182378a264a8b8bbcbe699d253,
+    type: 2}
   InputPlayerNumber: 0
   PlayerNumber: 1
   PlayerType: 1
