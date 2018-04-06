@@ -98,30 +98,18 @@ public class FPS_Pawn : Pawn {
         _forwardVelocity = value;
     }
 
+    //Uses the item being held in the dominant hand
     public virtual void Fire1(bool value)
     {
-        //highLighted = raycast(head.forward)
-        //highLighted.getComponent<Interactable>().interact(this);
         if(value)
         {
             SetCursorLock(true);
 
-            GameObject highlighted = GetInteractableObject();
-            if(highlighted)
-            {
-                Interactable other = highlighted.GetComponentInChildren<Interactable>();
-                if(other)
-                {
-                    other.InteractWith(this, controller);
-                }
-            }
-            else
-            {
-                handDominant.UseItem(this);
-            }
+            handDominant.UseItem(this);
         }
     }
 
+    //Uses the item being held in the subordinate hand
     public virtual void Fire2(bool value)
     {
         _doExamine = value;
@@ -133,6 +121,7 @@ public class FPS_Pawn : Pawn {
         
     }
 
+    //Crouches the player when held
     public virtual void Fire3(bool value)
     {
         if (_isCrouching && !value)
@@ -154,6 +143,27 @@ public class FPS_Pawn : Pawn {
         else if (value)
         {
             _isCrouching = true;
+        }
+    }
+
+    //Interacts with the object the player is looking at in the world
+    public virtual void Fire4(bool value)
+    {
+        if(value)
+        {
+            GameObject highlighted = GetInteractableObject();
+            if (highlighted)
+            {
+                Interactable other = highlighted.GetComponentInChildren<Interactable>();
+                if (other)
+                {
+                    other.InteractWith(this, controller);
+                }
+            }
+            else
+            {
+                Equip(null);
+            }
         }
     }
     #endregion

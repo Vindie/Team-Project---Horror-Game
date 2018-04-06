@@ -25,7 +25,7 @@ public class Socket : MonoBehaviour {
 
     public virtual bool Equip(Item item)
     {
-        if (HasItem)
+        if (HasItem || !item)
         {
             return false;
         }
