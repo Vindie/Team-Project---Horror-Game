@@ -63,7 +63,7 @@ public class FPS_Pawn : Pawn {
         {
             LOG_ERROR("No head object assigned to " + name);
         }
-        _desiredCameraRotation = head.transform.rotation;
+        _desiredCameraRotation = Quaternion.Euler(Vector3.zero);
 
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
@@ -214,8 +214,10 @@ public class FPS_Pawn : Pawn {
         head.transform.localRotation = _desiredCameraRotation;
     }
 
-    protected virtual Quaternion ClampRotationAroundX(Quaternion q)
+    protected virtual Quaternion ClampRotationAroundX(Quaternion quatIn)
     {
+        Quaternion q = quatIn;
+
         q.x /= q.w;
         q.y /= q.w;
         q.z /= q.w;
@@ -226,6 +228,12 @@ public class FPS_Pawn : Pawn {
         angleX = Mathf.Clamp(angleX, look_minVerticalRotation, look_maxVerticalRotation);
 
         q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        //Check for bad values:
+        if(float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z))
+        {
+            return quatIn;
+        }
 
         return q;
     }
