@@ -6,20 +6,25 @@ public class Socket : MonoBehaviour {
 
     public virtual bool HasItem
     {
-        get { return equippedItem; }
+        get { return _equippedItem; }
     }
 
-    protected Item equippedItem;
-    protected Collider itemCol;
-    protected Rigidbody itemRB;
-    protected bool[] rbSettings = { true, false, true };
+    public virtual Item EquippedItem
+    {
+        get { return _equippedItem; }
+    }
+
+    protected Item _equippedItem;
+    protected Collider _itemCol;
+    protected Rigidbody _itemRB;
+    protected bool[] _rbSettings = { true, false, true };
 
     protected virtual void Update()
     {
         if (HasItem)
         {
-            equippedItem.transform.position = transform.position;
-            equippedItem.transform.rotation = transform.rotation;
+            _equippedItem.transform.position = transform.position;
+            _equippedItem.transform.rotation = transform.rotation;
         }
     }
 
@@ -30,7 +35,7 @@ public class Socket : MonoBehaviour {
             return false;
         }
 
-        equippedItem = item;
+        _equippedItem = item;
 
         //Check for and disable collision collider.
         Collider[] colliders = item.GetComponents<Collider>();
@@ -38,25 +43,25 @@ public class Socket : MonoBehaviour {
         {
             if(!col.isTrigger)
             {
-                itemCol = col;
+                _itemCol = col;
             }
         }
-        if(itemCol)
+        if(_itemCol)
         {
-            itemCol.enabled = false;
+            _itemCol.enabled = false;
         }
 
         //Check for and disable rigidbody physics
-        itemRB = item.GetComponent<Rigidbody>();
-        if(itemRB)
+        _itemRB = item.GetComponent<Rigidbody>();
+        if(_itemRB)
         {
-            rbSettings[0] = itemRB.detectCollisions;
-            rbSettings[1] = itemRB.freezeRotation;
-            rbSettings[2] = itemRB.useGravity;
+            _rbSettings[0] = _itemRB.detectCollisions;
+            _rbSettings[1] = _itemRB.freezeRotation;
+            _rbSettings[2] = _itemRB.useGravity;
 
-            itemRB.detectCollisions = false;
-            itemRB.freezeRotation = true;
-            itemRB.useGravity = false;
+            _itemRB.detectCollisions = false;
+            _itemRB.freezeRotation = true;
+            _itemRB.useGravity = false;
         }
         
         return true;
@@ -69,21 +74,21 @@ public class Socket : MonoBehaviour {
             return false;
         }
 
-        equippedItem = null;
+        _equippedItem = null;
 
         //Re-enable collision collider if it exists
-        if (itemCol)
+        if (_itemCol)
         {
-            itemCol.enabled = true;
+            _itemCol.enabled = true;
         }
-        itemCol = null;
+        _itemCol = null;
 
         //Re-enable rigidbody if it exists
-        if (itemRB)
+        if (_itemRB)
         {
-            itemRB.detectCollisions = rbSettings[0] ;
-            itemRB.freezeRotation = rbSettings[1];
-            itemRB.useGravity = rbSettings[2];
+            _itemRB.detectCollisions = _rbSettings[0] ;
+            _itemRB.freezeRotation = _rbSettings[1];
+            _itemRB.useGravity = _rbSettings[2];
         }
 
         return true;
@@ -96,6 +101,6 @@ public class Socket : MonoBehaviour {
             return false;
         }
 
-        return equippedItem.Use(user);
+        return _equippedItem.Use(user);
     }
 }
