@@ -883,7 +883,7 @@ MonoBehaviour:
   IsAI: 0
   IsHuman: 0
   StartWithSpectator: 0
-  SpawnPreFab: {fileID: 1562268594349112, guid: ec581c182378a264a8b8bbcbe699d253,
+  SpawnPreFab: {fileID: 1286445627909952, guid: ec581c182378a264a8b8bbcbe699d253,
     type: 2}
   SpectatorPreFab: {fileID: 0}
   InputPlayerNumber: 0
@@ -1188,6 +1188,10 @@ Prefab:
     - target: {fileID: 100000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
       propertyPath: m_Name
       value: cavern (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}

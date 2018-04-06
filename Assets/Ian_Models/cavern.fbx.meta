@@ -43,13 +43,13 @@ ModelImporter:
     meshCompression: 0
     addColliders: 1
     importVisibility: 1
-    importBlendShapes: 1
+    importBlendShapes: 0
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     keepQuads: 1
     weldVertices: 1
     secondaryUVAngleDistortion: 8
