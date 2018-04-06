@@ -4,30 +4,58 @@ using UnityEngine;
 
 public class Socket : MonoBehaviour {
 
-    protected Item equippedItem;
-    protected Transform oldParent;
-    protected Rigidbody itemRB;
-
     public virtual bool HasItem
     {
         get { return equippedItem; }
     }
 
-	public virtual bool Equip(Item item)
+    protected Item equippedItem;
+    protected Collider itemCol;
+    protected Rigidbody itemRB;
+    protected bool[] rbSettings = { true, false, true };
+
+    protected virtual void Update()
+    {
+        if (HasItem)
+        {
+            equippedItem.transform.position = transform.position;
+            equippedItem.transform.rotation = transform.rotation;
+        }
+    }
+
+    public virtual bool Equip(Item item)
     {
         if (HasItem)
         {
             return false;
         }
 
-        oldParent = item.transform.parent;
-        item.transform.parent = transform;
         equippedItem = item;
 
+        //Check for and disable collision collider.
+        Collider[] colliders = item.GetComponents<Collider>();
+        foreach(Collider col in colliders)
+        {
+            if(!col.isTrigger)
+            {
+                itemCol = col;
+            }
+        }
+        if(itemCol)
+        {
+            itemCol.enabled = false;
+        }
+
+        //Check for and disable rigidbody physics
         itemRB = item.GetComponent<Rigidbody>();
         if(itemRB)
         {
+            rbSettings[0] = itemRB.detectCollisions;
+            rbSettings[1] = itemRB.freezeRotation;
+            rbSettings[2] = itemRB.useGravity;
+
             itemRB.detectCollisions = false;
+            itemRB.freezeRotation = true;
             itemRB.useGravity = false;
         }
         
@@ -41,24 +69,23 @@ public class Socket : MonoBehaviour {
             return false;
         }
 
-        if(returnToOriginalParent)
-        {
-            equippedItem.transform.parent = oldParent;
-        }
-        else
-        {
-            equippedItem.transform.parent = null;
-        }
         equippedItem = null;
-        oldParent = null;
 
+        //Re-enable collision collider if it exists
+        if (itemCol)
+        {
+            itemCol.enabled = true;
+        }
+        itemCol = null;
+
+        //Re-enable rigidbody if it exists
         if (itemRB)
         {
-            itemRB.detectCollisions = true;
-            itemRB.useGravity = true;
+            itemRB.detectCollisions = rbSettings[0] ;
+            itemRB.freezeRotation = rbSettings[1];
+            itemRB.useGravity = rbSettings[2];
         }
-        itemRB = null;
-        
+
         return true;
     }
 }
