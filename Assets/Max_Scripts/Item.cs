@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Item : Interactable {
 
+    protected virtual void Start()
+    {
+        verb = "picks up";
+    }
+
     /// <summary>
     /// The basic interaction of an item is to have the FPS_Pawn equip it.
     /// This is the main function to override in inheriting classes.

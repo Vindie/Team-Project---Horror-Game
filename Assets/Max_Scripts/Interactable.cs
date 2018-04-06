@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class Interactable : Actor {
 
+    protected string verb = "interacts with";
+
     public bool IgnoresInteraction = false;
     public bool LogInteractEvents = true;
 
-    public virtual bool InteractWith(Actor source, Controller instigator = null, string verb = "uses")
+    public virtual bool InteractWith(Actor source, Controller instigator = null)
     {
         if(IgnoresInteraction)
         {
             return true;
         }
 
-        if(instigator)
+        bool successfulInteract = ProcessInteraction(source, instigator);
+        if (successfulInteract)
         {
-            INTERACTLOG(instigator.name + " " + verb + " " + ActorName);
-        }
-        else
-        {
-            INTERACTLOG("Someone " + verb + " " + ActorName);
+            if (instigator)
+            {
+                INTERACTLOG(instigator.name + " " + verb + " " + ActorName);
+            }
+            else
+            {
+                INTERACTLOG("Someone " + verb + " " + ActorName);
+            }
         }
 
-        return ProcessInteraction(source, instigator);
+        return successfulInteract;
     }
 
     /// <summary>

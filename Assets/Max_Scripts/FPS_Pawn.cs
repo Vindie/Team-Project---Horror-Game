@@ -130,7 +130,9 @@ public class FPS_Pawn : Pawn {
         if (value)
         {
             SetCursorLock(true);
+            //Equip(null);
         }
+        
     }
 
     public virtual void Fire3(bool value)
@@ -258,6 +260,10 @@ public class FPS_Pawn : Pawn {
         if(handDominant.HasItem)
         {
             handDominant.Unequip();
+        }
+        if(!item)
+        {
+            return true;
         }
         return handDominant.Equip(item);
     }
