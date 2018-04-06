@@ -49,6 +49,10 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Start()
     {
+        IsSpectator = false;
+        IgnoresDamage = false;
+        LogDamageEvents = false;
+
         _playerInitialScale = transform.localScale.y;
 
         _rb = gameObject.AddComponent<Rigidbody>();
@@ -157,6 +161,10 @@ public class FPS_Pawn : Pawn {
                 if (other)
                 {
                     other.InteractWith(this, controller);
+                }
+                else
+                {
+                    Equip(null);
                 }
             }
             else
