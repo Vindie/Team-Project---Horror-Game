@@ -130,13 +130,13 @@ public class FPS_Pawn : Pawn {
         if (_isCrouching && !value)
         {
             Vector3 p1 = _col.transform.position;
-            p1.y = _playerHeight * 0.26f;
-            Vector3 p2 = p1 + (Vector3.up * _playerHeight * 0.5f);
+            Vector3 p2 = p1 + (Vector3.up * _playerHeight * 0.6f);
+            float checkRadius = _col.radius * 0.9f;
 
             int layermask = 1 << LayerMask.NameToLayer("Player");
             layermask = ~layermask;
 
-            bool didCollide = Physics.CheckCapsule(p1, p2, _col.radius * 0.9f, layermask);
+            bool didCollide = Physics.CheckCapsule(p1, p2, checkRadius, layermask);
             
             if(!didCollide)
             {
