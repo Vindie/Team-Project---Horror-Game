@@ -62,7 +62,7 @@ public class Socket : MonoBehaviour {
         return true;
     }
 
-    public virtual bool Unequip(bool returnToOriginalParent = false)
+    public virtual bool Unequip()
     {
         if(!HasItem)
         {
