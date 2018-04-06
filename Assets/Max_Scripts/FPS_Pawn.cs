@@ -116,7 +116,6 @@ public class FPS_Pawn : Pawn {
         if (value)
         {
             SetCursorLock(true);
-            //Equip(null);
         }
         
     }
