@@ -10,8 +10,7 @@ public class Item : Interactable {
     }
 
     /// <summary>
-    /// The basic interaction of an item is to have the FPS_Pawn equip it.
-    /// This is the main function to override in inheriting classes.
+    /// The basic interaction of an item while it's in the world is to have the FPS_Pawn equip it.
     /// </summary>
     /// <param name="source"></param>
     /// <param name="instigator"></param>
@@ -24,5 +23,17 @@ public class Item : Interactable {
             return fpp.Equip(this);
         }
         return false;
+    }
+
+    /// <summary>
+    /// The method meant to be called when player has equipped the item.
+    /// This is the main function to override in inheriting classes.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public virtual bool Use(Actor user)
+    {
+        INTERACTLOG(user.name + " uses " + ActorName);
+        return true;
     }
 }

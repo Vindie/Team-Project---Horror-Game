@@ -106,20 +106,18 @@ public class FPS_Pawn : Pawn {
         {
             SetCursorLock(true);
 
-            //Raycast to determine what player is looking at
-            int layermask = 1 << LayerMask.NameToLayer("Player");
-            layermask = ~layermask;
-
-            RaycastHit hitInfo;
-            Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask);
-
-            if(hitInfo.collider)
+            GameObject highlighted = GetInteractableObject();
+            if(highlighted)
             {
-                Interactable other = hitInfo.collider.GetComponentInChildren<Interactable>();
+                Interactable other = highlighted.GetComponentInChildren<Interactable>();
                 if(other)
                 {
                     other.InteractWith(this, controller);
                 }
+            }
+            else
+            {
+                handDominant.UseItem(this);
             }
         }
     }
@@ -266,5 +264,24 @@ public class FPS_Pawn : Pawn {
             return true;
         }
         return handDominant.Equip(item);
+    }
+
+    public virtual GameObject GetInteractableObject()
+    {
+        //Raycast to determine what player is looking at
+        int layermask = 1 << LayerMask.NameToLayer("Player");
+        layermask = ~layermask;
+
+        RaycastHit hitInfo;
+        Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask);
+
+        if(hitInfo.collider)
+        {
+            return hitInfo.collider.gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

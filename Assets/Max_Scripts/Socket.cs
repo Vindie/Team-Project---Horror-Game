@@ -88,4 +88,14 @@ public class Socket : MonoBehaviour {
 
         return true;
     }
+
+    public virtual bool UseItem(Actor user)
+    {
+        if(!HasItem)
+        {
+            return false;
+        }
+
+        return equippedItem.Use(user);
+    }
 }
