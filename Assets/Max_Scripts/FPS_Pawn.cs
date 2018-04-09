@@ -11,6 +11,8 @@ public class FPS_Pawn : Pawn {
     public float zoomSpeed;
 
     public float moveSpeed = 1.0f;
+    public bool allowSprint = false;
+    public float sprintMultiplier = 2.0f;
 
     public GameObject head;
     public Socket handDominant;
@@ -34,12 +36,17 @@ public class FPS_Pawn : Pawn {
     protected bool _doExamine = false;
     protected bool _isCrouching = false;
 
-    protected float _forwardVelocity = 0.0f;
-    protected float _strafeVelocity = 0.0f;
+    protected float _forwardVelocity = 1.0f;
+    protected float _strafeVelocity = 1.0f;
+    protected float _speedMultiplier = 1.0f;
+
     protected float _playerHeight;
     protected float _playerInitialScale;
     protected float _crouchPercent = 0.0f;
+
+    protected List<float> fovMultipliers;
     protected float _zoomPercent = 0.0f;
+
     protected float _inputXRotation = 0.0f;
     protected float _inputYRotation = 0.0f;
 
@@ -173,6 +180,18 @@ public class FPS_Pawn : Pawn {
             }
         }
     }
+
+    public virtual void Fire5(bool value)
+    {
+        if(value && allowSprint)
+        {
+            _speedMultiplier = sprintMultiplier;
+        }
+        else
+        {
+            _speedMultiplier = 1.0f;
+        }
+    }
     #endregion
 
     #region Movement Related Methods
@@ -180,7 +199,13 @@ public class FPS_Pawn : Pawn {
     {
         Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         moveVelocity += transform.forward * _forwardVelocity + transform.right * _strafeVelocity;
+
         moveVelocity *= moveSpeed;
+        if(!_isCrouching) //Speed can't be modified when crouching
+        {
+            moveVelocity *= _speedMultiplier;
+        }
+
         moveVelocity.y += _rb.velocity.y;
 
         return moveVelocity;
@@ -252,6 +277,17 @@ public class FPS_Pawn : Pawn {
         }
     }
     #endregion
+
+    protected virtual void ManageFOV()
+    {
+        /*float overallFovModifier = 1.0f;
+        foreach (float m in fovMultipliers)
+        {
+            overallFovModifier *= m;
+        }
+
+        */
+    }
 
     protected virtual void CameraZoom()
     {

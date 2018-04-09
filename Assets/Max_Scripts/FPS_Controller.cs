@@ -21,6 +21,7 @@ public class FPS_Controller : PlayerController {
         AddButton("Fire2", Fire2);
         AddButton("Fire3", Fire3);
         AddButton("Fire4", Fire4);
+        AddButton("Fire5", Fire5);
         AddButton("Cancel", Cancel);
     }
 
@@ -93,6 +94,15 @@ public class FPS_Controller : PlayerController {
         if (FPP)
         {
             FPP.Fire4(value);
+        }
+    }
+
+    public virtual void Fire5(bool value)
+    {
+        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+        if (FPP)
+        {
+            FPP.Fire5(value);
         }
     }
 
