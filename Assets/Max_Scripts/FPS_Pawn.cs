@@ -39,6 +39,7 @@ public class FPS_Pawn : Pawn {
     protected float _forwardVelocity = 1.0f;
     protected float _strafeVelocity = 1.0f;
     protected float _speedMultiplier = 1.0f;
+    protected bool _isSprinting = false;
 
     protected float _playerHeight;
     protected float _playerInitialScale;
@@ -60,6 +61,8 @@ public class FPS_Pawn : Pawn {
         IgnoresDamage = false;
         LogDamageEvents = false;
 
+        fovMultipliers = new List<float>();
+
         _playerInitialScale = transform.localScale.y;
 
         _rb = gameObject.AddComponent<Rigidbody>();
@@ -78,7 +81,17 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Update()
     {
-        CameraZoom();
+        //CameraZoom();
+        if(_isCrouching)
+        {
+            fovMultipliers.Add(0.8f);
+        }
+        if(_isSprinting)
+        {
+            fovMultipliers.Add(1.2f);
+        }
+
+        ManageFOV();
         HandleLookRotation();
     }
 
@@ -183,13 +196,15 @@ public class FPS_Pawn : Pawn {
 
     public virtual void Fire5(bool value)
     {
-        if(value && allowSprint)
+        if(value && allowSprint && !_isCrouching)
         {
             _speedMultiplier = sprintMultiplier;
+            _isSprinting = true;
         }
         else
         {
             _speedMultiplier = 1.0f;
+            _isSprinting = false;
         }
     }
     #endregion
@@ -200,11 +215,7 @@ public class FPS_Pawn : Pawn {
         Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         moveVelocity += transform.forward * _forwardVelocity + transform.right * _strafeVelocity;
 
-        moveVelocity *= moveSpeed;
-        if(!_isCrouching) //Speed can't be modified when crouching
-        {
-            moveVelocity *= _speedMultiplier;
-        }
+        moveVelocity *= moveSpeed * _speedMultiplier;
 
         moveVelocity.y += _rb.velocity.y;
 
@@ -280,13 +291,22 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void ManageFOV()
     {
-        /*float overallFovModifier = 1.0f;
-        foreach (float m in fovMultipliers)
+        float overallFovModifier = 1.0f;
+        if (fovMultipliers != null)
         {
-            overallFovModifier *= m;
-        }
+            foreach (float m in fovMultipliers)
+            {
+                overallFovModifier *= m;
+            }
+            fovMultipliers.Clear(); //Doing this here unfortunately means multipliers have to be added before this in update.
 
-        */
+            Camera playerCamera = head.GetComponent<Camera>();
+            if (playerCamera)
+            {
+                float newFOV = Mathf.Lerp(playerCamera.fieldOfView, defaultFOV * overallFovModifier, 0.2f);
+                playerCamera.fieldOfView = newFOV;
+            }
+        }
     }
 
     protected virtual void CameraZoom()
