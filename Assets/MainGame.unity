@@ -77,18 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -110,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &6685741
 GameObject:
@@ -153,7 +148,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -169,7 +163,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -209,7 +202,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -227,7 +219,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -367,7 +358,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -383,7 +373,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -423,7 +412,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -441,7 +429,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -570,9 +557,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 861000104}
 --- !u!114 &22947033
@@ -1717,7 +1704,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1733,7 +1719,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1779,7 +1764,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -1797,7 +1781,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -1909,7 +1892,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -1927,7 +1909,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -2093,7 +2074,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -2111,7 +2091,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -2223,7 +2202,6 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 122
     localAABB:
@@ -2241,7 +2219,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e001000110012001100130012001400150016001700180019001a001b001c001b001d001c001e001f0020001f0021002000220023002400250026002700280029002a002b002c002d002e002f0030002f003100300032003300340033003500340036003700380039003a003b003c003d003e003d003f003e0040004100420041004300420044004500460047004800490041004a004b004a004c004b004d004e004f0050005100520053005400550054005600550057005800590058005a0059005b005c005d005e005f0060006100620063006400650066006700680069006a006b006c006d006e006f006e0070006f0071007200730074007500760077007800790078006f007900
   m_Skin: []
   m_VertexData:
@@ -2353,7 +2330,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -2371,7 +2347,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -2483,7 +2458,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -2501,7 +2475,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -2601,6 +2574,134 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!43 &176554732
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: pb_Mesh-19048
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: -2.2170715, y: 0.5, z: 5.439041}
+      m_Extent: {x: 22.37619, y: 0.5, z: 6.762657}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
+  m_Skin: []
+  m_VertexData:
+    m_CurrentChannels: 143
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 48
+      format: 0
+      dimension: 4
+    m_DataSize: 1536
+    _typelessdata: 00bfc4c100000000283a434100000000000000000000803f0000803f0000803f0000803f0000803f00bfc44100000000000080bf0000000000000000000080bfe045a14100000000283a434100000000000000000000803f0000803f0000803f0000803f0000803fe045a1c100000000000080bf0000000000000000000080bf00bfc4c10000803f283a434100000000000000000000803f0000803f0000803f0000803f0000803f00bfc4410000803f000080bf0000000000000000000080bfe045a1410000803f283a434100000000000000000000803f0000803f0000803f0000803f0000803fe045a1c10000803f000080bf0000000000000000000080bfe045a14100000000283a43410000803f00000000000000000000803f0000803f0000803f0000803f283a43410000000000000000000000000000803f000080bfe045a14100000000406ca9bf0000803f00000000000000000000803f0000803f0000803f0000803f406ca9bf0000000000000000000000000000803f000080bfe045a1410000803f283a43410000803f00000000000000000000803f0000803f0000803f0000803f283a43410000803f00000000000000000000803f000080bfe045a1410000803f406ca9bf0000803f00000000000000000000803f0000803f0000803f0000803f406ca9bf0000803f00000000000000000000803f000080bfe045a14100000000406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803fe045a141000000000000803f0000000000000000000080bf00bfc4c100000000406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803f00bfc4c1000000000000803f0000000000000000000080bfe045a1410000803f406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803fe045a1410000803f0000803f0000000000000000000080bf00bfc4c10000803f406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803f00bfc4c10000803f0000803f0000000000000000000080bf00bfc4c100000000406ca9bf000080bf00000000000000000000803f0000803f0000803f0000803f406ca93f000000000000000000000000000080bf000080bf00bfc4c100000000283a4341000080bf00000000000000000000803f0000803f0000803f0000803f283a43c1000000000000000000000000000080bf000080bf00bfc4c10000803f406ca9bf000080bf00000000000000000000803f0000803f0000803f0000803f406ca93f0000803f0000000000000000000080bf000080bf00bfc4c10000803f283a4341000080bf00000000000000000000803f0000803f0000803f0000803f283a43c10000803f0000000000000000000080bf000080bf00bfc4c10000803f283a4341000000000000803f000000000000803f0000803f0000803f0000803f00bfc4c1283a43410000803f0000000000000000000080bfe045a1410000803f283a4341000000000000803f000000000000803f0000803f0000803f0000803fe045a141283a43410000803f0000000000000000000080bf00bfc4c10000803f406ca9bf000000000000803f000000000000803f0000803f0000803f0000803f00bfc4c1406ca9bf0000803f0000000000000000000080bfe045a1410000803f406ca9bf000000000000803f000000000000803f0000803f0000803f0000803fe045a141406ca9bf0000803f0000000000000000000080bf00bfc4c100000000406ca9bf00000000000080bf000000000000803f0000803f0000803f0000803f00bfc441406ca9bf000080bf0000000000000000000080bfe045a14100000000406ca9bf00000000000080bf000000000000803f0000803f0000803f0000803fe045a1c1406ca9bf000080bf0000000000000000000080bf00bfc4c100000000283a434100000000000080bf000000000000803f0000803f0000803f0000803f00bfc441283a4341000080bf0000000000000000000080bfe045a14100000000283a434100000000000080bf000000000000803f0000803f0000803f0000803fe045a1c1283a4341000080bf0000000000000000000080bf
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -2.2170715, y: 0.5, z: 5.439041}
+    m_Extent: {x: 22.37619, y: 0.5, z: 6.762657}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!43 &190065182
 Mesh:
   m_ObjectHideFlags: 0
@@ -2613,7 +2714,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -2631,7 +2731,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -2785,6 +2884,7 @@ Transform:
   m_LocalScale: {x: 11.35569, y: 1, z: 14.03536}
   m_Children:
   - {fileID: 598067804}
+  - {fileID: 1727489711}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2830,9 +2930,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 879830114}
 --- !u!114 &234244965
@@ -3795,7 +3895,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3811,7 +3910,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -3844,7 +3942,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -3862,7 +3959,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -4002,7 +4098,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4018,7 +4113,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4058,7 +4152,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -4076,7 +4169,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -4251,9 +4343,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 334338441}
 --- !u!114 &252097607
@@ -5216,7 +5308,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5232,7 +5323,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -5282,9 +5372,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1281266296}
 --- !u!114 &287596104
@@ -6247,7 +6337,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6263,7 +6352,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6309,7 +6397,6 @@ Mesh:
     firstByte: 0
     indexCount: 36
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -6327,7 +6414,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
   m_Skin: []
   m_VertexData:
@@ -6456,9 +6542,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 153919228}
 --- !u!114 &308452028
@@ -7421,7 +7507,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7437,7 +7522,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -7483,7 +7567,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -7501,7 +7584,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -7613,7 +7695,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -7631,7 +7712,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -7743,7 +7823,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -7761,7 +7840,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -7971,7 +8049,6 @@ Mesh:
     firstByte: 0
     indexCount: 756
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 284
     localAABB:
@@ -7989,7 +8066,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600180019001a0019001b001a001c001d001e001d001f001e00200021002200210023002200240025002600250027002600280029002a0029002b002a002c002d002e002d002f002e00300031003200310033003200340035003600370038003900020003003a0003003b003a00060007003c0007003d003c000a000b003e000b003f003e000e000f0040000f00410040001200130042001300430042001600170044001700450044001a001b0046001b00470046001e001f0048001f0049004800220023004a0023004b004a00260027004c0027004d004c002a002b004e002b004f004e002e002f0050002f00510050003200330052003300530052003900380054003800550054003a003b0056003b00570056003c003d0058003d00590058003e003f005a003f005b005a00400041005c0041005d005c00420043005e0043005f005e004400450060004500610060004600470062004700630062004800490064004900650064004a004b0066004b00670066004c004d0068004d00690068004e004f006a004f006b006a00500051006c0051006d006c00520053006e0053006f006e005400550070005500710070005600570072005700730072005800590074005900750074005a005b0076005b00770076005c005d0078005d00790078005e005f007a005f007b007a00600061007c0061007d007c00620063007e0063007f007e006400650080006500810080006600670082006700830082006800690084006900850084006a006b0086006b00870086006c006d0088006d00890088006e006f008a006f008b008a00700071008c0071008d008c00720073008e0073008f008e007400750090007500910090007600770092007700930092007800790094007900950094007a007b0096007b00970096007c007d0098007d00990098007e007f009a007f009b009a00800081009c0081009d009c00820083009e0083009f009e0084008500a0008500a100a00086008700a2008700a300a20088008900a4008900a500a4008a008b00a6008b00a700a6008c008d00a8008d00a900a8008e008f00aa008f00ab00aa0090009100ac009100ad00ac0092009300ae009300af00ae0094009500b0009500b100b00096009700b2009700b300b20098009900b4009900b500b4009a009b00b6009b00b700b6009c009d00b8009d00b900b8009e009f00ba009f00bb00ba00a000a100bc00a100bd00bc00a200a300be00a300bf00be00a400a500c000a500c100c000a600a700c200a700c300c200a800a900c400a900c500c400aa00ab00c600ab00c700c600ac00ad00c800ad00c900c800ae00af00ca00af00cb00ca00b000b100cc00b100cd00cc00b200b300ce00b300cf00ce00b400b500d000b500d100d000b600b700d200b700d300d200b800b900d400b900d500d400ba00bb00d600bb00d700d600bc00bd00d800bd00d900d800be00bf00da00bf00db00da00c000c100dc00c100dd00dc00c200c300de00c300df00de00c400c500e000c500e100e000c600c700e200c700e300e200c800c900e400c900e500e400ca00cb00e600cb00e700e600cc00cd00e800cd00e900e800ce00cf00ea00cf00eb00ea00d000d100ec00d100ed00ec00d200d300ee00d300ef00ee00d400d500f000d500f100f000d600d700f200d700f300f200d800d900f400d900f500f400da00db00f600db00f700f600dc00dd00f800dd00f900f800de00df00fa00df00fb00fa00e000e100fc00e100fd00fc00fe00ff000001ff0001010001020103010401030105010401ff000601010106010701010108010201090102010401090106010a0107010a010b0107010c0108010d01080109010d010a010e010b010e010f010b0110010c0111010c010d0111010e0112010f01120113010f011401100115011001110115011201160113011601170113011801140119011401150119011601fe001a01fe001b011a01030118010501180119010501
   m_Skin: []
   m_VertexData:
@@ -8159,9 +8235,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 2065267601}
 --- !u!114 &408966881
@@ -9124,7 +9200,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9140,7 +9215,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9572,9 +9646,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 2112922744}
 --- !u!114 &433009215
@@ -9879,12 +9953,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ed5c4849a053c1b4596d8f7dad9ef5dc, type: 2}
+  - {fileID: 2100000, guid: 346f7f2ea91be7b4795dbbf488108282, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9895,7 +9968,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -9970,7 +10042,6 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 104
     localAABB:
@@ -9988,7 +10059,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600180019001a0019001b001a001c001d001e001d001f001e00200021002200210023002200240025002600250027002600280029002a0029002b002a002c002d002e002d002f002e00300031003200310033003200340035003600350037003600380039003a0039003b003a003c003d003e003d003f003e0040004100420043004400450046004700480049004a004b004c004d004e004d004f004e00500051005200510053005200540055005600550057005600580059005a0059005b005a005c005d005e005d005f005e0060005800610058005a006100620063006400630065006400660060006700600061006700
   m_Skin: []
   m_VertexData:
@@ -10245,7 +10315,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -10263,7 +10332,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -10375,7 +10443,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -10393,7 +10460,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -10676,7 +10742,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -10694,7 +10759,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -10834,7 +10898,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -10852,7 +10915,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -10981,11 +11043,11 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 1047006068}
+  m_Mesh: {fileID: 0}
 --- !u!114 &598067800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11278,7 +11340,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 598067798}
-  m_Mesh: {fileID: 1047006068}
+  m_Mesh: {fileID: 0}
 --- !u!23 &598067802
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11288,12 +11350,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a1aad27d471ab964a8466de59446d7b9, type: 2}
+  - {fileID: 2100000, guid: a74e628833f35ef4a852256b262ed135, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11304,7 +11365,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -11350,7 +11410,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -11368,7 +11427,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -11562,9 +11620,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1675537368}
 --- !u!114 &638017205
@@ -12527,7 +12585,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12543,7 +12600,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -12576,7 +12632,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -12594,7 +12649,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -12736,9 +12790,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 72676071}
 --- !u!114 &649653340
@@ -13701,7 +13755,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13717,7 +13770,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -13750,7 +13802,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -13768,7 +13819,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -13880,7 +13930,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -13898,7 +13947,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -14010,7 +14058,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -14028,7 +14075,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -14140,7 +14186,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -14158,7 +14203,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -14298,7 +14342,6 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 102
     localAABB:
@@ -14316,7 +14359,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600180019001a0019001b001a001c001d001e001d001f001e00200021002200210023002200240025002600250027002600280029002a0029002b002a002c002d002e002d002f002e00300031003200310033003200340035003600350037003600380039003a0039003b003a003c003d003e003f0040004100390042003b00420043003b004400450046004500470046004200480043004800490043004a004b004c004b004d004c0048004e0049004e004f0049005000510052005100530052005400550056005700580059005a005b005c005b005d005c005e005f0060005f0061006000620063006400630065006400
   m_Skin: []
   m_VertexData:
@@ -14576,9 +14618,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1988164422}
 --- !u!114 &783452796
@@ -15541,7 +15583,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15557,7 +15598,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -15620,9 +15660,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 293426419}
 --- !u!114 &787324833
@@ -15927,12 +15967,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ed5c4849a053c1b4596d8f7dad9ef5dc, type: 2}
+  - {fileID: 2100000, guid: 346f7f2ea91be7b4795dbbf488108282, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15943,7 +15982,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -16007,9 +16045,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1996141965}
 --- !u!114 &787509244
@@ -16972,7 +17010,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16988,7 +17025,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -17064,9 +17100,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 16481703}
 --- !u!114 &822873408
@@ -18029,7 +18065,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18045,7 +18080,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -18108,7 +18142,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18124,7 +18157,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -18198,9 +18230,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 723371635}
 --- !u!114 &846967359
@@ -19163,7 +19195,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -19179,7 +19210,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -19212,7 +19242,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -19230,7 +19259,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -19359,9 +19387,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 163424796}
 --- !u!114 &858148072
@@ -20506,7 +20534,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -20522,7 +20549,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -20568,7 +20594,6 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 112
     localAABB:
@@ -20586,7 +20611,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600180019001a0019001b001a001c001d001e001d001f001e002000210022002300240025002600270028002700290028002a002b002c002b002d002c002e002f0030002f00310030003200330034003300350034003600370038003700390038003a003b003c003b003d003c003e003f0040003f00410040003b004200430042004400430045004600470046004800470049004a004b004a004c004b004d004e004f0050005100520053005400550056005700580059005a005b005c005d005e005f006000610062006300640065006600670066006800670069006a006b006a006c006b006d006e006f006e0067006f00
   m_Skin: []
   m_VertexData:
@@ -20726,7 +20750,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -20742,7 +20765,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -20868,7 +20890,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -20886,7 +20907,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -21091,9 +21111,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 2065740384}
 --- !u!114 &937384754
@@ -22056,7 +22076,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -22072,7 +22091,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -22105,7 +22123,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -22123,7 +22140,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -22265,7 +22281,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -22281,7 +22296,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -22338,9 +22352,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1734594439}
 --- !u!114 &998106207
@@ -23303,7 +23317,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -23319,7 +23332,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -23382,9 +23394,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1031897346}
 --- !u!114 &998666808
@@ -24347,7 +24359,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -24363,7 +24374,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -24409,7 +24419,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -24427,7 +24436,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -24556,9 +24564,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 757974478}
 --- !u!114 &1027464491
@@ -25703,7 +25711,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -25719,7 +25726,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -25765,7 +25771,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -25783,7 +25788,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -25895,7 +25899,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -25913,7 +25916,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -26013,136 +26015,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!43 &1047006068
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11636
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 24
-    localAABB:
-      m_Center: {x: -2.2170715, y: 0.5, z: 5.439041}
-      m_Extent: {x: 22.37619, y: 0.5, z: 6.762657}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
-  m_Skin: []
-  m_VertexData:
-    m_CurrentChannels: 159
-    m_VertexCount: 24
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 24
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 40
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 48
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 56
-      format: 0
-      dimension: 4
-    m_DataSize: 1728
-    _typelessdata: 00bfc4c100000000283a434100000000000000000000803f0000803f0000803f0000803f0000803f00bfc441000000006f12833b6f12833b000080bf0000000000000000000080bfe045a14100000000283a434100000000000000000000803f0000803f0000803f0000803f0000803fe045a1c100000000fafd7e3f6f12833b000080bf0000000000000000000080bf00bfc4c10000803f283a434100000000000000000000803f0000803f0000803f0000803f0000803f00bfc4410000803f3817833be15dd63c000080bf0000000000000000000080bfe045a1410000803f283a434100000000000000000000803f0000803f0000803f0000803f0000803fe045a1c10000803f04fe7e3fe15dd63c000080bf0000000000000000000080bfe045a14100000000283a43410000803f00000000000000000000803f0000803f0000803f0000803f283a434100000000d913833b33fb293f00000000000000000000803f000080bfe045a14100000000406ca9bf0000803f00000000000000000000803f0000803f0000803f0000803f406ca9bf000000002f8f9b3e33fb293f00000000000000000000803f000080bfe045a1410000803f283a43410000803f00000000000000000000803f0000803f0000803f0000803f283a43410000803f6f12833bfea72f3f00000000000000000000803f000080bfe045a1410000803f406ca9bf0000803f00000000000000000000803f0000803f0000803f0000803f406ca9bf0000803f298f9b3efea72f3f00000000000000000000803f000080bfe045a14100000000406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803fe045a141000000006f12833b7c22f73c0000803f0000000000000000000080bf00bfc4c100000000406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803f00bfc4c100000000fafd7e3f7c22f73c0000803f0000000000000000000080bfe045a1410000803f406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803fe045a1410000803f3817833be15d563d0000803f0000000000000000000080bf00bfc4c10000803f406ca9bf0000000000000000000080bf0000803f0000803f0000803f0000803f00bfc4c10000803f04fe7e3fe15d563d0000803f0000000000000000000080bf00bfc4c100000000406ca9bf000080bf00000000000000000000803f0000803f0000803f0000803f406ca93f00000000d913833b23ae303f0000000000000000000080bf000080bf00bfc4c100000000283a4341000080bf00000000000000000000803f0000803f0000803f0000803f283a43c1000000002f8f9b3e23ae303f0000000000000000000080bf000080bf00bfc4c10000803f406ca9bf000080bf00000000000000000000803f0000803f0000803f0000803f406ca93f0000803f6f12833bed5a363f0000000000000000000080bf000080bf00bfc4c10000803f283a4341000080bf00000000000000000000803f0000803f0000803f0000803f283a43c10000803f298f9b3eed5a363f0000000000000000000080bf000080bf00bfc4c10000803f283a4341000000000000803f000000000000803f0000803f0000803f0000803f00bfc4c1283a4341effd7e3fed5ab63e0000803f0000000000000000000080bfe045a1410000803f283a4341000000000000803f000000000000803f0000803f0000803f0000803fe045a141283a43416f12833bed5ab63e0000803f0000000000000000000080bf00bfc4c10000803f406ca9bf000000000000803f000000000000803f0000803f0000803f0000803f00bfc4c1406ca9bffcfd7e3f2ec0663d0000803f0000000000000000000080bfe045a1410000803f406ca9bf000000000000803f000000000000803f0000803f0000803f0000803fe045a141406ca9bf2c19833b2ec0663d0000803f0000000000000000000080bf00bfc4c100000000406ca9bf00000000000080bf000000000000803f0000803f0000803f0000803f00bfc441406ca9bf2c19833b3667b83e000080bf0000000000000000000080bfe045a14100000000406ca9bf00000000000080bf000000000000803f0000803f0000803f0000803fe045a1c1406ca9bffcfd7e3f3667b83e000080bf0000000000000000000080bf00bfc4c100000000283a434100000000000080bf000000000000803f0000803f0000803f0000803f00bfc441283a43416f12833b0ef5283f000080bf0000000000000000000080bfe045a14100000000283a434100000000000080bf000000000000803f0000803f0000803f0000803fe045a1c1283a4341effd7e3f0ef5283f000080bf0000000000000000000080bf
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: -2.2170715, y: 0.5, z: 5.439041}
-    m_Extent: {x: 22.37619, y: 0.5, z: 6.762657}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
 --- !u!43 &1053224692
 Mesh:
   m_ObjectHideFlags: 0
@@ -26155,7 +26027,6 @@ Mesh:
     firstByte: 0
     indexCount: 36
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -26173,7 +26044,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
   m_Skin: []
   m_VertexData:
@@ -26302,9 +26172,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1986058003}
 --- !u!114 &1054132874
@@ -27449,7 +27319,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -27465,7 +27334,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -27511,7 +27379,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -27529,7 +27396,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -27645,7 +27511,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -27663,7 +27528,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -27845,7 +27709,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -27863,7 +27726,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -28033,9 +27895,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 93663318}
 --- !u!114 &1252624714
@@ -28998,7 +28860,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -29014,7 +28875,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -29047,7 +28907,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -29065,7 +28924,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -29207,9 +29065,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1729659333}
 --- !u!114 &1293193779
@@ -30172,7 +30030,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -30188,7 +30045,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -30221,7 +30077,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -30239,7 +30094,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -30368,9 +30222,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 458169654}
 --- !u!114 &1338766749
@@ -31517,7 +31371,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -31533,7 +31386,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -31596,9 +31448,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 364089309}
 --- !u!114 &1372282071
@@ -32561,7 +32413,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -32577,7 +32428,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -32651,7 +32501,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -32667,7 +32516,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -32740,7 +32588,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -32758,7 +32605,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -32966,7 +32812,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -32984,7 +32829,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -33113,9 +32957,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 708237383}
 --- !u!114 &1465146944
@@ -34078,7 +33922,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -34094,7 +33937,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -34253,7 +34095,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -34271,7 +34112,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -34413,9 +34253,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1840642378}
 --- !u!114 &1493688727
@@ -35378,7 +35218,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -35394,7 +35233,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -35427,7 +35265,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -35445,7 +35282,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -35557,7 +35393,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -35575,7 +35410,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -35687,7 +35521,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -35705,7 +35538,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -35932,9 +35764,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1109427904}
 --- !u!114 &1631622088
@@ -36897,7 +36729,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -36913,7 +36744,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -37008,7 +36838,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -37026,7 +36855,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -37168,9 +36996,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 320081500}
 --- !u!114 &1709170306
@@ -38133,7 +37961,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -38149,7 +37976,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -38201,6 +38027,390 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1727489710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1727489711}
+  - component: {fileID: 1727489716}
+  - component: {fileID: 1727489715}
+  - component: {fileID: 1727489714}
+  - component: {fileID: 1727489713}
+  - component: {fileID: 1727489712}
+  m_Layer: 0
+  m_Name: main Floor (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 127
+  m_IsActive: 1
+--- !u!4 &1727489711
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_LocalRotation: {x: -0.000020784557, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.30821553, y: -0.37024552, z: -0.41609108}
+  m_LocalScale: {x: 0.08806158, y: 1, z: 0.07124861}
+  m_Children: []
+  m_Father: {fileID: 229547171}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1727489712
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 176554732}
+--- !u!114 &1727489713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quads:
+  - _indices: 000000000100000002000000010000000300000002000000
+    _distinctIndices: 00000000010000000200000003000000
+    _edges:
+    - x: 0
+      y: 1
+    - x: 2
+      y: 0
+    - x: 1
+      y: 3
+    - x: 3
+      y: 2
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: 2.2170715, y: 0.5}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  - _indices: 040000000500000006000000050000000700000006000000
+    _distinctIndices: 04000000050000000600000007000000
+    _edges:
+    - x: 4
+      y: 5
+    - x: 6
+      y: 4
+    - x: 5
+      y: 7
+    - x: 7
+      y: 6
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: 5.439041, y: 0.5}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  - _indices: 08000000090000000a000000090000000b0000000a000000
+    _distinctIndices: 08000000090000000a0000000b000000
+    _edges:
+    - x: 8
+      y: 9
+    - x: 10
+      y: 8
+    - x: 9
+      y: 11
+    - x: 11
+      y: 10
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: -2.2170715, y: 0.5}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  - _indices: 0c0000000d0000000e0000000d0000000f0000000e000000
+    _distinctIndices: 0c0000000d0000000e0000000f000000
+    _edges:
+    - x: 12
+      y: 13
+    - x: 14
+      y: 12
+    - x: 13
+      y: 15
+    - x: 15
+      y: 14
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: -5.439041, y: 0.5}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  - _indices: 100000001100000012000000110000001300000012000000
+    _distinctIndices: 10000000110000001200000013000000
+    _edges:
+    - x: 16
+      y: 17
+    - x: 18
+      y: 16
+    - x: 17
+      y: 19
+    - x: 19
+      y: 18
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: -2.2170715, y: 5.439041}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  - _indices: 140000001500000016000000150000001700000016000000
+    _distinctIndices: 14000000150000001600000017000000
+    _edges:
+    - x: 20
+      y: 21
+    - x: 22
+      y: 20
+    - x: 21
+      y: 23
+    - x: 23
+      y: 22
+    _smoothingGroup: 0
+    _uv:
+      useWorldSpace: 0
+      flipU: 0
+      flipV: 0
+      swapUV: 0
+      fill: 1
+      scale: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+      rotation: 0
+      justify: 0
+      localPivot: {x: 2.2170715, y: 5.439041}
+      localSize: {x: 0, y: 0}
+      anchor: 9
+    _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+    manualUV: 0
+    elementGroup: -1
+    textureGroup: -1
+  _sharedIndices:
+  - array: 000000000d00000016000000
+  - array: 010000000400000017000000
+  - array: 020000000f00000010000000
+  - array: 030000000600000011000000
+  - array: 050000000800000015000000
+  - array: 070000000a00000013000000
+  - array: 090000000c00000014000000
+  - array: 0b0000000e00000012000000
+  _vertices:
+  - {x: -24.593262, y: 0, z: 12.201698}
+  - {x: 20.159119, y: 0, z: 12.201698}
+  - {x: -24.593262, y: 1, z: 12.201698}
+  - {x: 20.159119, y: 1, z: 12.201698}
+  - {x: 20.159119, y: 0, z: 12.201698}
+  - {x: 20.159119, y: 0, z: -1.323616}
+  - {x: 20.159119, y: 1, z: 12.201698}
+  - {x: 20.159119, y: 1, z: -1.323616}
+  - {x: 20.159119, y: 0, z: -1.323616}
+  - {x: -24.593262, y: 0, z: -1.323616}
+  - {x: 20.159119, y: 1, z: -1.323616}
+  - {x: -24.593262, y: 1, z: -1.323616}
+  - {x: -24.593262, y: 0, z: -1.323616}
+  - {x: -24.593262, y: 0, z: 12.201698}
+  - {x: -24.593262, y: 1, z: -1.323616}
+  - {x: -24.593262, y: 1, z: 12.201698}
+  - {x: -24.593262, y: 1, z: 12.201698}
+  - {x: 20.159119, y: 1, z: 12.201698}
+  - {x: -24.593262, y: 1, z: -1.323616}
+  - {x: 20.159119, y: 1, z: -1.323616}
+  - {x: -24.593262, y: 0, z: -1.323616}
+  - {x: 20.159119, y: 0, z: -1.323616}
+  - {x: -24.593262, y: 0, z: 12.201698}
+  - {x: 20.159119, y: 0, z: 12.201698}
+  _uv:
+  - {x: 24.593262, y: 0}
+  - {x: -20.159119, y: 0}
+  - {x: 24.593262, y: 1}
+  - {x: -20.159119, y: 1}
+  - {x: 12.201698, y: 0}
+  - {x: -1.323616, y: 0}
+  - {x: 12.201698, y: 1}
+  - {x: -1.323616, y: 1}
+  - {x: 20.159119, y: 0}
+  - {x: -24.593262, y: 0}
+  - {x: 20.159119, y: 1}
+  - {x: -24.593262, y: 1}
+  - {x: 1.323616, y: 0}
+  - {x: -12.201698, y: 0}
+  - {x: 1.323616, y: 1}
+  - {x: -12.201698, y: 1}
+  - {x: -24.593262, y: 12.201698}
+  - {x: 20.159119, y: 12.201698}
+  - {x: -24.593262, y: -1.323616}
+  - {x: 20.159119, y: -1.323616}
+  - {x: 24.593262, y: -1.323616}
+  - {x: -20.159119, y: -1.323616}
+  - {x: 24.593262, y: 12.201698}
+  - {x: -20.159119, y: 12.201698}
+  _uv3: []
+  _uv4: []
+  _tangents: []
+  _sharedIndicesUV: []
+  _colors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  userCollisions: 0
+  isSelectable: 1
+  unwrapParameters:
+    hardAngle: 88
+    packMargin: 4
+    angleError: 8
+    areaError: 15
+  asset_guid: 
+  dontDestroyMeshOnDelete: 0
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+--- !u!33 &1727489714
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_Mesh: {fileID: 176554732}
+--- !u!23 &1727489715
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_Enabled: 1
+  m_CastShadows: 2
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 2
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &1727489716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727489710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!43 &1729659333
 Mesh:
   m_ObjectHideFlags: 0
@@ -38213,7 +38423,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -38231,7 +38440,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -38343,7 +38551,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -38361,7 +38568,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -38520,9 +38726,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1906986473}
 --- !u!114 &1758164577
@@ -39485,7 +39691,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -39501,7 +39706,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -39634,9 +39838,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1774527246}
 --- !u!114 &1770259588
@@ -40599,7 +40803,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -40615,7 +40818,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -40661,7 +40863,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -40679,7 +40880,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -40791,7 +40991,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -40809,7 +41008,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -40951,7 +41149,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -40969,7 +41166,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -41081,7 +41277,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -41099,7 +41294,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -41211,7 +41405,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -41229,7 +41422,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -41399,7 +41591,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -41415,7 +41606,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -41455,7 +41645,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -41473,7 +41662,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -41615,9 +41803,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 655331514}
 --- !u!114 &1901007502
@@ -42580,7 +42768,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -42596,7 +42783,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -42629,7 +42815,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -42647,7 +42832,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -42787,7 +42971,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -42803,7 +42986,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -42873,9 +43055,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 569205695}
 --- !u!114 &1953410374
@@ -43838,7 +44020,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -43854,7 +44035,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -43929,7 +44109,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 10df2c6043a69a14c8491070a059b2d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 346f7f2ea91be7b4795dbbf488108282, type: 2}
     - target: {fileID: 100000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
       propertyPath: m_Name
       value: cavern (1)
@@ -43999,7 +44179,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 10df2c6043a69a14c8491070a059b2d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 346f7f2ea91be7b4795dbbf488108282, type: 2}
     - target: {fileID: 100000, guid: 180202b2ee0389a4b972212db64d2e05, type: 3}
       propertyPath: m_Name
       value: cavern (3)
@@ -44035,7 +44215,6 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 133
     localAABB:
@@ -44053,7 +44232,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a0019001b001a001c001d001e001f00200021002200230024002300250024002600270028002700290028002a002b002c002d002e002f003000310032003300340035003600370038003700390038003a003b003c003b003d003c003e003f004000410042004300440045004600450047004600480049004a004b004c004d004e004f005000510052005300540055005600550057005600580059005a005b005c005d005e005f0060005f006100600062006300640063006500640066006700680069006a006b006c006d006e006f0070007100720073007400750076007700780079007a0079007b007a007c007d007e007f008000810082008300840083007a008400
   m_Skin: []
   m_VertexData:
@@ -44195,9 +44373,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1806480037}
 --- !u!114 &1987795556
@@ -45160,7 +45338,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -45176,7 +45353,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -45209,7 +45385,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -45227,7 +45402,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -45339,7 +45513,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -45357,7 +45530,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -45469,7 +45641,6 @@ Mesh:
     firstByte: 0
     indexCount: 36
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -45487,7 +45658,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
   m_Skin: []
   m_VertexData:
@@ -45599,7 +45769,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -45617,7 +45786,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -45729,7 +45897,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -45747,7 +45914,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -45859,7 +46025,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -45877,7 +46042,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -45989,7 +46153,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -46007,7 +46170,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -46119,7 +46281,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -46137,7 +46298,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -46266,9 +46426,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1053224692}
 --- !u!114 &2082233603
@@ -46573,12 +46733,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ed5c4849a053c1b4596d8f7dad9ef5dc, type: 2}
+  - {fileID: 2100000, guid: 346f7f2ea91be7b4795dbbf488108282, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -46589,7 +46748,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -46635,7 +46793,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -46653,7 +46810,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -46765,7 +46921,6 @@ Mesh:
     firstByte: 0
     indexCount: 36
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -46783,7 +46938,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
   m_Skin: []
   m_VertexData:
@@ -46895,7 +47049,6 @@ Mesh:
     firstByte: 0
     indexCount: 60
     topology: 0
-    baseVertex: 0
     firstVertex: 0
     vertexCount: 60
     localAABB:
@@ -46913,7 +47066,6 @@ Mesh:
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexFormat: 0
   m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000f0010001100120013001400150016001700180019001a001b001c001d001e001f0020002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b00
   m_Skin: []
   m_VertexData:
@@ -47042,9 +47194,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 1990273867}
 --- !u!114 &2142238597
@@ -47349,7 +47501,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -47365,7 +47516,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
