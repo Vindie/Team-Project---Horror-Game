@@ -7,8 +7,6 @@ public class FPS_Pawn : Pawn {
     #region Pawn Properties
     
     public float defaultFOV = 60.0f;
-    public float zoomedFOV = 40.0f;
-    public float zoomSpeed;
 
     public float moveSpeed = 1.0f;
     public bool allowSprint = false;
@@ -33,20 +31,20 @@ public class FPS_Pawn : Pawn {
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
 
-    protected bool _doExamine = false;
     protected bool _isCrouching = false;
+    protected bool _isSprinting = false;
 
     protected float _forwardVelocity = 1.0f;
     protected float _strafeVelocity = 1.0f;
     protected float _speedMultiplier = 1.0f;
-    protected int[] _fovKeys; //[0] = modifier given by crouching, [1] = modifier given by sprinting
 
     protected float _playerHeight;
     protected float _playerInitialScale;
     protected float _crouchPercent = 0.0f;
 
     protected ModifierTable _fovMultipliers;
-    protected float _zoomPercent = 0.0f;
+
+    protected int[] _fovKeys; //[0] = modifier given by crouching, [1] = modifier given by sprinting
 
     protected float _inputXRotation = 0.0f;
     protected float _inputYRotation = 0.0f;
@@ -131,12 +129,12 @@ public class FPS_Pawn : Pawn {
     //Uses the item being held in the subordinate hand
     public virtual void Fire2(bool value)
     {
-        _doExamine = value;
         if (value)
         {
             SetCursorLock(true);
+
+            handSubordinate.UseItem(this);
         }
-        
     }
 
     //Crouches the player when held
@@ -198,19 +196,11 @@ public class FPS_Pawn : Pawn {
     {
         if(value && allowSprint && !_isCrouching)
         {
-            _speedMultiplier = sprintMultiplier;
-            if (!_fovMultipliers.KeyIsActive(_fovKeys[1]))
-            {
-                _fovKeys[1] = _fovMultipliers.Add(1.2f, this);
-            }
+            _isSprinting = true;
         }
         else
         {
-            if(_fovMultipliers != null)
-            {
-                _fovMultipliers.Remove(this, _fovKeys[1]);
-            }
-            _speedMultiplier = 1.0f;
+            _isSprinting = false;
         }
     }
     #endregion
@@ -219,6 +209,21 @@ public class FPS_Pawn : Pawn {
     protected virtual Vector3 GetMoveVelocity() //Known issue: moving diagonally is faster than moving on other axes.
     {
         Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+
+        //Sprint only applies in the forward direction
+        if(_isSprinting && _forwardVelocity > 0.0f)
+        {
+            _forwardVelocity *= sprintMultiplier;
+            if (!_fovMultipliers.KeyIsActive(_fovKeys[1]))
+            {
+                _fovKeys[1] = _fovMultipliers.Add(1.2f, this);
+            }
+        }
+        else
+        {
+            _fovMultipliers.Remove(this, _fovKeys[1]);
+        }
+
         moveVelocity += transform.forward * _forwardVelocity + transform.right * _strafeVelocity;
 
         moveVelocity *= moveSpeed * _speedMultiplier;
@@ -298,33 +303,12 @@ public class FPS_Pawn : Pawn {
     protected virtual void ManageFOV()
     {
         float overallFovModifier = _fovMultipliers.Product();
-        //_fovMultipliers.Remove(this);
 
         Camera playerCamera = head.GetComponent<Camera>();
         if (playerCamera)
         {
             float newFOV = Mathf.Lerp(playerCamera.fieldOfView, defaultFOV * overallFovModifier, 0.2f);
             playerCamera.fieldOfView = newFOV;
-        }
-    }
-
-    protected virtual void CameraZoom()
-    {
-        Camera playerCamera = head.GetComponent<Camera>();
-
-        if (playerCamera)
-        {
-            if (_doExamine && _zoomPercent < 1.0f)
-            {
-                _zoomPercent += Time.deltaTime * zoomSpeed;
-            }
-            else if (!_doExamine && _zoomPercent > 0.0f)
-            {
-                _zoomPercent -= Time.deltaTime * zoomSpeed;
-            }
-
-
-            playerCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomedFOV, _zoomPercent);
         }
     }
 

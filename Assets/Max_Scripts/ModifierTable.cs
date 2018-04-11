@@ -15,7 +15,7 @@ public class Modifier
 
 public class ModifierTable {
 
-    protected List<KeyValuePair<Actor, Modifier>> modifierTable;
+    private List<KeyValuePair<Actor, Modifier>> modifierTable;
 
     protected uint keyCounter;
 
@@ -47,8 +47,7 @@ public class ModifierTable {
     {
         for (int i = 0; i < modifierTable.Count; i++)
         {
-            KeyValuePair<Actor, Modifier> kvp = modifierTable[i];
-            if (kvp.Key == source && kvp.Value.key == key)
+            if (modifierTable[i].Key == source && modifierTable[i].Value.key == key)
             {
                 modifierTable.RemoveAt(i);
             }
