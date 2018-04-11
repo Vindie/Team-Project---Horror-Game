@@ -249,10 +249,10 @@ MonoBehaviour:
   IgnoresDamage: 1
   LogDamageEvents: 1
   IsSpectator: 1
-  defaultFOV: 72
-  zoomedFOV: 30
-  zoomSpeed: 3
+  defaultFOV: 60
   moveSpeed: 3.5
+  allowSprint: 1
+  sprintMultiplier: 2
   head: {fileID: 1330231263068620}
   handDominant: {fileID: 114404318855027572}
   handSubordinate: {fileID: 114426674438448680}
