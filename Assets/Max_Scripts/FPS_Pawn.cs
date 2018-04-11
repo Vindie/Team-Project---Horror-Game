@@ -39,13 +39,13 @@ public class FPS_Pawn : Pawn {
     protected float _forwardVelocity = 1.0f;
     protected float _strafeVelocity = 1.0f;
     protected float _speedMultiplier = 1.0f;
-    protected bool _isSprinting = false;
+    protected int[] _fovKeys; //[0] = modifier given by crouching, [1] = modifier given by sprinting
 
     protected float _playerHeight;
     protected float _playerInitialScale;
     protected float _crouchPercent = 0.0f;
 
-    protected List<float> fovMultipliers;
+    protected ModifierTable _fovMultipliers;
     protected float _zoomPercent = 0.0f;
 
     protected float _inputXRotation = 0.0f;
@@ -61,7 +61,12 @@ public class FPS_Pawn : Pawn {
         IgnoresDamage = false;
         LogDamageEvents = false;
 
-        fovMultipliers = new List<float>();
+        _fovMultipliers = new ModifierTable();
+        _fovKeys = new int[2];
+        for(int i = 0; i < _fovKeys.Length; i++)
+        {
+            _fovKeys[i] = -1;
+        }
 
         _playerInitialScale = transform.localScale.y;
 
@@ -81,16 +86,6 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Update()
     {
-        //CameraZoom();
-        if(_isCrouching)
-        {
-            fovMultipliers.Add(0.8f);
-        }
-        if(_isSprinting)
-        {
-            fovMultipliers.Add(1.2f);
-        }
-
         ManageFOV();
         HandleLookRotation();
     }
@@ -160,11 +155,16 @@ public class FPS_Pawn : Pawn {
             
             if(!didCollide)
             {
+                _fovMultipliers.Remove(this, _fovKeys[0]);
                 _isCrouching = false;
             }
         }
         else if (value)
         {
+            if (!_fovMultipliers.KeyIsActive(_fovKeys[0]))
+            {
+                _fovKeys[0] = _fovMultipliers.Add(0.8f, this);
+            }
             _isCrouching = true;
         }
     }
@@ -199,12 +199,18 @@ public class FPS_Pawn : Pawn {
         if(value && allowSprint && !_isCrouching)
         {
             _speedMultiplier = sprintMultiplier;
-            _isSprinting = true;
+            if (!_fovMultipliers.KeyIsActive(_fovKeys[1]))
+            {
+                _fovKeys[1] = _fovMultipliers.Add(1.2f, this);
+            }
         }
         else
         {
+            if(_fovMultipliers != null)
+            {
+                _fovMultipliers.Remove(this, _fovKeys[1]);
+            }
             _speedMultiplier = 1.0f;
-            _isSprinting = false;
         }
     }
     #endregion
@@ -291,21 +297,14 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void ManageFOV()
     {
-        float overallFovModifier = 1.0f;
-        if (fovMultipliers != null)
-        {
-            foreach (float m in fovMultipliers)
-            {
-                overallFovModifier *= m;
-            }
-            fovMultipliers.Clear(); //Doing this here unfortunately means multipliers have to be added before this in update.
+        float overallFovModifier = _fovMultipliers.Product();
+        //_fovMultipliers.Remove(this);
 
-            Camera playerCamera = head.GetComponent<Camera>();
-            if (playerCamera)
-            {
-                float newFOV = Mathf.Lerp(playerCamera.fieldOfView, defaultFOV * overallFovModifier, 0.2f);
-                playerCamera.fieldOfView = newFOV;
-            }
+        Camera playerCamera = head.GetComponent<Camera>();
+        if (playerCamera)
+        {
+            float newFOV = Mathf.Lerp(playerCamera.fieldOfView, defaultFOV * overallFovModifier, 0.2f);
+            playerCamera.fieldOfView = newFOV;
         }
     }
 
