@@ -80,6 +80,8 @@ public class FPS_Pawn : Pawn {
 
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
+
+        SetCursorLock(true);
     }
 
     protected virtual void Update()
