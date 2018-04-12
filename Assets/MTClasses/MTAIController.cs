@@ -1,24 +1,27 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MTAIController : AIController {
+public class MTAIController : MonoBehaviour
+{
 
     public GameObject playerPawn;
     public int fieldOfViewDegrees = 145;
-    Vector3 movementDirection;
+    public float moveSpeed = 20.0f;
     Vector3 locationLastPlayerSeen;
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start()
+    {
+        locationLastPlayerSeen = playerPawn.transform.position;
+    }
 
-    // Update is called once per frame
-    //override void Update ()
-    //{
-    //   
-    //}
+    public void Update()
+    {
+        CanSeePlayer("Player");
+        moveTowards(locationLastPlayerSeen, moveSpeed);
+    }
     /*
      * create behavior functions
      * Randomly selects different behaviors
@@ -33,17 +36,17 @@ public class MTAIController : AIController {
      * 
      * */
 
-    public bool CanSeePlayer()
+    public bool CanSeePlayer(string tag)
     {
         RaycastHit hit;
         Vector3 rayDirection = playerPawn.transform.position - transform.position;
 
         if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees * 1f)
         {
-            // Detect if player is within the field of view
+            // Checks if n object with a given tag is within the given field of view
             if (Physics.Raycast(transform.position, rayDirection, out hit))
             {
-                if (hit.transform.CompareTag("Player"))
+                if (hit.transform.CompareTag(tag))
                 {
                     locationLastPlayerSeen = hit.point;
                     return true;
@@ -53,5 +56,9 @@ public class MTAIController : AIController {
         }
 
         return false;
+    }
+    public void moveTowards(Vector3 LocationToMoveTowards, float moveSpeed)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, LocationToMoveTowards, moveSpeed * Time.deltaTime);
     }
 }

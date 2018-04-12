@@ -18,9 +18,9 @@ public class AIController : Controller
         DefaultState_Enter();
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
-        DefaultState_Think(); 
+        DefaultState_Think();
     }
 
     public override bool PossesPawn(Pawn p)
@@ -59,7 +59,7 @@ public class AIController : Controller
 
     protected virtual void DefaultState_Think()
     {
-        
+
     }
 
 
