@@ -32,7 +32,10 @@ public class MTAIController : MonoBehaviour
         {
             moveTowards(torchLocation, moveSpeed);
         }
-        moveTowards(locationLastPlayerSeen, moveSpeed);
+        else
+        {
+            moveTowards(locationLastPlayerSeen, moveSpeed);
+        }     
         checkDamageDistance();
     }
     /*
@@ -77,7 +80,7 @@ public class MTAIController : MonoBehaviour
                 if (hit.transform.CompareTag(tag))
                 {
                     torchLocation = hit.point;
-                    print("ye");
+                    print("Saw Torch");
                     return true;
                 }
                 return false;
@@ -96,11 +99,13 @@ public class MTAIController : MonoBehaviour
         Pawn pp = playerPawn.GetComponent<Pawn>();
         float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
         print("Distance to player: " + distanceToPlayer);
-
-        if (distanceToPlayer < armsReach)
+        if(pp)
         {
-            print("Distance to player: " + distanceToPlayer);
-            pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
+            if (distanceToPlayer < armsReach)
+            {
+                print("Distance to player: " + distanceToPlayer);
+                pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
+            }
         }
     }
 }
