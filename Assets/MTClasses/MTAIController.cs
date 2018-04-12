@@ -8,8 +8,11 @@ public class MTAIController : MonoBehaviour
 
     public GameObject playerPawn;
     public int fieldOfViewDegrees = 145;
+    public int damageFactor = 10;
     public float moveSpeed = 20.0f;
+    public float armsReach = 10.0f;
     Vector3 locationLastPlayerSeen;
+  
 
     // Use this for initialization
     void Start()
@@ -20,7 +23,12 @@ public class MTAIController : MonoBehaviour
     public void Update()
     {
         CanSeePlayer("Player");
+    }
+
+    public void FixedUpdate()
+    {
         moveTowards(locationLastPlayerSeen, moveSpeed);
+        checkDamageDistance();
     }
     /*
      * create behavior functions
@@ -43,7 +51,7 @@ public class MTAIController : MonoBehaviour
 
         if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees * 1f)
         {
-            // Checks if n object with a given tag is within the given field of view
+            // Checks if an object with a given tag is within the given field of view
             if (Physics.Raycast(transform.position, rayDirection, out hit))
             {
                 if (hit.transform.CompareTag(tag))
@@ -60,5 +68,17 @@ public class MTAIController : MonoBehaviour
     public void moveTowards(Vector3 LocationToMoveTowards, float moveSpeed)
     {
         transform.position = Vector3.MoveTowards(transform.position, LocationToMoveTowards, moveSpeed * Time.deltaTime);
+    }
+
+    public void checkDamageDistance()
+    {
+        Pawn pp = playerPawn.GetComponent<Pawn>();
+        float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
+        print("Distance to player: " + distanceToPlayer);
+
+        if(distanceToPlayer < armsReach)
+        {
+            pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
+        }
     }
 }
