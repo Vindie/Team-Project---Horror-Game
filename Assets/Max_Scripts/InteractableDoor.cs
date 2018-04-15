@@ -5,16 +5,22 @@ using UnityEngine;
 public class InteractableDoor : Interactable {
 
     public bool isLocked = false;
-    public float doorSwingTorque = 1.0f;
-    public float closeSensitivity = 0.5f;
+    public bool toggleOpenningDirection = true;
+    public float doorSwingForce = 20.0f;
+    //Infinite spring force means the door can't be pushed open. Need to set the target rotation to open things this way. Crashed unity though, so setting IsKinematic is probably better.
 
+
+    protected HingeJoint hj;
     protected Rigidbody rb;
 
-    protected Quaternion initialRotation;
+    protected float currentSwingForce;
 
     private void Start()
     {
-        initialRotation = transform.rotation;
+        hj = gameObject.GetComponentInParent<HingeJoint>();
+        rb = gameObject.GetComponent<Rigidbody>();
+
+        currentSwingForce = doorSwingForce;
     }
 
     protected override bool ProcessInteraction(Actor source, Controller instigator)
@@ -25,14 +31,7 @@ public class InteractableDoor : Interactable {
         }
 
         //If under sensitivity value, door is closed and should be opened.
-        if(closeSensitivity < Quaternion.Dot(initialRotation, transform.rotation))
-        {
-            rb.AddRelativeTorque(0.0f, doorSwingTorque, 0.0f);
-        }
-        else //else, close the door.
-        {
-            rb.MoveRotation(initialRotation);
-        }
+        
 
         return true;
     }
