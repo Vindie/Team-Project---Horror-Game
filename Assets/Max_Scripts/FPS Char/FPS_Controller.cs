@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class FPS_Controller : PlayerController {
 
+    MenuScript ms;
+
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
         LogInputStateInfo = false;
         LogHUDUpdateError = false;
-	}
+
+        ms = FindObjectOfType<MenuScript>();
+        if (!ms)
+        {
+            LOG_ERROR("FPS Controller could not find object of type MenuScript.");
+        }
+    }
 
     public override void DefaultBinds()
     {
@@ -109,9 +117,11 @@ public class FPS_Controller : PlayerController {
     public virtual void Cancel(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP && value)
+        if (FPP && value && ms)
         {
-            FPP.SetCursorLock(false);
+            ms.TogglePause();
+            FPP.SetCursorLock(!ms.isPaused);
+            LOG("Escape");
         }
     }
 }

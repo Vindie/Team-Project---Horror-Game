@@ -33,6 +33,7 @@ public class FPS_Pawn : Pawn {
 
     protected bool _isCrouching = false;
     protected bool _isSprinting = false;
+    protected bool _cursorIsLocked = true;
 
     protected float _forwardVelocity = 1.0f;
     protected float _strafeVelocity = 1.0f;
@@ -81,7 +82,7 @@ public class FPS_Pawn : Pawn {
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
 
-        SetCursorLock(true);
+        SetCursorLock(_cursorIsLocked);
     }
 
     protected virtual void Update()
@@ -122,8 +123,6 @@ public class FPS_Pawn : Pawn {
     {
         if(value)
         {
-            SetCursorLock(true);
-
             handDominant.UseItem(this);
         }
     }
@@ -133,8 +132,6 @@ public class FPS_Pawn : Pawn {
     {
         if (value)
         {
-            SetCursorLock(true);
-
             handSubordinate.UseItem(this);
         }
     }
@@ -289,6 +286,7 @@ public class FPS_Pawn : Pawn {
 
     public virtual void SetCursorLock(bool newLockState)
     {
+        _cursorIsLocked = !newLockState;
         if(newLockState)
         {
             Cursor.lockState = CursorLockMode.Locked;
