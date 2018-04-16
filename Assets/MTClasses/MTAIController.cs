@@ -17,7 +17,7 @@ public class MTAIController : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
+    {   
         locationLastPlayerSeen = playerPawn.transform.position;
     }
 
@@ -32,7 +32,8 @@ public class MTAIController : MonoBehaviour
         {
             moveTowards(torchLocation, moveSpeed);
         }
-        else
+        
+        if(!CanSeeTorch("Torch"))
         {
             moveTowards(locationLastPlayerSeen, moveSpeed);
         }     
