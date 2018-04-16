@@ -13,7 +13,7 @@ public class MTAIController : MonoBehaviour
     public float moveSpeed = 20.0f;
     public float armsReach = 10.0f;
     Vector3 locationLastPlayerSeen;
-    public Vector3[] locations;
+    public Transform[] locations;
     Vector3 torchLocation;
 
     // Use this for initialization
@@ -101,9 +101,9 @@ public class MTAIController : MonoBehaviour
     {
         if (!CanSeePlayer("Player"))
         {
-            moveTowards(locations[locationIndex], moveSpeed);
+            moveTowards(locations[locationIndex].position, moveSpeed);
         }
-        if(gameObject.transform.position == locations[locationIndex])
+        if(gameObject.transform.position == locations[locationIndex].position)
         {
             locationIndex++;
         }
