@@ -5,19 +5,16 @@ using UnityEngine;
 
 public class MTAIController : MonoBehaviour
 {
-
     public GameObject playerPawn;
     public int fieldOfViewDegrees = 180;
     public int damageFactor = 10;
     public int locationIndex = 0;
+    public int sightRadius = 10;
     public float moveSpeed = 20.0f;
     public float armsReach = 10.0f;
-    public int sightRadius = 10;
     Vector3 locationLastPlayerSeen;
-    Vector3[] locations;
+    public Vector3[] locations;
     Vector3 torchLocation;
-    Collider[] torches;
-
 
     // Use this for initialization
     void Start()
@@ -33,14 +30,8 @@ public class MTAIController : MonoBehaviour
     public void FixedUpdate()
     {
         putTorchesOut();
-
-        if(!CanSeePlayer("Player"))
-        {
-            moveTowards(locations[locationIndex], moveSpeed);
-        }
-
+        moveToRandomLocations();
         moveTowards(locationLastPlayerSeen, moveSpeed);
-
         checkDamageDistance();
     }
 
@@ -103,6 +94,18 @@ public class MTAIController : MonoBehaviour
             }
 
             index++;
+        }
+    }
+
+    public void moveToRandomLocations()
+    {
+        if (!CanSeePlayer("Player"))
+        {
+            moveTowards(locations[locationIndex], moveSpeed);
+        }
+        if(gameObject.transform.position == locations[locationIndex])
+        {
+            locationIndex++;
         }
     }
 }
