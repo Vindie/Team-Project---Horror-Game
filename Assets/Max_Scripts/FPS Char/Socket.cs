@@ -17,7 +17,6 @@ public class Socket : MonoBehaviour {
     protected Item _equippedItem;
     protected Collider _itemCol;
     protected Rigidbody _itemRB;
-    protected bool[] _rbSettings = { true, false, true };
 
     protected virtual void Update()
     {
@@ -55,13 +54,8 @@ public class Socket : MonoBehaviour {
         _itemRB = item.GetComponent<Rigidbody>();
         if(_itemRB)
         {
-            _rbSettings[0] = _itemRB.detectCollisions;
-            _rbSettings[1] = _itemRB.freezeRotation;
-            _rbSettings[2] = _itemRB.useGravity;
-
             _itemRB.detectCollisions = false;
-            _itemRB.freezeRotation = true;
-            _itemRB.useGravity = false;
+            _itemRB.isKinematic = true;
         }
         
         return true;
@@ -86,9 +80,8 @@ public class Socket : MonoBehaviour {
         //Re-enable rigidbody if it exists
         if (_itemRB)
         {
-            _itemRB.detectCollisions = _rbSettings[0] ;
-            _itemRB.freezeRotation = _rbSettings[1];
-            _itemRB.useGravity = _rbSettings[2];
+            _itemRB.detectCollisions = true;
+            _itemRB.isKinematic = false;
         }
 
         return true;

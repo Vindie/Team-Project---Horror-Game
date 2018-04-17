@@ -14,6 +14,7 @@ public class MenuScript : MonoBehaviour
     public bool PauseMenuExists = false;
 
     public FPS_Pawn FPSPawn;
+    public float runtimeTimeScale;
 
     protected bool _isPaused = false;
     public bool IsPaused
@@ -26,6 +27,7 @@ public class MenuScript : MonoBehaviour
     private void Start()
     {
         ChangeMenuTo(StartingMenu);
+        runtimeTimeScale = Time.timeScale;
     }
 
     //MAIN MENU FUNCTIONALITY
@@ -48,7 +50,7 @@ public class MenuScript : MonoBehaviour
     //Navigate between menus.
     public void ChangeMenuTo(int newMenuIndex)
     {
-        Debug.Log("Previous:" + previousMenuIndex + ", Active:" + activeMenuIndex + ", New:" + newMenuIndex);
+        //Debug.Log("Previous:" + previousMenuIndex + ", Active:" + activeMenuIndex + ", New:" + newMenuIndex);
         if (newMenuIndex != activeMenuIndex)
         {
             if (0 <= activeMenuIndex && activeMenuIndex < MenuScreens.Length)
@@ -84,7 +86,7 @@ public class MenuScript : MonoBehaviour
     public void ResumeGame()
     {
         ChangeMenuTo(0);
-        //timescale
+        Time.timeScale = runtimeTimeScale;
         _isPaused = false;
 
         if(FPSPawn)
@@ -100,13 +102,13 @@ public class MenuScript : MonoBehaviour
             if (activeMenuIndex != 1)
             {
                 ChangeMenuTo(1);
-                //timescale
+                Time.timeScale = 0.0f;
                 _isPaused = true;
             }
             else
             {
-                ChangeMenuTo(previousMenuIndex);
-                //timescale
+                ChangeMenuTo(0);
+                Time.timeScale = runtimeTimeScale;
                 _isPaused = false;
             }
         }
@@ -114,6 +116,12 @@ public class MenuScript : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        if(FPSPawn)
+        {
+            FPSPawn.SetCursorLock(false);
+        }
+
+        Time.timeScale = runtimeTimeScale;
         SceneManager.LoadScene("Scene_Menu");
     }
     //

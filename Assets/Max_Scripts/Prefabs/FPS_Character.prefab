@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1667f8a3e9466438fd7200ca14dceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseItemRBSettings: 0
 --- !u!114 &114426674438448680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1667f8a3e9466438fd7200ca14dceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseItemRBSettings: 0
 --- !u!114 &114954429114757594
 MonoBehaviour:
   m_ObjectHideFlags: 1

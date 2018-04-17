@@ -1477,6 +1477,7 @@ MonoBehaviour:
   StartingMenu: 0
   PauseMenuExists: 1
   FPSPawn: {fileID: 0}
+  runtimeTimeScale: 0
   gameText: {fileID: 0}
 --- !u!114 &1272173411
 MonoBehaviour:

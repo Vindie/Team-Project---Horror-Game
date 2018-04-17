@@ -88,13 +88,13 @@ public class FPS_Pawn : Pawn {
     protected virtual void Update()
     {
         ManageFOV();
-        HandleLookRotation();
     }
 
     protected virtual void FixedUpdate()
     {
         _rb.velocity = GetMoveVelocity();
         HandleCrouching();
+        HandleLookRotation();
     }
 
     #region Pawn's Controller Inputs

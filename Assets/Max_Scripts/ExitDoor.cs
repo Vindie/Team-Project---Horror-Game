@@ -20,7 +20,13 @@ public class ExitDoor : Interactable {
         //PlayerController
         //Fade to black
         //Fade in splash text - "Escaped the mine" or something
-        //Return to main menu
+        MenuScript ms = FindObjectOfType<MenuScript>();
+        if(!ms)
+        {
+            LOG_ERROR("No object in scene with MenuScript attached. Can not return to main menu.");
+            return true;
+        }
+        ms.ReturnToMainMenu();
 
         return true;
     }

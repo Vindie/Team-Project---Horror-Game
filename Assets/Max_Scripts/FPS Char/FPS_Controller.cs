@@ -85,6 +85,18 @@ public class FPS_Controller : PlayerController {
         {
             FPP.Fire1(value);
         }
+
+        if(!ms)
+        {
+            FPP.SetCursorLock(true);
+        }
+        else
+        {
+            if(!ms.IsPaused)
+            {
+                FPP.SetCursorLock(true);
+            }
+        }
     }
 
     public override void Fire2(bool value)
@@ -132,7 +144,7 @@ public class FPS_Controller : PlayerController {
             {
                 ms.TogglePause();
                 FPP.SetCursorLock(!ms.IsPaused);
-                LOG("Escape");
+                //LOG("Escape");
             }
         }
     }
