@@ -13,8 +13,10 @@ public class MenuScript : MonoBehaviour
 
     public bool PauseMenuExists = false;
 
+    public FPS_Pawn FPSPawn;
+
     protected bool _isPaused = false;
-    public bool isPaused
+    public bool IsPaused
     {
         get { return _isPaused; }
     }
@@ -82,7 +84,13 @@ public class MenuScript : MonoBehaviour
     public void ResumeGame()
     {
         ChangeMenuTo(0);
+        //timescale
         _isPaused = false;
+
+        if(FPSPawn)
+        {
+            FPSPawn.SetCursorLock(true);
+        }
     }
 
     public void TogglePause()
@@ -92,11 +100,13 @@ public class MenuScript : MonoBehaviour
             if (activeMenuIndex != 1)
             {
                 ChangeMenuTo(1);
+                //timescale
                 _isPaused = true;
             }
             else
             {
                 ChangeMenuTo(previousMenuIndex);
+                //timescale
                 _isPaused = false;
             }
         }

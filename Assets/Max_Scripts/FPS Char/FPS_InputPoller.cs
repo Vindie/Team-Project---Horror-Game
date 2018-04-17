@@ -17,7 +17,6 @@ public class FPS_InputPoller : InputPoller {
         IS.AddButton("Fire3", Input.GetButton("Fire3"));
         IS.AddButton("Fire4", Input.GetButtonDown("Fire4"));
         IS.AddButton("Fire5", Input.GetButton("Fire5"));
-        IS.AddButton("Cancel", Input.GetButtonDown("Cancel"));
         return IS;
     }
 }

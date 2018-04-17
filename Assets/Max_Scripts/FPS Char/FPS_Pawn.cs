@@ -251,6 +251,10 @@ public class FPS_Pawn : Pawn {
     #region Mouselook
     protected virtual void HandleLookRotation()
     {
+        if (!_cursorIsLocked)
+        {
+            //return;
+        }
         _desiredBodyRotation *= Quaternion.Euler(0.0f, _inputYRotation, 0.0f);
         _desiredCameraRotation *= Quaternion.Euler(-_inputXRotation, 0.0f, 0.0f);
 
@@ -286,7 +290,7 @@ public class FPS_Pawn : Pawn {
 
     public virtual void SetCursorLock(bool newLockState)
     {
-        _cursorIsLocked = !newLockState;
+        _cursorIsLocked = newLockState;
         if(newLockState)
         {
             Cursor.lockState = CursorLockMode.Locked;

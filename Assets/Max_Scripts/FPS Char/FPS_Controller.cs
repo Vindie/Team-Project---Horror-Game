@@ -17,6 +17,16 @@ public class FPS_Controller : PlayerController {
         {
             LOG_ERROR("FPS Controller could not find object of type MenuScript.");
         }
+        else
+        {
+            ms.FPSPawn = (FPS_Pawn)PossesedPawn;
+        }
+    }
+
+    protected virtual void Update()
+    {
+        //Escape input needs to be done here, so that it can be detected even when timescale = 0.
+        Cancel(Input.GetButtonDown("Cancel"));
     }
 
     public override void DefaultBinds()
@@ -30,7 +40,6 @@ public class FPS_Controller : PlayerController {
         AddButton("Fire3", Fire3);
         AddButton("Fire4", Fire4);
         AddButton("Fire5", Fire5);
-        AddButton("Cancel", Cancel);
     }
 
     public virtual void LookHorizontal(float value)
@@ -116,12 +125,15 @@ public class FPS_Controller : PlayerController {
 
     public virtual void Cancel(bool value)
     {
-        FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP && value && ms)
+        if(value)
         {
-            ms.TogglePause();
-            FPP.SetCursorLock(!ms.isPaused);
-            LOG("Escape");
+            FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
+            if (FPP && ms)
+            {
+                ms.TogglePause();
+                FPP.SetCursorLock(!ms.IsPaused);
+                LOG("Escape");
+            }
         }
     }
 }
