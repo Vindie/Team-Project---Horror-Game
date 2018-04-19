@@ -6,8 +6,10 @@ public class Lighter_Item : Item {
 
     public bool isOpen = false;
 
-    /*public override bool Use(Actor user)
+    public override bool Use(Actor user)
     {
-        
-    }*/
+        isOpen = !isOpen;
+        //animation toggling open lighter;
+        return isOpen;
+    }
 }
