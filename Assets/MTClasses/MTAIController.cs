@@ -2,24 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class MTAIController : MonoBehaviour
 {
     public GameObject playerPawn;
     public int fieldOfViewDegrees = 180;
     public int damageFactor = 10;
-    public int locationIndex = 0;
     public int sightRadius = 10;
     public float moveSpeed = 20.0f;
     public float armsReach = 10.0f;
     Vector3 locationLastPlayerSeen;
+    public int locationIndex = 0;
     public Transform[] locations;
     Vector3 torchLocation;
+    NavMeshAgent agent;
+
+    
 
     // Use this for initialization
     void Start()
     {
         locationLastPlayerSeen = playerPawn.transform.position;
+        agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
     public void Update()
@@ -30,11 +34,18 @@ public class MTAIController : MonoBehaviour
     public void FixedUpdate()
     {
         putTorchesOut();
-        moveToRandomLocations();
-        moveTowards(locationLastPlayerSeen, moveSpeed);
+        if (!CanSeePlayer("Player"))
+        {
+            moveToRandomLocations();
+        }
+        else
+        { 
+            moveTowards(locationLastPlayerSeen, moveSpeed);
+        }
         checkDamageDistance();
     }
 
+   
     public bool CanSeePlayer(string tag)
     {
         RaycastHit hit;
@@ -59,7 +70,21 @@ public class MTAIController : MonoBehaviour
 
     public void moveTowards(Vector3 LocationToMoveTowards, float moveSpeed)
     {
-        transform.position = Vector3.MoveTowards(transform.position, LocationToMoveTowards, moveSpeed * Time.deltaTime);
+        if(agent)
+        {
+            Debug.Log("LocationToMoveTowards: " + LocationToMoveTowards);
+            //Vector3 movepoint = new Vector3(-691.58f, 124f, -110f);
+            //agent.SetDestination(movepoint);
+            //PlaceMoveToSphereAt(movepoint); 
+            agent.SetDestination(LocationToMoveTowards);
+            //PlaceMoveToSphereAt(LocationToMoveTowards);
+            agent.speed = moveSpeed * 5;
+            //Debug.Log(agent.destination);
+            //Debug.Log(agent.speed);
+        }
+        //agent.isStopped = true; 
+
+        //transform.position = Vector3.MoveTowards(transform.position, LocationToMoveTowards, moveSpeed * Time.deltaTime);
     }
 
     public void checkDamageDistance()
@@ -99,13 +124,17 @@ public class MTAIController : MonoBehaviour
 
     public void moveToRandomLocations()
     {
-        if (!CanSeePlayer("Player"))
+        if (agent.remainingDistance <= 2)
         {
             moveTowards(locations[locationIndex].position, moveSpeed);
-        }
-        if(gameObject.transform.position == locations[locationIndex].position)
-        {
+        Debug.Log("(" + locationIndex + ") :" + agent.destination);
+        Debug.Log("remainingDistance: " + agent.remainingDistance);
+       
             locationIndex++;
+            if (locationIndex >= locations.Length)
+            {
+                locationIndex = 0; 
+            }
         }
     }
 }
