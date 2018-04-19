@@ -130,10 +130,10 @@ public class FPS_Pawn : Pawn {
         {
             if(_lighterActive)
             {
-                Lighter_Item lighter = (Lighter_Item)handDominant.EquippedItem;
+                Lighter_Item lighter = (Lighter_Item)handSubordinate.EquippedItem;
                 if(lighter)
                 {
-                    
+                    lighter.Ignite(this);
                 }
             }
             else

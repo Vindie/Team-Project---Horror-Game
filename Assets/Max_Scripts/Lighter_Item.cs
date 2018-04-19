@@ -13,7 +13,7 @@ public class Lighter_Item : Item {
         return isOpen;
     }
 
-    public virtual bool ignite(Actor user)
+    public virtual bool Ignite(Actor user)
     {
         if(!isOpen) { return false; }
 
