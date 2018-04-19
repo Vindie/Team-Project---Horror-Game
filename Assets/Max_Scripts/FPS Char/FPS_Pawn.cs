@@ -16,6 +16,8 @@ public class FPS_Pawn : Pawn {
     public Socket handDominant;
     public Socket handSubordinate;
 
+    public GameObject subordinateStarterItem;
+
     public float look_xSensitivity = 2.0f;
     public float look_ySensitivity = 2.0f;
     public float look_maxVerticalRotation = -90.0f;
@@ -82,6 +84,8 @@ public class FPS_Pawn : Pawn {
 
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
+
+        SpawnOffhandItem();
 
         SetCursorLock(_cursorIsLocked);
     }
@@ -363,5 +367,19 @@ public class FPS_Pawn : Pawn {
         {
             return null;
         }
+    }
+
+    protected virtual void SpawnOffhandItem()
+    {
+        if(!subordinateStarterItem) { return; }
+
+        GameObject spawnedGameObject = Factory(subordinateStarterItem, handSubordinate.transform.position, handSubordinate.transform.rotation);
+        Item spawnedItem = spawnedGameObject.GetComponent<Item>();
+        if(!spawnedItem)
+        {
+            Destroy(spawnedGameObject);
+            return;
+        }
+        handSubordinate.Equip(spawnedItem);
     }
 }
