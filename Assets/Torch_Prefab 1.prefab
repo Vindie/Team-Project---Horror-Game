@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 1099579295951418}
+  startActive: 1
 --- !u!114 &114404560898324232
 MonoBehaviour:
   m_ObjectHideFlags: 1

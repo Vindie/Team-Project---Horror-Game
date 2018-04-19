@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4432940015958938}
   - component: {fileID: 54157614075846566}
   - component: {fileID: 65137417025227400}
-  - component: {fileID: 114111027594643992}
+  - component: {fileID: 114483299215469768}
   m_Layer: 0
   m_Name: Lighter_WIP
   m_TagString: Untagged
@@ -315,7 +315,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.4, z: 0.2}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &114111027594643992
+--- !u!114 &114483299215469768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -323,10 +323,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1853707020997352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ba022fa9a381a4e8a714600d5e25fb, type: 3}
+  m_Script: {fileID: 11500000, guid: c515aedd3bcb21b47a2620731ade738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IgnoresDamage: 1
   LogDamageEvents: 1
   IgnoresInteraction: 0
   LogInteractEvents: 1
+  isOpen: 0

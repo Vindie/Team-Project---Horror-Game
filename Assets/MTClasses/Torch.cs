@@ -5,6 +5,9 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     public GameObject firePrefab;
+
+    public bool startActive = true;
+    
     public bool LightActive
     {
         get { return _lightActive; }
@@ -13,7 +16,14 @@ public class Torch : MonoBehaviour
 
 	void Start ()
     {
-        LightOn(); 
+        if(startActive)
+        {
+            LightOn();
+        }
+        else
+        {
+            LightOff();
+        }
     }
 
     public void LightOn()

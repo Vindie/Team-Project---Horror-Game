@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1667f8a3e9466438fd7200ca14dceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseItemRBSettings: 0
 --- !u!114 &114426674438448680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1667f8a3e9466438fd7200ca14dceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseItemRBSettings: 0
 --- !u!114 &114954429114757594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +257,8 @@ MonoBehaviour:
   head: {fileID: 1330231263068620}
   handDominant: {fileID: 114404318855027572}
   handSubordinate: {fileID: 114426674438448680}
+  subordinateStarterItem: {fileID: 1853707020997352, guid: 6f5bb0e5186d4244284b356aa8f82527,
+    type: 2}
   look_xSensitivity: 4
   look_ySensitivity: 5
   look_maxVerticalRotation: 90
