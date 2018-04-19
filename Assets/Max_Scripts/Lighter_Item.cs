@@ -12,4 +12,15 @@ public class Lighter_Item : Item {
         //animation toggling open lighter;
         return isOpen;
     }
+
+    public virtual bool ignite(Actor user)
+    {
+        if(!isOpen) { return false; }
+        FPS_Pawn FPP = (FPS_Pawn)user;
+        if(!FPP) { return false; }
+        GameObject target = FPP.GetInteractableObject();
+        if(!target) { return false; }
+        Torch t = target.GetComponent<Torch>();
+        t.LightOn();
+    }
 }

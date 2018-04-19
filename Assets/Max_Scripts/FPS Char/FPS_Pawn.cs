@@ -124,7 +124,18 @@ public class FPS_Pawn : Pawn {
     {
         if(value)
         {
-            handDominant.UseItem(this);
+            if(_lighterActive)
+            {
+                Lighter_Item lighter = (Lighter_Item)handDominant.EquippedItem;
+                if(lighter)
+                {
+                    
+                }
+            }
+            else
+            {
+                handDominant.UseItem(this);
+            }
         }
     }
 
