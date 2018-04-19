@@ -31,6 +31,7 @@ public class FPS_Pawn : Pawn {
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
 
+    protected bool _lighterActive = false;
     protected bool _isCrouching = false;
     protected bool _isSprinting = false;
     protected bool _cursorIsLocked = true;
@@ -132,7 +133,7 @@ public class FPS_Pawn : Pawn {
     {
         if (value)
         {
-            handSubordinate.UseItem(this);
+            _lighterActive = handSubordinate.UseItem(this);
         }
     }
 
