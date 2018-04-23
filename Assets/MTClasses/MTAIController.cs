@@ -97,6 +97,7 @@ public class MTAIController : AIController
             {
                 //print("Distance to player: " + distanceToPlayer);
                 pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
+                print("Get Hurt");
             }
         }
     }
