@@ -5,11 +5,20 @@ using UnityEngine;
 public class Lighter_Item : Item {
 
     public bool isOpen = false;
+    Animator anim;
+
+    protected override void Start()
+    {
+        base.Start();
+        anim = gameObject.GetComponent<Animator>();
+    }
 
     public override bool Use(Actor user)
     {
         isOpen = !isOpen;
-        //animation toggling open lighter;
+
+        anim.SetBool("IsOpen", isOpen);
+
         return isOpen;
     }
 
@@ -17,7 +26,7 @@ public class Lighter_Item : Item {
     {
         if(!isOpen) { return false; }
 
-        //Ignition animation
+        //Light torch animation
 
         FPS_Pawn FPP = (FPS_Pawn)user;
         if(!FPP) { return false; }
@@ -30,7 +39,7 @@ public class Lighter_Item : Item {
         if(t.LightActive) { return false; }
 
         t.LightOn();
-        //t.getLit = true;
+        t.getLit = true;
         return true;
     }
 }

@@ -257,7 +257,7 @@ MonoBehaviour:
   head: {fileID: 1330231263068620}
   handDominant: {fileID: 114404318855027572}
   handSubordinate: {fileID: 114426674438448680}
-  subordinateStarterItem: {fileID: 1853707020997352, guid: 6f5bb0e5186d4244284b356aa8f82527,
+  subordinateStarterItem: {fileID: 1635940268292434, guid: 5cdcc5098de8d184cbe71ba3155ac465,
     type: 2}
   look_xSensitivity: 4
   look_ySensitivity: 5
@@ -265,6 +265,7 @@ MonoBehaviour:
   look_minVerticalRotation: -90
   interactRange: 2
   crouchSpeed: 5
+  _playerHealth: 100
 --- !u!114 &114994475537219252
 MonoBehaviour:
   m_ObjectHideFlags: 1
