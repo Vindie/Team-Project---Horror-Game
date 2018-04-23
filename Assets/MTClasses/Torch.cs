@@ -5,7 +5,6 @@ using UnityEngine;
 public class Torch : Item
 {
     public GameObject firePrefab;
-    public GameObject ground;
     public bool startActive = true;
     public float lifeSpan;
     public int maxLifeSpan = 100;
@@ -44,7 +43,7 @@ public class Torch : Item
 
     public void Update()
     {
-        if(lifeSpan == maxLifeSpan)
+        if (lifeSpan == maxLifeSpan)
         {
             LightOn();
         }
@@ -92,7 +91,9 @@ public class Torch : Item
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject == ground)
+        //print("Being Held: " + beingHeld);
+        //print(lifeSpanDecreasingCheck());
+        if(lifeSpanDecreasingCheck())
         {
             LightOff();
         }
