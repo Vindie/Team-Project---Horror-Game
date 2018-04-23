@@ -5,7 +5,7 @@ using UnityEngine;
 public class Torch : Item
 {
     public GameObject firePrefab;
-
+    public GameObject ground;
     public bool startActive = true;
     public float lifeSpan;
     public int maxLifeSpan = 100;
@@ -16,8 +16,8 @@ public class Torch : Item
      * Lifespan for torch
      * starts to decrease when grabbed by player
      * or when relit
-     * when dropped torch goes out (detriment tom lifespan)
-     * 
+     * when dropped torch goes out (detriment to lifespan)
+     * if relit lifespan = maxLifeSpan
      * */
 
     public bool LightActive
@@ -44,7 +44,19 @@ public class Torch : Item
 
     public void Update()
     {
-        torchDying();
+        if(lifeSpan == maxLifeSpan)
+        {
+            LightOn();
+        }
+
+        if(lifeSpan > 0)
+        {
+            torchDying();
+        }
+        else
+        {
+            LightOff();
+        }
     }
     public void LightOn()
     {
@@ -78,5 +90,11 @@ public class Torch : Item
         }
     }
 
-
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject == ground)
+        {
+            LightOff();
+        }
+    }
 }
