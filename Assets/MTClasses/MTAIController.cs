@@ -98,12 +98,12 @@ public class MTAIController : AIController
         print("Distance to player: " + distanceToPlayer);
         if (pp)
         {
-            print("got pp");
+            //print("got pp");
             if (distanceToPlayer < armsReach)
             {
-                //print("Distance to player: " + distanceToPlayer);
+                print("Distance to player: " + distanceToPlayer);
                 pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
-                print("Get Hurt");
+                //print("Get Hurt");
             }
         }
     }
