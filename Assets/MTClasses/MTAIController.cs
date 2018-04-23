@@ -21,12 +21,17 @@ public class MTAIController : AIController
     // Use this for initialization
     protected override void Start()
     {
-        locationLastPlayerSeen = playerPawn.transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
     public override void Update()
     {
+        if(playerPawn == null)
+        {
+            playerPawn = GameObject.FindGameObjectWithTag("Player");
+            locationLastPlayerSeen = playerPawn.transform.position;
+        }
+
         CanSeePlayer("Player"); //if cant see player move randomly
     }
 
@@ -88,11 +93,12 @@ public class MTAIController : AIController
 
     public void checkDamageDistance()
     {
-        Pawn pp = playerPawn.GetComponent<Pawn>();
+        FPS_Pawn pp = playerPawn.GetComponent<FPS_Pawn>();
         float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
         print("Distance to player: " + distanceToPlayer);
         if (pp)
         {
+            print("got pp");
             if (distanceToPlayer < armsReach)
             {
                 //print("Distance to player: " + distanceToPlayer);
@@ -113,7 +119,7 @@ public class MTAIController : AIController
                 Torch ts = hitColliders[index].gameObject.GetComponent<Torch>();
                 if (ts)
                 {
-                    print("Got Light");
+                    //print("Got Light");
                     ts.LightOff();                    
                 }        
             }
@@ -127,8 +133,8 @@ public class MTAIController : AIController
         if (agent.remainingDistance <= 2)
         {
             moveTowards(locations[locationIndex].position, moveSpeed);
-        Debug.Log("(" + locationIndex + ") :" + agent.destination);
-        Debug.Log("remainingDistance: " + agent.remainingDistance);
+        //Debug.Log("(" + locationIndex + ") :" + agent.destination);
+        //Debug.Log("remainingDistance: " + agent.remainingDistance);
        
             locationIndex++;
             if (locationIndex >= locations.Length)
