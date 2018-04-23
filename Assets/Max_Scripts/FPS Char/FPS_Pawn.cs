@@ -8,6 +8,11 @@ public class FPS_Pawn : Pawn {
     
     public float defaultFOV = 60.0f;
 
+    public float Health
+    {
+        get { return _playerHealth; }
+    }
+
     public float moveSpeed = 1.0f;
     public bool allowSprint = false;
     public float sprintMultiplier = 2.0f;
@@ -32,6 +37,8 @@ public class FPS_Pawn : Pawn {
     protected Rigidbody _rb;
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
+
+    protected float _playerHealth = 100.0f;
 
     protected bool _lighterActive = false;
     protected bool _isCrouching = false;
@@ -90,6 +97,7 @@ public class FPS_Pawn : Pawn {
         SetCursorLock(_cursorIsLocked);
     }
 
+    #region Update Functions
     protected virtual void Update()
     {
         ManageFOV();
@@ -101,6 +109,7 @@ public class FPS_Pawn : Pawn {
         HandleCrouching();
         HandleLookRotation();
     }
+    #endregion
 
     #region Pawn's Controller Inputs
     public virtual void LookHorizontal(float value)
@@ -381,5 +390,17 @@ public class FPS_Pawn : Pawn {
             return;
         }
         handSubordinate.Equip(spawnedItem);
+    }
+
+    protected override bool ProcessDamage(Actor Source, float Value, DamageEventInfo EventInfo, Controller Instigator)
+    {
+        _playerHealth -= Value;
+        if(_playerHealth <= 0)
+        {
+            //Call die function
+            return false;
+        }
+
+        return true;
     }
 }
