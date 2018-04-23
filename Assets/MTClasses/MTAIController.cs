@@ -46,13 +46,13 @@ public class MTAIController : AIController
         {
             moveToRandomLocations();
             Eanimator.SetBool("IsOpen", false);
-            print("IsOpen == false");
+            //print("IsOpen == false");
         }
         else
         { 
             moveTowards(locationLastPlayerSeen, moveSpeed);
             Eanimator.SetBool("IsOpen",true);
-            print("IsOpen == true");
+            //print("IsOpen == true");
         }
         checkDamageDistance();
     }
