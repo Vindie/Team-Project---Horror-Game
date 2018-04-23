@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 public class MTAIController : AIController
 {
+    public GameObject eye;
     public GameObject playerPawn;
+    Animator Eanimator;
     public int fieldOfViewDegrees = 180;
     public int damageFactor = 10;
     public int sightRadius = 10;
@@ -22,6 +24,8 @@ public class MTAIController : AIController
     protected override void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        Eanimator = eye.GetComponent<Animator>();
+        Eanimator.SetBool("IsOpen", false);
     }
 
     public override void Update()
@@ -41,10 +45,14 @@ public class MTAIController : AIController
         if (!CanSeePlayer("Player"))
         {
             moveToRandomLocations();
+            Eanimator.SetBool("IsOpen", false);
+            //print("IsOpen == false");
         }
         else
         { 
             moveTowards(locationLastPlayerSeen, moveSpeed);
+            Eanimator.SetBool("IsOpen",true);
+            //print("IsOpen == true");
         }
         checkDamageDistance();
     }
@@ -95,15 +103,15 @@ public class MTAIController : AIController
     {
         FPS_Pawn pp = playerPawn.GetComponent<FPS_Pawn>();
         float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
-        print("Distance to player: " + distanceToPlayer);
+        //print("Distance to player: " + distanceToPlayer);
         if (pp)
         {
-            print("got pp");
+            //print("got pp");
             if (distanceToPlayer < armsReach)
             {
-                //print("Distance to player: " + distanceToPlayer);
+                print("Distance to player: " + distanceToPlayer);
                 pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
-                print("Get Hurt");
+                //print("Get Hurt");
             }
         }
     }
