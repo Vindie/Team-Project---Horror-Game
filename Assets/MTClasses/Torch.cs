@@ -8,6 +8,7 @@ public class Torch : Item
     public bool startActive = true;
     public float lifeSpan;
     public int maxLifeSpan = 100;
+    int fallingVelocity = 1000000;
 
     public bool getLit; //refers to if player has relit the torch after the torch died
 
@@ -52,10 +53,6 @@ public class Torch : Item
         {
             torchDying();
         }
-        else
-        {
-            LightOff();
-        }
     }
     public void LightOn()
     {
@@ -69,7 +66,7 @@ public class Torch : Item
         _lightActive = false;
     }
 
-    bool lifeSpanDecreasingCheck()
+    public bool lifeSpanDecreasingCheck()
     {
         if (beingHeld || getLit)
         {
@@ -89,13 +86,20 @@ public class Torch : Item
         }
     }
 
-    private void OnCollisionEnter(Collision col)
+    /*
+     *     private void OnCollisionEnter(Collision col)
     {
         //print("Being Held: " + beingHeld);
         //print(lifeSpanDecreasingCheck());
         if(lifeSpanDecreasingCheck())
         {
-            LightOff();
+            if( col.relativeVelocity.y >= fallingVelocity)
+            {
+                LightOff();
+            }
         }
     }
+     * */
+
+
 }
