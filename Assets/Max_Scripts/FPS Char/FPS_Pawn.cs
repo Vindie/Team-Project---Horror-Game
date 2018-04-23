@@ -38,6 +38,7 @@ public class FPS_Pawn : Pawn {
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
 
+    [SerializeField]
     protected float _playerHealth = 100.0f;
 
     protected bool _lighterActive = false;
