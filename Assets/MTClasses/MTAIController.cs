@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class MTAIController : MonoBehaviour
+public class MTAIController : AIController
 {
     public GameObject playerPawn;
     public int fieldOfViewDegrees = 180;
@@ -15,18 +15,17 @@ public class MTAIController : MonoBehaviour
     public int locationIndex = 0;
     public Transform[] locations;
     Vector3 torchLocation;
-    NavMeshAgent agent;
+    //NavMeshAgent agent;
 
     
-
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         locationLastPlayerSeen = playerPawn.transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
-    public void Update()
+    public override void Update()
     {
         CanSeePlayer("Player"); //if cant see player move randomly
     }
