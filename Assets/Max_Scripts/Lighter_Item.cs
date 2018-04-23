@@ -30,6 +30,7 @@ public class Lighter_Item : Item {
         if(t.LightActive) { return false; }
 
         t.LightOn();
+        //t.getLit = true;
         return true;
     }
 }
