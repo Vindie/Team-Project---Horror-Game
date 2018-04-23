@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 91a5e3a7ce9472843aad97c8dab8cfdf
-timeCreated: 1524439750
+timeCreated: 1524447880
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,6 +23,7 @@ TextureImporter:
     21300032: EyeAtlas_16
     21300034: EyeAtlas_17
     21300036: EyeAtlas_18
+    21300038: EyeAtlas_19
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -355,6 +356,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2560
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EyeAtlas_19
+      rect:
+        serializedVersion: 2
+        x: 3072
         y: 0
         width: 512
         height: 512
