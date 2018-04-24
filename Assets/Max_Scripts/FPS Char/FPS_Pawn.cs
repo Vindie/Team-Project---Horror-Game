@@ -8,10 +8,7 @@ public class FPS_Pawn : Pawn {
     
     public float defaultFOV = 60.0f;
 
-    public float Health
-    {
-        get { return _playerHealth; }
-    }
+    public float Health = 100.0f;
 
     public float moveSpeed = 1.0f;
     public bool allowSprint = false;
@@ -37,9 +34,6 @@ public class FPS_Pawn : Pawn {
     protected Rigidbody _rb;
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
-
-    [SerializeField]
-    protected float _playerHealth = 100.0f;
 
     protected bool _lighterActive = false;
     protected bool _isCrouching = false;
@@ -109,6 +103,7 @@ public class FPS_Pawn : Pawn {
         _rb.velocity = GetMoveVelocity();
         HandleCrouching();
         HandleLookRotation();
+        CheckIfDead();
     }
     #endregion
 
@@ -392,15 +387,43 @@ public class FPS_Pawn : Pawn {
         handSubordinate.Equip(spawnedItem);
     }
 
+    #region Health and Dying
     protected override bool ProcessDamage(Actor Source, float Value, DamageEventInfo EventInfo, Controller Instigator)
     {
-        _playerHealth -= Value;
-        if(_playerHealth <= 0)
+        Health -= Value;
+
+        return CheckIfDead();
+    }
+
+    protected virtual bool CheckIfDead()
+    {
+        if (Health <= 0)
         {
-            //Call die function
+            Die();
             return false;
         }
-
         return true;
     }
+
+    protected virtual void Die()
+    {
+        FPS_Controller FPC = (FPS_Controller)_controller;
+        if(FPC)
+        {
+            FPC.PawnHasDied();
+        }
+        else if(_controller)
+        {
+            _controller.UnPossesPawn(this);
+        }
+    }
+
+    public override void OnUnPossession()
+    {
+        //Do something to the camera image effect
+        _rb.freezeRotation = false;
+        SetCursorLock(false);
+        //Destroy(gameObject, 5.0f);
+    }
+    #endregion
 }

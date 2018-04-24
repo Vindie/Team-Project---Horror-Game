@@ -29,6 +29,7 @@ public class FPS_Controller : PlayerController {
         Cancel(Input.GetButtonDown("Cancel"));
     }
 
+    #region Controls Related
     public override void DefaultBinds()
     {
         AddAxis("LookHorizontal", LookHorizontal);
@@ -84,17 +85,16 @@ public class FPS_Controller : PlayerController {
         if (FPP)
         {
             FPP.Fire1(value);
-        }
-
-        if(!ms)
-        {
-            FPP.SetCursorLock(true);
-        }
-        else
-        {
-            if(!ms.IsPaused)
+            if (!ms)
             {
                 FPP.SetCursorLock(true);
+            }
+            else
+            {
+                if (!ms.IsPaused)
+                {
+                    FPP.SetCursorLock(true);
+                }
             }
         }
     }
@@ -147,5 +147,23 @@ public class FPS_Controller : PlayerController {
                 //LOG("Escape");
             }
         }
+    }
+    #endregion
+
+    public virtual void PawnHasDied()
+    {
+        UnPossesPawn(PossesedPawn);
+        HorrorGame hg = FindObjectOfType<HorrorGame>();
+        if(!hg) { return; }
+
+        hg.EndGame(false);
+    }
+
+    public virtual void PawnHasEscaped()
+    {
+        HorrorGame hg = FindObjectOfType<HorrorGame>();
+        if (!hg) { return; }
+
+        hg.EndGame(true);
     }
 }

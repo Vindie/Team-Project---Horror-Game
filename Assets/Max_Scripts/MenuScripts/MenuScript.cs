@@ -22,7 +22,8 @@ public class MenuScript : MonoBehaviour
         get { return _isPaused; }
     }
 
-    public Text gameText;
+    public Text gameLargeText;
+    public Text gameSmallText;
 
     private void Start()
     {
@@ -142,20 +143,39 @@ public class MenuScript : MonoBehaviour
     //GAME MESSAGE FUNCTIONALITY
     //
     //
-    public void SetGameText(bool setEnabled, string message)
+    public void SetGameLargeText(bool setEnabled, string message = "")
     {
         //Make this not use ChangeMenuTo, but also not interrupt paused games.
-        if(!gameText)
+        if(!gameLargeText)
         {
             return;
         }
 
-        gameText.text = message;
+        gameLargeText.text = message;
         if(setEnabled)
         {
             ChangeMenuTo(2);
         }
         else if(activeMenuIndex == 2)
+        {
+            ChangeMenuTo(previousMenuIndex);
+        }
+    }
+
+    public void SetGameSmallText(bool setEnabled, string message = "")
+    {
+        //Make this not use ChangeMenuTo, but also not interrupt paused games.
+        if (!gameSmallText)
+        {
+            return;
+        }
+
+        gameSmallText.text = message;
+        if (setEnabled)
+        {
+            ChangeMenuTo(2);
+        }
+        else if (activeMenuIndex == 2)
         {
             ChangeMenuTo(previousMenuIndex);
         }
