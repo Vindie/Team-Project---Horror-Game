@@ -6,11 +6,29 @@ public class Lighter_Item : Item {
 
     public bool isOpen = false;
     Animator anim;
+    public GameObject flame;
 
     protected override void Start()
     {
         base.Start();
         anim = gameObject.GetComponent<Animator>();
+        if(anim)
+        {
+            anim.SetBool("IsOpen", isOpen);
+        }
+
+        if(!flame)
+        {
+            Light l = GetComponentInChildren<Light>();
+            if(l)
+            {
+                flame = l.gameObject;
+            }
+        }
+        if(flame)
+        {
+            flame.SetActive(isOpen);
+        }
     }
 
     public override bool Use(Actor user)
@@ -18,6 +36,7 @@ public class Lighter_Item : Item {
         isOpen = !isOpen;
 
         anim.SetBool("IsOpen", isOpen);
+        flame.SetActive(isOpen);
 
         return isOpen;
     }
@@ -43,7 +62,6 @@ public class Lighter_Item : Item {
         
         if(t.LightActive) { return false; }
 
-        //LOG("Igniting " + t.name);
         t.LightOn();
         t.getLit = true;
         return true;

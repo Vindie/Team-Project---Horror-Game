@@ -170,14 +170,12 @@ public class FPS_Pawn : Pawn {
             Vector3 p1 = _col.transform.position;
             Vector3 p2 = p1 + (Vector3.up * _playerHeight * 0.524f);
             float checkRadius = _col.radius * 0.9f;
-            //Debug.DrawLine(p1 - (Vector3.up * checkRadius), p2 + (Vector3.up * checkRadius), Color.yellow, 5.0f);
 
             int layermask = 1 << LayerMask.NameToLayer("Player");
             layermask = ~layermask;
 
-            bool didCollide = Physics.CheckCapsule(p1, p2, checkRadius, layermask);
-            
-            if(!didCollide)
+            bool didCollide = Physics.CheckCapsule(p1, p2, checkRadius, layermask, QueryTriggerInteraction.Ignore);
+            if (!didCollide)
             {
                 _fovMultipliers.Remove(this, _fovKeys[0]);
                 _isCrouching = false;
@@ -368,7 +366,7 @@ public class FPS_Pawn : Pawn {
         layermask = ~layermask;
 
         RaycastHit hitInfo;
-        Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask);
+        Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask, QueryTriggerInteraction.Ignore);
 
         if(hitInfo.collider)
         {

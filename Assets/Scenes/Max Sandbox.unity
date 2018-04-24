@@ -1679,6 +1679,7 @@ MonoBehaviour:
   LogInteractEvents: 1
   beingHeld: 0
   isOpen: 0
+  flame: {fileID: 0}
 --- !u!65 &1159614604
 BoxCollider:
   m_ObjectHideFlags: 0
