@@ -26,6 +26,13 @@ public class MenuScript : MonoBehaviour
 
     private void Start()
     {
+        foreach(GameObject menu in MenuScreens)
+        {
+            if(menu)
+            {
+                menu.SetActive(false);
+            }
+        }
         ChangeMenuTo(StartingMenu);
         runtimeTimeScale = Time.timeScale;
     }
@@ -71,6 +78,12 @@ public class MenuScript : MonoBehaviour
             previousMenuIndex = activeMenuIndex;
             activeMenuIndex = newMenuIndex;
         }
+    }
+
+    //Navigate to previous menu
+    public void BackToPreviousMenu()
+    {
+        ChangeMenuTo(previousMenuIndex);
     }
 
     //Also used in pause menu
@@ -131,6 +144,7 @@ public class MenuScript : MonoBehaviour
     //
     public void SetGameText(bool setEnabled, string message)
     {
+        //Make this not use ChangeMenuTo, but also not interrupt paused games.
         if(!gameText)
         {
             return;
