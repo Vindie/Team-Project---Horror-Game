@@ -168,8 +168,9 @@ public class FPS_Pawn : Pawn {
         if (_isCrouching && !value)
         {
             Vector3 p1 = _col.transform.position;
-            Vector3 p2 = p1 + (Vector3.up * _playerHeight * 0.6f);
+            Vector3 p2 = p1 + (Vector3.up * _playerHeight * 0.524f);
             float checkRadius = _col.radius * 0.9f;
+            //Debug.DrawLine(p1 - (Vector3.up * checkRadius), p2 + (Vector3.up * checkRadius), Color.yellow, 5.0f);
 
             int layermask = 1 << LayerMask.NameToLayer("Player");
             layermask = ~layermask;
