@@ -27,6 +27,7 @@ public class HorrorGame : Game {
     //Returns false if game doesn't end
     public virtual bool EndGame(bool victory)
     {
+        LOG("Game ending in " + GameEndLingerTime + " seconds.");
         if(_ms)
         {
             if (victory)
@@ -36,6 +37,8 @@ public class HorrorGame : Game {
             else
             {
                 _ms.SetGameLargeText(true, loseText);
+                //Fade to black
+                //Fade in splash text - "Escaped the mine" or something
             }
 
             StartCoroutine(LingerBeforeSceneChange());

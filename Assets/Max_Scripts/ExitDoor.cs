@@ -17,16 +17,20 @@ public class ExitDoor : Interactable {
         {
             return false;
         }
-        //PlayerController
-        //Fade to black
-        //Fade in splash text - "Escaped the mine" or something
-        MenuScript ms = FindObjectOfType<MenuScript>();
-        if(!ms)
+        
+        HorrorGame hg = FindObjectOfType<HorrorGame>();
+        if(!hg)
         {
-            LOG_ERROR("No object in scene with MenuScript attached. Can not return to main menu.");
+            LOG_ERROR("No object in scene with HorrorGame attached. Can not ask to end game.");
             return true;
         }
-        ms.ReturnToMainMenu();
+        hg.EndGame(true);
+
+        FPS_Controller FPC = (FPS_Controller)instigator;
+        if(FPC)
+        {
+            FPC.allowPausing = false;
+        }
 
         return true;
     }

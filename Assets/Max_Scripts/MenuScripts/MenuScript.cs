@@ -23,7 +23,9 @@ public class MenuScript : MonoBehaviour
     }
 
     public Text gameLargeText;
+    bool glt_active = false;
     public Text gameSmallText;
+    bool gst_active = false;
 
     private void Start()
     {
@@ -36,6 +38,21 @@ public class MenuScript : MonoBehaviour
         }
         ChangeMenuTo(StartingMenu);
         runtimeTimeScale = Time.timeScale;
+    }
+
+    private void Update()
+    {
+        if(gameLargeText)
+        {
+            if (glt_active && !_isPaused)   { gameLargeText.gameObject.SetActive(true); }
+            else                            { gameLargeText.gameObject.SetActive(false); }
+        }
+
+        if(gameSmallText)
+        {
+            if (gst_active && !_isPaused)   { gameSmallText.gameObject.SetActive(true); }
+            else                            { gameSmallText.gameObject.SetActive(false); }
+        }
     }
 
     //MAIN MENU FUNCTIONALITY
@@ -145,39 +162,20 @@ public class MenuScript : MonoBehaviour
     //
     public void SetGameLargeText(bool setEnabled, string message = "")
     {
-        //Make this not use ChangeMenuTo, but also not interrupt paused games.
-        if(!gameLargeText)
-        {
-            return;
-        }
+        if(!gameLargeText) { return; }
 
         gameLargeText.text = message;
-        if(setEnabled)
-        {
-            ChangeMenuTo(2);
-        }
-        else if(activeMenuIndex == 2)
-        {
-            ChangeMenuTo(previousMenuIndex);
-        }
+
+        glt_active = setEnabled;
     }
 
     public void SetGameSmallText(bool setEnabled, string message = "")
     {
         //Make this not use ChangeMenuTo, but also not interrupt paused games.
-        if (!gameSmallText)
-        {
-            return;
-        }
+        if (!gameSmallText) { return; }
 
-        gameSmallText.text = message;
-        if (setEnabled)
-        {
-            ChangeMenuTo(2);
-        }
-        else if (activeMenuIndex == 2)
-        {
-            ChangeMenuTo(previousMenuIndex);
-        }
+        gameLargeText.text = message;
+
+        gst_active = setEnabled;
     }
 }

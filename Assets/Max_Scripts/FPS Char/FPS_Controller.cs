@@ -5,6 +5,7 @@ using UnityEngine;
 public class FPS_Controller : PlayerController {
 
     MenuScript ms;
+    public bool allowPausing = true;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -140,7 +141,7 @@ public class FPS_Controller : PlayerController {
         if(value)
         {
             FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-            if (FPP && ms)
+            if (FPP && ms && allowPausing)
             {
                 ms.TogglePause();
                 FPP.SetCursorLock(!ms.IsPaused);
@@ -154,7 +155,9 @@ public class FPS_Controller : PlayerController {
     {
         UnPossesPawn(PossesedPawn);
         HorrorGame hg = FindObjectOfType<HorrorGame>();
+        LOG("Attempting to find HG");
         if(!hg) { return; }
+        LOG("Found HG");
 
         hg.EndGame(false);
     }
