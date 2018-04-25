@@ -26,6 +26,7 @@ public class FPS_Pawn : Pawn {
     public float look_minVerticalRotation = 90.0f;
 
     public float interactRange = 2.0f;
+    public float interactSensitivity = 0.1f;
 
     public float crouchSpeed = 0.2f;
     #endregion
@@ -359,12 +360,28 @@ public class FPS_Pawn : Pawn {
 
     public virtual GameObject GetInteractableObject()
     {
-        //Raycast to determine what player is looking at
-        int layermask = 1 << LayerMask.NameToLayer("Player");
+        //Raycast to determine what the player is looking at
+        /*int layermask = 1 << LayerMask.NameToLayer("Player");
         layermask = ~layermask;
 
         RaycastHit hitInfo;
         Physics.Raycast(head.transform.position, head.transform.forward, out hitInfo, interactRange, layermask, QueryTriggerInteraction.Ignore);
+
+        if(hitInfo.collider)
+        {
+            return hitInfo.collider.gameObject;
+        }
+        else
+        {
+            return null;
+        }*/
+
+        //Spherecast to determine what the player is looking at
+        int layermask = 1 << LayerMask.NameToLayer("Player");
+        layermask = ~layermask;
+
+        RaycastHit hitInfo;
+        Physics.SphereCast(head.transform.position, interactSensitivity, head.transform.forward, out hitInfo, interactRange, layermask, QueryTriggerInteraction.Ignore);
 
         if(hitInfo.collider)
         {
@@ -423,13 +440,24 @@ public class FPS_Pawn : Pawn {
             _controller.UnPossesPawn(this);
         }
         //Do something to the camera image effect
+        handDominant.Unequip();
+        handSubordinate.Unequip();
         _rb.freezeRotation = false;
     }
 
     public override void OnUnPossession()
     {
-        SetCursorLock(false);
+        //SetCursorLock(false);
         IgnoresDamage = true;
+
+        if(Health > 0)
+        {
+            _inputXRotation = 0.0f;
+            _inputYRotation = 0.0f;
+            _strafeVelocity = 0.0f;
+            _forwardVelocity = 0.0f;
+        }
+
         //Destroy(gameObject, 5.0f);
     }
     #endregion
