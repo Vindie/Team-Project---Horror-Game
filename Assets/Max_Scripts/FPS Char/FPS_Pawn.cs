@@ -407,6 +407,8 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Die()
     {
+        if(!_controller) { return; }
+
         FPS_Controller FPC = (FPS_Controller)_controller;
         if(FPC)
         {
@@ -416,12 +418,12 @@ public class FPS_Pawn : Pawn {
         {
             _controller.UnPossesPawn(this);
         }
+        //Do something to the camera image effect
+        _rb.freezeRotation = false;
     }
 
     public override void OnUnPossession()
     {
-        //Do something to the camera image effect
-        _rb.freezeRotation = false;
         SetCursorLock(false);
         //Destroy(gameObject, 5.0f);
     }

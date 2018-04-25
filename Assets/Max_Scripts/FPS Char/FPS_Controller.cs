@@ -155,9 +155,7 @@ public class FPS_Controller : PlayerController {
     {
         UnPossesPawn(PossesedPawn);
         HorrorGame hg = FindObjectOfType<HorrorGame>();
-        LOG("Attempting to find HG");
         if(!hg) { return; }
-        LOG("Found HG");
 
         hg.EndGame(false);
     }

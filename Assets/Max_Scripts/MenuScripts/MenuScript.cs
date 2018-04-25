@@ -171,10 +171,9 @@ public class MenuScript : MonoBehaviour
 
     public void SetGameSmallText(bool setEnabled, string message = "")
     {
-        //Make this not use ChangeMenuTo, but also not interrupt paused games.
         if (!gameSmallText) { return; }
 
-        gameLargeText.text = message;
+        gameSmallText.text = message;
 
         gst_active = setEnabled;
     }

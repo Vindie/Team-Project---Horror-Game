@@ -152,13 +152,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114111697531506396, guid: 8528127625fd5bf48965ce1091e7eafe,
-        type: 2}
-      propertyPath: SpawnPointPrefab
-      value: 
-      objectReference: {fileID: 77388086}
-    m_RemovedComponents:
-    - {fileID: 114111697531506396, guid: 8528127625fd5bf48965ce1091e7eafe, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8528127625fd5bf48965ce1091e7eafe, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &69191380
@@ -221,11 +215,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4405220776087860, guid: f0ff744475796ce4785662238b53d014,
     type: 2}
   m_PrefabInternal: {fileID: 69191380}
---- !u!1 &77388086 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1168014549808748, guid: 8f1db655502ccd14184a3078094cdb06,
-    type: 2}
-  m_PrefabInternal: {fileID: 1383512615}
 --- !u!1 &85223900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,28 +1224,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1047001860 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1397047753690110, guid: 8528127625fd5bf48965ce1091e7eafe,
-    type: 2}
-  m_PrefabInternal: {fileID: 39335478}
---- !u!114 &1047001861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1047001860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed294f5b81400248a0bdfcad7a585fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpawnPointPrefab: {fileID: 1168014549808748, guid: 8f1db655502ccd14184a3078094cdb06,
-    type: 2}
-  UseRandomSpawnPoint: 0
-  GameEndLingerTime: 5
-  loseText: You have died.
-  winText: You have escaped the mine.
 --- !u!1 &1047415455
 GameObject:
   m_ObjectHideFlags: 0
