@@ -100,10 +100,12 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void FixedUpdate()
     {
-        _rb.velocity = GetMoveVelocity();
-        HandleCrouching();
-        HandleLookRotation();
-        CheckIfDead();
+        if(CheckIfDead())
+        {
+            _rb.velocity = GetMoveVelocity();
+            HandleCrouching();
+            HandleLookRotation();
+        }
     }
     #endregion
 
@@ -211,6 +213,7 @@ public class FPS_Pawn : Pawn {
         }
     }
 
+    //Allows the player to sprint when held
     public virtual void Fire5(bool value)
     {
         if(value && allowSprint && !_isCrouching)
@@ -395,6 +398,7 @@ public class FPS_Pawn : Pawn {
         return CheckIfDead();
     }
 
+    //Returns true if alive, false if dead.
     protected virtual bool CheckIfDead()
     {
         if (Health <= 0)
@@ -425,6 +429,7 @@ public class FPS_Pawn : Pawn {
     public override void OnUnPossession()
     {
         SetCursorLock(false);
+        IgnoresDamage = true;
         //Destroy(gameObject, 5.0f);
     }
     #endregion

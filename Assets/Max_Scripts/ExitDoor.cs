@@ -41,6 +41,7 @@ public class ExitDoor : Interactable {
         FPS_Controller FPC = (FPS_Controller)instigator;
         if(FPC)
         {
+            FPC.allowControl = false;
             FPC.allowPausing = false;
         }
 
