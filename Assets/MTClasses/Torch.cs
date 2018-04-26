@@ -10,6 +10,7 @@ public class Torch : Item
     public int maxLifeSpan = 100;
     public float lifeKeptPercentOnRelight = 0.75f;
     int fallingVelocity = 1000000;
+    AudioSource sound;
 
     public bool getLit; //refers to if player has relit the torch after the torch died
     protected bool _hasBeenHeld = false;
@@ -30,6 +31,8 @@ public class Torch : Item
 
 	protected override void Start ()
     {
+        sound = gameObject.GetComponent<AudioSource>();
+
         if (startActive)
         {
             LightOn();
@@ -60,6 +63,7 @@ public class Torch : Item
     }
     public void LightOn()
     {
+        sound.Play();
         lifeSpan = maxLifeSpan;
         maxLifeSpan = (int)(maxLifeSpan * lifeKeptPercentOnRelight);
 
@@ -69,6 +73,7 @@ public class Torch : Item
 
     public void LightOff()
     {
+        sound.Stop();
         firePrefab.SetActive(false);
         _lightActive = false;
     }
