@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1179941376020558
 GameObject:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1806890099144252}
   m_LocalRotation: {x: -0, y: -0.99942756, z: -0, w: -0.033831477}
-  m_LocalPosition: {x: -762.469, y: 124.03537, z: -99.79}
+  m_LocalPosition: {x: -4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4982181510078986}
@@ -384,7 +384,8 @@ MonoBehaviour:
   firePrefab: {fileID: 1099579295951418}
   startActive: 1
   lifeSpan: 0
-  maxLifeSpan: 100
+  maxLifeSpan: 40
+  lifeKeptPercentOnRelight: 0.8
   getLit: 0
 --- !u!136 &136317128281048416
 CapsuleCollider:
@@ -459,7 +460,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1310918740
+  randomSeed: 662853733
   InitialModule:
     serializedVersion: 3
     enabled: 1

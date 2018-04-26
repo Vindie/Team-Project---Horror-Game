@@ -8,9 +8,11 @@ public class Torch : Item
     public bool startActive = true;
     public float lifeSpan;
     public int maxLifeSpan = 100;
+    public float lifeKeptPercentOnRelight = 0.75f;
     int fallingVelocity = 1000000;
 
     public bool getLit; //refers to if player has relit the torch after the torch died
+    protected bool _hasBeenHeld = false;
 
     /*
      * Lifespan for torch
@@ -28,9 +30,6 @@ public class Torch : Item
 
 	protected override void Start ()
     {
-        lifeSpan = maxLifeSpan * Time.deltaTime;
-        getLit = false;
-
         if (startActive)
         {
             LightOn();
@@ -40,22 +39,30 @@ public class Torch : Item
             LightOff();
         }
 
+        getLit = false;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
-        if (lifeSpan == maxLifeSpan)
-        {
-            LightOn();
-        }
-
         if(lifeSpan > 0)
         {
             torchDying();
         }
+        else if(_lightActive)
+        {
+            LightOff();
+        }
+
+        if(beingHeld)
+        {
+            _hasBeenHeld = true;
+        }
     }
     public void LightOn()
     {
+        lifeSpan = maxLifeSpan;
+        maxLifeSpan = (int)(maxLifeSpan * lifeKeptPercentOnRelight);
+
         firePrefab.SetActive(true);
         _lightActive = true;
     }
@@ -68,7 +75,7 @@ public class Torch : Item
 
     public bool lifeSpanDecreasingCheck()
     {
-        if (beingHeld || getLit)
+        if ((_hasBeenHeld || getLit) && _lightActive)
         {
             return true;
         }
@@ -82,7 +89,7 @@ public class Torch : Item
     {
         if(lifeSpanDecreasingCheck())
         {
-            lifeSpan--;
+            lifeSpan -= Time.fixedDeltaTime;
         }
     }
 

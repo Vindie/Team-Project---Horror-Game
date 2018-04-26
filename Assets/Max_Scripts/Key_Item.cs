@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class Key_Item : Item {
 
+    protected Light _keyLight;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        _keyLight = gameObject.GetComponent<Light>();
+    }
+
+    protected virtual void Update()
+    {
+        if(_keyLight)
+        {
+            if (beingHeld)  { _keyLight.enabled = false; }
+            else            { _keyLight.enabled = true; }
+        }
+    }
+
     public override bool Use(Actor user)
     {
         FPS_Pawn FPP = (FPS_Pawn)user;
