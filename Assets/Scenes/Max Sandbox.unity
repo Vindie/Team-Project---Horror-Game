@@ -573,7 +573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &293921988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaterialList:
-  - {fileID: 2100000, guid: 1f964a8a9474600449d101572404b5bb, type: 2}
+  - {fileID: 2100000, guid: 521ef71251c359248ae6fc2783122c69, type: 2}
 --- !u!81 &293921989
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1856430271878282, guid: 075d95fbc1af41841a7178882e3a5c14, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 075d95fbc1af41841a7178882e3a5c14, type: 2}

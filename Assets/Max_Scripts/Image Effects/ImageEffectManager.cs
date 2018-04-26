@@ -15,6 +15,10 @@ public class ImageEffectManager : MonoBehaviour {
         
         foreach(Material m in MaterialList)
         {
+            if(!m)
+            {
+                Graphics.Blit(source, destination);
+            }
             Graphics.Blit(source, destination, m);
         }
     }
