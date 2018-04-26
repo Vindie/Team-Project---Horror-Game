@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPS_Pawn : Pawn {
+public class FPS_Pawn : Pawn
+{
+    /*
+     * head.transform.position = new Vector3(transform.position.x, 
+        originalY + (Math.Sinf(Time.time) * floatStrength), transform.position.z);
+     * */
 
     #region Pawn Properties
-    
+
     public float defaultFOV = 60.0f;
 
     public float Health = 100.0f;
@@ -24,6 +29,18 @@ public class FPS_Pawn : Pawn {
     public float look_ySensitivity = 2.0f;
     public float look_maxVerticalRotation = -90.0f;
     public float look_minVerticalRotation = 90.0f;
+
+    public float HeadBobY;
+    public float HeadBobDelta = 0; 
+    public float HeadBobAmplitude = .5f;
+    public float HeadBobSpeed = 0; 
+    public float distanceTraveled = 0.0f;
+    public float HeadBobValue = 5.0f;
+    public bool PerformHeadBob = false;
+    int BobDirection = 1;
+    float BobAugment = 1.0f;
+    float BobSpringAugment = 1.0f;
+    float BobWalkAugment = 1.25f; 
 
     public float interactRange = 2.0f;
     public float interactSensitivity = 0.1f;
@@ -66,6 +83,8 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Start()
     {
+        HeadBobY = head.transform.position.y;
+
         IsSpectator = false;
         IgnoresDamage = false;
         LogDamageEvents = false;
@@ -74,7 +93,7 @@ public class FPS_Pawn : Pawn {
 
         _fovMultipliers = new ModifierTable();
         _fovKeys = new int[2];
-        for(int i = 0; i < _fovKeys.Length; i++)
+        for (int i = 0; i < _fovKeys.Length; i++)
         {
             _fovKeys[i] = -1;
         }
@@ -85,7 +104,7 @@ public class FPS_Pawn : Pawn {
         _rb.freezeRotation = true;
 
         _desiredBodyRotation = transform.rotation;
-        if(!head)
+        if (!head)
         {
             LOG_ERROR("No head object assigned to " + name);
         }
@@ -103,17 +122,74 @@ public class FPS_Pawn : Pawn {
     protected virtual void Update()
     {
         ManageFOV();
+
+        if (CheckIfDead())
+        {
+            
+            // Check for Head bob
+            if (_rb.velocity.magnitude > 0)
+            {
+                //LOG("Footsteps playing");
+                //Head bob
+                distanceTraveled++;
+                distanceTraveled *= _rb.velocity.magnitude / 3;
+
+                if (distanceTraveled >= HeadBobValue)
+                {
+                     
+                    if (!PerformHeadBob)
+                    {
+                        HeadBobSpeed = distanceTraveled / HeadBobValue;
+                        Debug.Log("distanceTraveled:" + distanceTraveled); 
+                        PerformHeadBob = true;
+                    }
+                    distanceTraveled = 0;
+
+                }
+
+            }
+
+            // Do Head Bob
+            if (PerformHeadBob)
+            {
+                if (_isSprinting) { BobAugment = BobSpringAugment; }
+                else { BobAugment = BobWalkAugment; }
+
+                HeadBobDelta += Time.deltaTime * HeadBobSpeed * BobDirection * BobAugment;
+                //HeadBobDelta += Time.deltaTime * BobDirection;
+
+                if (HeadBobDelta >= HeadBobAmplitude)
+                {
+                    HeadBobDelta = HeadBobAmplitude;
+                    BobDirection = -1; // head down 
+                }
+
+                if (HeadBobDelta <= 0)
+                {
+                    HeadBobDelta = 0;
+                    BobDirection = 1; // head down 
+                    PerformHeadBob = false;
+                }
+
+
+                head.transform.position =
+                       new Vector3(head.transform.position.x, HeadBobY + HeadBobDelta, head.transform.position.z);
+
+            }
+
+
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        if(CheckIfDead())
+
+        if (CheckIfDead())
         {
             _rb.velocity = GetMoveVelocity();
 
-            if(_rb.velocity.magnitude > 0)
+            if (_rb.velocity.magnitude > 0)
             {
-                //LOG("Footsteps playing");
                 footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
                 if (!footSteps.isPlaying)
                 {
@@ -123,6 +199,7 @@ public class FPS_Pawn : Pawn {
             else
             {
                 //LOG("Footsteps  NOT playing");
+
                 footSteps.Stop();
             }
 
@@ -156,12 +233,12 @@ public class FPS_Pawn : Pawn {
     //Uses the item being held in the dominant hand
     public virtual void Fire1(bool value)
     {
-        if(value)
+        if (value)
         {
-            if(_lighterActive)
+            if (_lighterActive)
             {
                 Lighter_Item lighter = (Lighter_Item)handSubordinate.EquippedItem;
-                if(lighter)
+                if (lighter)
                 {
                     lighter.Ignite(this);
                 }
@@ -214,7 +291,7 @@ public class FPS_Pawn : Pawn {
     //Interacts with the object the player is looking at in the world
     public virtual void Fire4(bool value)
     {
-        if(value)
+        if (value)
         {
             GameObject highlighted = GetInteractableObject();
             if (highlighted)
@@ -239,7 +316,7 @@ public class FPS_Pawn : Pawn {
     //Allows the player to sprint when held
     public virtual void Fire5(bool value)
     {
-        if(value && allowSprint && !_isCrouching)
+        if (value && allowSprint && !_isCrouching)
         {
             _isSprinting = true;
         }
@@ -251,12 +328,15 @@ public class FPS_Pawn : Pawn {
     #endregion
 
     #region Movement Related Methods
+
+
+
     protected virtual Vector3 GetMoveVelocity() //Known issue: moving diagonally is faster than moving on other axes.
     {
         Vector3 moveVelocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         //Sprint only applies in the forward direction
-        if(_isSprinting && _forwardVelocity > 0.0f)
+        if (_isSprinting && _forwardVelocity > 0.0f)
         {
             _forwardVelocity *= sprintMultiplier;
             if (!_fovMultipliers.KeyIsActive(_fovKeys[1]))
@@ -283,11 +363,11 @@ public class FPS_Pawn : Pawn {
         float playerHeightScale = Mathf.Lerp(_playerInitialScale, _playerInitialScale * 0.5f, _crouchPercent);
         transform.localScale = new Vector3(1.0f, playerHeightScale, 1.0f);
 
-        if(_isCrouching && _crouchPercent < 1.0f)
+        if (_isCrouching && _crouchPercent < 1.0f)
         {
             _crouchPercent += Time.fixedDeltaTime * crouchSpeed;
         }
-        else if(!_isCrouching && _crouchPercent > 0.0f)
+        else if (!_isCrouching && _crouchPercent > 0.0f)
         {
             _crouchPercent -= Time.fixedDeltaTime * crouchSpeed;
         }
@@ -326,7 +406,7 @@ public class FPS_Pawn : Pawn {
         q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
 
         //Check for bad values:
-        if(float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z))
+        if (float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z))
         {
             return quatIn;
         }
@@ -337,7 +417,7 @@ public class FPS_Pawn : Pawn {
     public virtual void SetCursorLock(bool newLockState)
     {
         _cursorIsLocked = newLockState;
-        if(newLockState)
+        if (newLockState)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -369,11 +449,11 @@ public class FPS_Pawn : Pawn {
             return false;
         }
 
-        if(handDominant.HasItem)
+        if (handDominant.HasItem)
         {
             handDominant.Unequip();
         }
-        if(!item)
+        if (!item)
         {
             return true;
         }
@@ -405,7 +485,7 @@ public class FPS_Pawn : Pawn {
         RaycastHit hitInfo;
         Physics.SphereCast(head.transform.position, interactSensitivity, head.transform.forward, out hitInfo, interactRange, layermask, QueryTriggerInteraction.Ignore);
 
-        if(hitInfo.collider)
+        if (hitInfo.collider)
         {
             return hitInfo.collider.gameObject;
         }
@@ -417,11 +497,11 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void SpawnOffhandItem()
     {
-        if(!subordinateStarterItem) { return; }
+        if (!subordinateStarterItem) { return; }
 
         GameObject spawnedGameObject = Factory(subordinateStarterItem, handSubordinate.transform.position, handSubordinate.transform.rotation);
         Item spawnedItem = spawnedGameObject.GetComponent<Item>();
-        if(!spawnedItem)
+        if (!spawnedItem)
         {
             Destroy(spawnedGameObject);
             return;
@@ -450,14 +530,14 @@ public class FPS_Pawn : Pawn {
 
     protected virtual void Die()
     {
-        if(!_controller) { return; }
+        if (!_controller) { return; }
 
         FPS_Controller FPC = (FPS_Controller)_controller;
-        if(FPC)
+        if (FPC)
         {
             FPC.PawnHasDied();
         }
-        else if(_controller)
+        else if (_controller)
         {
             _controller.UnPossesPawn(this);
         }
@@ -472,7 +552,7 @@ public class FPS_Pawn : Pawn {
         //SetCursorLock(false);
         IgnoresDamage = true;
 
-        if(Health > 0)
+        if (Health > 0)
         {
             _inputXRotation = 0.0f;
             _inputYRotation = 0.0f;
