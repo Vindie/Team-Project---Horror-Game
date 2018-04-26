@@ -7,8 +7,8 @@ public class ImageEffectManager : MonoBehaviour {
     public Material imageEffect;
 
     public float targetBloodiness = 0.0f;
-    public float bloodyLerpFactor = 0.2f;
-    public Color BloodyScreenRGB;
+    public float bloodySpeed = 0.2f;
+    public Color BloodyScreenColor;
     public Color DefaultVignetteColor;
 
     protected float _timer;
@@ -17,10 +17,11 @@ public class ImageEffectManager : MonoBehaviour {
 
     private void Update()
     {
-        _currentBloodiness = Mathf.Lerp(targetBloodiness, _currentBloodiness, bloodyLerpFactor);
+        _currentBloodiness = Mathf.MoveTowards(_currentBloodiness, targetBloodiness, bloodySpeed);
         if(imageEffect)
         {
-            imageEffect.SetColor("Vignette Color", colorLerp(DefaultVignetteColor, BloodyScreenRGB, _currentBloodiness));
+            imageEffect.SetColor("_VColor", colorLerp(DefaultVignetteColor, BloodyScreenColor, _currentBloodiness));
+            imageEffect.color = colorLerp(DefaultVignetteColor, BloodyScreenColor, _currentBloodiness);
         }
     }
 

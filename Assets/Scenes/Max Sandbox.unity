@@ -587,8 +587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageEffect: {fileID: 2100000, guid: 521ef71251c359248ae6fc2783122c69, type: 2}
   targetBloodiness: 0
-  bloodyLerpFactor: 2
-  BloodyScreenRGB: {r: 0, g: 0, b: 0, a: 0}
+  bloodySpeed: 0.1
+  BloodyScreenColor: {r: 1, g: 0, b: 0, a: 0.105882354}
   DefaultVignetteColor: {r: 0, g: 0, b: 0, a: 0.11764706}
   _currentBloodiness: 0
 --- !u!81 &293921989
