@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 136317128281048416}
   - component: {fileID: 54689026755841958}
   - component: {fileID: 114001694233833628}
-  - component: {fileID: 82638216829220876}
+  - component: {fileID: 82129948170578644}
   m_Layer: 0
   m_Name: Dead_Torch_Prefab
   m_TagString: Torch
@@ -196,7 +196,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82638216829220876
+--- !u!82 &82129948170578644
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -205,23 +205,23 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 973ea850582ac0c4bb1768fba76c9f3c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 204
-  DopplerLevel: 1.24
+  Priority: 128
+  DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -257,7 +257,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0.10555556
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   firePrefab: {fileID: 1099579295951418}
   startActive: 0
   lifeSpan: 0
-  maxLifeSpan: 20
+  maxLifeSpan: 40
   lifeKeptPercentOnRelight: 0.8
   getLit: 0
 --- !u!136 &136317128281048416
