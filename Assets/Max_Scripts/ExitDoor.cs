@@ -29,6 +29,12 @@ public class ExitDoor : Interactable {
                     return false;
                 }
             }
+
+            if (hintPopupTimeRemaining <= 0.0f)
+            {
+                StartCoroutine(ShowPopupHint());
+            }
+            return false;
         }
         
         HorrorGame hg = FindObjectOfType<HorrorGame>();

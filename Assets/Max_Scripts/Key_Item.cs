@@ -14,6 +14,11 @@ public class Key_Item : Interactable {
         FPS_Pawn FPP = (FPS_Pawn)source;
         if(!FPP) { return false; }
 
+        if(hintPopupTimeRemaining <= 0.0f)
+        {
+            StartCoroutine(ShowPopupHint());
+        }
+
         FPP.hasKey = true;
         Destroy(gameObject);
         return true;
@@ -28,9 +33,11 @@ public class Key_Item : Interactable {
             hintPopupTimeRemaining = hintPopupTime;
             while (hintPopupTimeRemaining > 0)
             {
+                Debug.Log("Timer: " + hintPopupTimeRemaining);
                 hintPopupTimeRemaining -= Time.deltaTime;
                 yield return null;
             }
+            LOG("Exit Popup");
             ms.SetGameSmallText(false);
         }
     }
