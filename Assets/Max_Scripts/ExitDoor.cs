@@ -19,15 +19,16 @@ public class ExitDoor : Interactable {
     {
         if(isLocked)
         {
-            if(hintPopupTimeRemaining <= 0.0f)
+            FPS_Pawn FPP = (FPS_Pawn)source;
+            if (FPP)
             {
-                StartCoroutine(ShowPopupHint());
+                if (FPP.hasKey)
+                {
+                    isLocked = false;
+                    //Unlock sound
+                    return false;
+                }
             }
-            else
-            {
-                hintPopupTimeRemaining = hintPopupTime;
-            }
-            return false;
         }
         
         HorrorGame hg = FindObjectOfType<HorrorGame>();
