@@ -40,17 +40,17 @@
 			
 			sampler2D _MainTex;
 			fixed4 _VColor;
-			float _VFallOff;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float2 coord = i.uv;
 				float2 center = 0.5;
 				float d = distance(coord, center);
-				d = pow(d, _VColor.a * 5);
+				d = pow(d, _VColor.a * 6);
 				fixed4 col = tex2D(_MainTex, coord);
 				
-				return col - d * _VColor;
+				col = lerp(col, _VColor, d);
+				return col;// *1 - (_VColor * d);
 			}
 			ENDCG
 		}
