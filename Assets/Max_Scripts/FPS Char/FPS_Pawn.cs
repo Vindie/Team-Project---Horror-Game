@@ -113,7 +113,7 @@ public class FPS_Pawn : Pawn {
 
             if(_rb.velocity.magnitude > 0)
             {
-                LOG("Footsteps playing");
+                //LOG("Footsteps playing");
                 footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
                 if (!footSteps.isPlaying)
                 {
@@ -122,7 +122,7 @@ public class FPS_Pawn : Pawn {
             }
             else
             {
-                LOG("Footsteps  NOT playing");
+                //LOG("Footsteps  NOT playing");
                 footSteps.Stop();
             }
 
