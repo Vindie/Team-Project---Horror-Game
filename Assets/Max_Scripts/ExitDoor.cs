@@ -8,7 +8,12 @@ public class ExitDoor : Interactable {
     public float hintPopupTime = 5.0f;
     public string popupHint = "The exit seems to be locked, perhaps there is a key somewhere?";
 
-    protected float hintPopupTimeRemaining = 0.0f;
+    MenuScript _ms;
+
+    private void Start()
+    {
+        _ms = FindObjectOfType<MenuScript>();
+    }
 
     public virtual void SetDoorLock(bool value)
     {
@@ -30,9 +35,9 @@ public class ExitDoor : Interactable {
                 }
             }
 
-            if (hintPopupTimeRemaining <= 0.0f)
+            if (_ms)
             {
-                StartCoroutine(ShowPopupHint());
+                _ms.SetGameSmallText(true, popupHint, hintPopupTime);
             }
             return false;
         }
@@ -53,21 +58,5 @@ public class ExitDoor : Interactable {
         }
 
         return true;
-    }
-
-    protected virtual IEnumerator ShowPopupHint()
-    {
-        MenuScript ms = FindObjectOfType<MenuScript>();
-        if(ms)
-        {
-            ms.SetGameSmallText(true, popupHint);
-            hintPopupTimeRemaining = hintPopupTime;
-            while (hintPopupTimeRemaining > 0)
-            {
-                hintPopupTimeRemaining -= Time.deltaTime;
-                yield return null;
-            }
-            ms.SetGameSmallText(false);
-        }
     }
 }

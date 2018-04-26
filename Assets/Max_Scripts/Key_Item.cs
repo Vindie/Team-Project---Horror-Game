@@ -14,10 +14,7 @@ public class Key_Item : Interactable {
         FPS_Pawn FPP = (FPS_Pawn)source;
         if(!FPP) { return false; }
 
-        if(hintPopupTimeRemaining <= 0.0f)
-        {
-            StartCoroutine(ShowPopupHint());
-        }
+        FindObjectOfType<MenuScript>().SetGameSmallText(true, popupHint, hintPopupTime);
 
         FPP.hasKey = true;
         Destroy(gameObject);

@@ -24,8 +24,10 @@ public class MenuScript : MonoBehaviour
 
     public Text gameLargeText;
     bool glt_active = false;
+    float glt_activeTimer = 0.0f;
     public Text gameSmallText;
     bool gst_active = false;
+    float gst_activeTimer = 0.0f;
 
     private void Start()
     {
@@ -52,6 +54,23 @@ public class MenuScript : MonoBehaviour
         {
             if (gst_active && !_isPaused)   { gameSmallText.gameObject.SetActive(true); }
             else                            { gameSmallText.gameObject.SetActive(false); }
+        }
+
+        if (glt_activeTimer > 0.0f)
+        {
+            glt_activeTimer -= Time.deltaTime;
+            if (glt_activeTimer <= 0.0f)
+            {
+                SetGameLargeText(false);
+            }
+        }
+        if (gst_activeTimer > 0.0f)
+        {
+            gst_activeTimer -= Time.deltaTime;
+            if(gst_activeTimer <= 0.0f)
+            {
+                SetGameSmallText(false);
+            }
         }
     }
 
@@ -160,21 +179,29 @@ public class MenuScript : MonoBehaviour
     //GAME MESSAGE FUNCTIONALITY
     //
     //
-    public void SetGameLargeText(bool setEnabled, string message = "")
+    public void SetGameLargeText(bool setEnabled, string message = "", float time = 0.0f)
     {
         if(!gameLargeText) { return; }
 
         gameLargeText.text = message;
 
         glt_active = setEnabled;
+        if(setEnabled && time > 0.0f)
+        {
+            glt_activeTimer = time;
+        }
     }
 
-    public void SetGameSmallText(bool setEnabled, string message = "")
+    public void SetGameSmallText(bool setEnabled, string message = "", float time = 0.0f)
     {
         if (!gameSmallText) { return; }
 
         gameSmallText.text = message;
 
         gst_active = setEnabled;
+        if (setEnabled && time > 0.0f)
+        {
+            gst_activeTimer = time;
+        }
     }
 }
