@@ -2,19 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key_Item : Interactable {
+public class Key_Item : Item {
 
-    protected override bool ProcessInteraction(Actor source, Controller instigator)
-    {
-        FPS_Pawn FPP = (FPS_Pawn)source;
-        if(!FPP) { return false; }
-
-        FPP.hasKey = true;
-        Destroy(gameObject);
-        return true;
-    }
-
-    /*protected Light _keyLight;
+    protected Light _keyLight;
 
     protected override void Start()
     {
@@ -46,5 +36,5 @@ public class Key_Item : Interactable {
         door.isLocked = false;
         //Delete this item, or remove this component from the object.
         return true;
-    }*/
+    }
 }
