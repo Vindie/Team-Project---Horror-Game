@@ -50,17 +50,26 @@ public class Lighter_Item : Item {
         FPS_Pawn FPP = (FPS_Pawn)user;
         if(!FPP) { return false; }
 
-        Torch t = (Torch)FPP.handDominant.EquippedItem;
-        if(!t)
+        bool lookForTorch = true;
+        Torch t = null;
+        if(FPP.handDominant.EquippedItem)
+        {
+            t = FPP.handDominant.EquippedItem.GetComponent<Torch>();
+            if (t)
+            {
+                if (!t.LightActive) { lookForTorch = false; }
+            }
+        }
+
+        if (lookForTorch)
         {
             GameObject target = FPP.GetInteractableObject();
-            if (!target) { return false; }
-
+            if(!target) { return false; }
             t = target.GetComponent<Torch>();
+
             if (!t) { return false; }
+            if (t.LightActive) { return false; }
         }
-        
-        if(t.LightActive) { return false; }
 
         t.LightOn();
         t.getLit = true;

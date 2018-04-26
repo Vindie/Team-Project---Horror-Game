@@ -278,7 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bbf1f02901a684abee50a55cd18259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaterialList: []
+  MaterialList:
+  - {fileID: 2100000, guid: 1f964a8a9474600449d101572404b5bb, type: 2}
 --- !u!124 &124277855601861912
 Behaviour:
   m_ObjectHideFlags: 1
