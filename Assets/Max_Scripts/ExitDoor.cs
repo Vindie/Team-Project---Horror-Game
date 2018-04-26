@@ -16,9 +16,19 @@ public class ExitDoor : Interactable {
     }
 
     protected override bool ProcessInteraction(Actor source, Controller instigator)
-    {
+    {   
         if(isLocked)
         {
+            FPS_Pawn FPP = (FPS_Pawn)source;
+            if (FPP)
+            {
+                if(FPP.hasKey)
+                {
+                    isLocked = false;
+                    //Unlock sound
+                    return false;
+                }
+            }
             if(hintPopupTimeRemaining <= 0.0f)
             {
                 StartCoroutine(ShowPopupHint());
