@@ -384,7 +384,7 @@ MonoBehaviour:
   firePrefab: {fileID: 1099579295951418}
   startActive: 1
   lifeSpan: 0
-  maxLifeSpan: 40
+  maxLifeSpan: 30
   lifeKeptPercentOnRelight: 0.8
   getLit: 0
 --- !u!136 &136317128281048416
