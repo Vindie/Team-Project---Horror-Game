@@ -31,6 +31,8 @@ public class FPS_Pawn : Pawn {
     public float crouchSpeed = 0.2f;
 
     public bool hasKey = false;
+
+    public AudioSource footSteps;
     #endregion
 
     #region Pawn Member Variables
@@ -67,6 +69,8 @@ public class FPS_Pawn : Pawn {
         IsSpectator = false;
         IgnoresDamage = false;
         LogDamageEvents = false;
+
+        footSteps = gameObject.GetComponent<AudioSource>(); //gets audio
 
         _fovMultipliers = new ModifierTable();
         _fovKeys = new int[2];
@@ -106,6 +110,22 @@ public class FPS_Pawn : Pawn {
         if(CheckIfDead())
         {
             _rb.velocity = GetMoveVelocity();
+
+            if(_rb.velocity.magnitude > 0)
+            {
+                LOG("Footsteps playing");
+                footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
+                if (!footSteps.isPlaying)
+                {
+                    footSteps.Play();
+                }
+            }
+            else
+            {
+                LOG("Footsteps  NOT playing");
+                footSteps.Stop();
+            }
+
             HandleCrouching();
             HandleLookRotation();
         }
