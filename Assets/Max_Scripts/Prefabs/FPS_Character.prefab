@@ -251,7 +251,7 @@ MonoBehaviour:
   LogDamageEvents: 1
   IsSpectator: 1
   defaultFOV: 60
-  Health: 1000
+  Health: 500
   moveSpeed: 3.5
   allowSprint: 1
   sprintMultiplier: 2
@@ -267,6 +267,7 @@ MonoBehaviour:
   interactRange: 2
   interactSensitivity: 0.1
   crouchSpeed: 5
+  hasKey: 0
 --- !u!114 &114994475537219252
 MonoBehaviour:
   m_ObjectHideFlags: 1
