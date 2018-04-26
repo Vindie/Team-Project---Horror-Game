@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key_Item : Interactable {
+public class Key_Item : Item {
 
+<<<<<<< HEAD
     public float hintPopupTime = 5.0f;
     public string popupHint = "Picked up mine key";
 
@@ -36,6 +37,9 @@ public class Key_Item : Interactable {
     }
 
     /*protected Light _keyLight;
+=======
+    protected Light _keyLight;
+>>>>>>> 94974e6d7677cf27794ecfe363703bbdcdfe036c
 
     protected override void Start()
     {
@@ -67,5 +71,5 @@ public class Key_Item : Interactable {
         door.isLocked = false;
         //Delete this item, or remove this component from the object.
         return true;
-    }*/
+    }
 }

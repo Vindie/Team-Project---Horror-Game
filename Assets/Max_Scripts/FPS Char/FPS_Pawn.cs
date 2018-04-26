@@ -29,8 +29,6 @@ public class FPS_Pawn : Pawn {
     public float interactSensitivity = 0.1f;
 
     public float crouchSpeed = 0.2f;
-
-    public bool hasKey = false;
     #endregion
 
     #region Pawn Member Variables
