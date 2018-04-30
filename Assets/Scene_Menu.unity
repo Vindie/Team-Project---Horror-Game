@@ -6009,6 +6009,11 @@ Prefab:
       propertyPath: MaxDistance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 82727009893889244, guid: f0ff744475796ce4785662238b53d014,
+        type: 2}
+      propertyPath: MinDistance
+      value: 1.0148163
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 82638216829220876, guid: f0ff744475796ce4785662238b53d014, type: 2}
     - {fileID: 82740355958766420, guid: f0ff744475796ce4785662238b53d014, type: 2}
