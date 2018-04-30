@@ -7,8 +7,8 @@ public class HorrorGame : Game {
     public float GameEndLingerTime = 5.0f;
     public float FadeTime = 10.0f;
     
-    public string loseText = "You have died.";
-    public string winText = "You have escaped the mine.";
+    public string loseText = "Y o u  h a v e  d i e d .";   //A E S T H E T I C
+    public string winText = "Y o u  h a v e  e s c a p e d  t h e  m i n e .";
     protected MenuScript _ms;
 
     public override void Awake()
