@@ -48,6 +48,7 @@ public class FPS_Pawn : Pawn
     public bool hasKey = false;
 
     public AudioSource footSteps;
+    public AudioSource footStepsFast;
     #endregion
 
     #region Pawn Member Variables
@@ -93,7 +94,7 @@ public class FPS_Pawn : Pawn
         _iem = head.GetComponent<ImageEffectManager>();
         if(!_iem) { LOG("No ImageEffectManager found on head."); }
 
-        footSteps = gameObject.GetComponent<AudioSource>(); //gets audio
+        //footSteps = gameObject.GetComponent<AudioSource>(); //gets audio
         if(!footSteps) { LOG_ERROR("FPS_Pawn of \"" + name + "\" has no audio source!"); }
 
         _fovMultipliers = new ModifierTable();
@@ -194,10 +195,17 @@ public class FPS_Pawn : Pawn
 
             if (_rb.velocity.magnitude > 0)
             {
-                footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
-                if (!footSteps.isPlaying)
+                //footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
+                if (!footSteps.isPlaying && !footStepsFast.isPlaying)
                 {
-                    footSteps.Play();
+                    if(_isSprinting)
+                    {
+                        footStepsFast.Play();
+                    }
+                    else
+                    {
+                        footSteps.Play();
+                    }   
                 }
             }
             else
@@ -205,6 +213,7 @@ public class FPS_Pawn : Pawn
                 //LOG("Footsteps  NOT playing");
 
                 footSteps.Stop();
+                footStepsFast.Stop();
             }
 
             ManageDamageEffect();
