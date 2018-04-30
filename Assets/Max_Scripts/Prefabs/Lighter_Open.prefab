@@ -284,7 +284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198248477973188}
   m_LocalRotation: {x: -0.67273253, y: 0.70492536, z: -0.03343585, w: 0.22224586}
-  m_LocalPosition: {x: 0.18910916, y: 0.014098927, z: -0.03541868}
+  m_LocalPosition: {x: 0.1896, y: 0.0144, z: -0.0365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4347612483577304}
@@ -338,7 +338,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635940268292434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.219967, y: 0.000000014056569, z: 2.8640075}
+  m_LocalPosition: {x: -702.12305, y: 127.853, z: -112.47976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4106938614612342}
@@ -528,7 +528,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 22df902071463d0418d503ebc545aa61, type: 3}
+  - {fileID: 2100000, guid: bcd0c6b33e9c44f47b376f08deaeaf38, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -562,7 +562,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 22df902071463d0418d503ebc545aa61, type: 3}
+  - {fileID: 2100000, guid: 79f482d3492d0994296cce8eaf118dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -596,7 +596,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 22df902071463d0418d503ebc545aa61, type: 3}
+  - {fileID: 2100000, guid: 43e081e1e990f0a43a821336e1de92c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -691,8 +691,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.91764706, g: 0.6509804, b: 0.2509804, a: 1}
-  m_Intensity: 1
-  m_Range: 6
+  m_Intensity: 0.8
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoresDamage: 1
   LogDamageEvents: 1
-  IgnoresInteraction: 0
+  IgnoresInteraction: 1
   LogInteractEvents: 1
   beingHeld: 0
   isOpen: 0
