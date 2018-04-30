@@ -49,6 +49,8 @@ public class FPS_Pawn : Pawn
 
     public AudioSource footSteps;
     public AudioSource footStepsFast;
+    public AudioSource lighterOpen;
+    public AudioSource lighterUse;
     #endregion
 
     #region Pawn Member Variables
@@ -255,6 +257,7 @@ public class FPS_Pawn : Pawn
                 if (lighter)
                 {
                     lighter.Ignite(this);
+                    lighterUse.Play();
                 }
             }
             else
@@ -270,6 +273,11 @@ public class FPS_Pawn : Pawn
         if (value)
         {
             _lighterActive = handSubordinate.UseItem(this);
+            if(!lighterOpen.isPlaying)
+            {
+                lighterOpen.Play();
+            }
+
         }
     }
 
