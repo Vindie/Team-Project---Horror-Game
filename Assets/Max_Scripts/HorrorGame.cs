@@ -5,7 +5,8 @@ using UnityEngine;
 public class HorrorGame : Game {
 
     public float GameEndLingerTime = 5.0f;
-
+    public float FadeTime = 10.0f;
+    
     public string loseText = "You have died.";
     public string winText = "You have escaped the mine.";
     protected MenuScript _ms;
@@ -37,10 +38,13 @@ public class HorrorGame : Game {
             else
             {
                 _ms.SetGameLargeText(true, loseText);
-                //Fade to black
-                //Fade in splash text - "Escaped the mine" or something
             }
 
+            ImageEffectManager cam = FindObjectOfType<ImageEffectManager>();
+            if(cam)
+            {
+                cam.CrossFadeBlack(true, FadeTime);
+            }
             StartCoroutine(LingerBeforeSceneChange());
             return true;
         }
