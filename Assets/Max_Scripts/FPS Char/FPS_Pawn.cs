@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FPS_Pawn : Pawn
 {
-    /*
-     * head.transform.position = new Vector3(transform.position.x, 
-        originalY + (Math.Sinf(Time.time) * floatStrength), transform.position.z);
-     * */
 
     #region Pawn Properties
 
@@ -182,8 +178,8 @@ public class FPS_Pawn : Pawn
                 }
 
 
-                head.transform.position =
-                       new Vector3(head.transform.position.x, HeadBobY + HeadBobDelta, head.transform.position.z);
+                head.transform.localPosition =
+                       new Vector3(head.transform.localPosition.x, HeadBobY + HeadBobDelta, head.transform.localPosition.z);
 
             }
         }
