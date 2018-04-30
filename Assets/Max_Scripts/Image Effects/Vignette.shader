@@ -44,9 +44,13 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float2 coord = i.uv;
-				_VColor.a *= i.uv;
+				float2 center = 0.5;
+				float d = distance(coord, center);
+				d = pow(d, _VColor.a * 6);
 				fixed4 col = tex2D(_MainTex, coord);
-				return col + _VColor;
+				
+				col = lerp(col, _VColor, d);
+				return col;// *1 - (_VColor * d);
 			}
 			ENDCG
 		}

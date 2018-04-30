@@ -37,9 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4975329439900894}
   - component: {fileID: 114954429114757594}
+  - component: {fileID: 82748153042512242}
   m_Layer: 8
   m_Name: FPS_Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +215,86 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330231263068620}
   m_Enabled: 1
+--- !u!82 &82748153042512242
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286445627909952}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 42ff65f0deb520d4c97311f4f6c9cf86, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114404318855027572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,20 +332,33 @@ MonoBehaviour:
   LogDamageEvents: 1
   IsSpectator: 1
   defaultFOV: 60
+  Health: 500
+  MaxBloodyTime: 7
+  MaxHealthBloodiness: 0.5
   moveSpeed: 3.5
   allowSprint: 1
   sprintMultiplier: 2
   head: {fileID: 1330231263068620}
   handDominant: {fileID: 114404318855027572}
   handSubordinate: {fileID: 114426674438448680}
-  subordinateStarterItem: {fileID: 1853707020997352, guid: 6f5bb0e5186d4244284b356aa8f82527,
+  subordinateStarterItem: {fileID: 1635940268292434, guid: 5cdcc5098de8d184cbe71ba3155ac465,
     type: 2}
   look_xSensitivity: 4
   look_ySensitivity: 5
   look_maxVerticalRotation: 90
   look_minVerticalRotation: -90
+  HeadBobY: 0
+  HeadBobDelta: 0
+  HeadBobAmplitude: 0.2
+  HeadBobSpeed: 0
+  distanceTraveled: 0
+  HeadBobValue: 50
+  PerformHeadBob: 0
   interactRange: 2
+  interactSensitivity: 0.1
   crouchSpeed: 5
+  hasKey: 0
+  footSteps: {fileID: 0}
 --- !u!114 &114994475537219252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bbf1f02901a684abee50a55cd18259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaterialList: []
+  imageEffect: {fileID: 2100000, guid: 521ef71251c359248ae6fc2783122c69, type: 2}
+  targetBloodiness: 0
+  bloodySpeed: 0.1
+  BloodyScreenColor: {r: 1, g: 0, b: 0, a: 0.105882354}
+  DefaultVignetteColor: {r: 0, g: 0, b: 0, a: 0.11764706}
+  _currentBloodiness: 0
 --- !u!124 &124277855601861912
 Behaviour:
   m_ObjectHideFlags: 1

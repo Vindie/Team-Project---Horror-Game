@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Item : Interactable {
 
+    public bool beingHeld; //if item is being held by player
+
     protected virtual void Start()
     {
         verb = "picks up";
+        beingHeld = false;
     }
 
     /// <summary>

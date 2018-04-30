@@ -22,12 +22,56 @@ public class MenuScript : MonoBehaviour
         get { return _isPaused; }
     }
 
-    public Text gameText;
+    public Text gameLargeText;
+    bool glt_active = false;
+    float glt_activeTimer = 0.0f;
+    public Text gameSmallText;
+    bool gst_active = false;
+    float gst_activeTimer = 0.0f;
 
     private void Start()
     {
+        foreach(GameObject menu in MenuScreens)
+        {
+            if(menu)
+            {
+                menu.SetActive(false);
+            }
+        }
         ChangeMenuTo(StartingMenu);
         runtimeTimeScale = Time.timeScale;
+    }
+
+    private void Update()
+    {
+        if(gameLargeText)
+        {
+            if (glt_active && !_isPaused)   { gameLargeText.gameObject.SetActive(true); }
+            else                            { gameLargeText.gameObject.SetActive(false); }
+        }
+
+        if(gameSmallText)
+        {
+            if (gst_active && !_isPaused)   { gameSmallText.gameObject.SetActive(true); }
+            else                            { gameSmallText.gameObject.SetActive(false); }
+        }
+
+        if (glt_activeTimer > 0.0f)
+        {
+            glt_activeTimer -= Time.deltaTime;
+            if (glt_activeTimer <= 0.0f)
+            {
+                SetGameLargeText(false);
+            }
+        }
+        if (gst_activeTimer > 0.0f)
+        {
+            gst_activeTimer -= Time.deltaTime;
+            if(gst_activeTimer <= 0.0f)
+            {
+                SetGameSmallText(false);
+            }
+        }
     }
 
     //MAIN MENU FUNCTIONALITY
@@ -71,6 +115,12 @@ public class MenuScript : MonoBehaviour
             previousMenuIndex = activeMenuIndex;
             activeMenuIndex = newMenuIndex;
         }
+    }
+
+    //Navigate to previous menu
+    public void BackToPreviousMenu()
+    {
+        ChangeMenuTo(previousMenuIndex);
     }
 
     //Also used in pause menu
@@ -129,21 +179,29 @@ public class MenuScript : MonoBehaviour
     //GAME MESSAGE FUNCTIONALITY
     //
     //
-    public void SetGameText(bool setEnabled, string message)
+    public void SetGameLargeText(bool setEnabled, string message = "", float time = 0.0f)
     {
-        if(!gameText)
-        {
-            return;
-        }
+        if(!gameLargeText) { return; }
 
-        gameText.text = message;
-        if(setEnabled)
+        gameLargeText.text = message;
+
+        glt_active = setEnabled;
+        if(setEnabled && time > 0.0f)
         {
-            ChangeMenuTo(2);
+            glt_activeTimer = time;
         }
-        else if(activeMenuIndex == 2)
+    }
+
+    public void SetGameSmallText(bool setEnabled, string message = "", float time = 0.0f)
+    {
+        if (!gameSmallText) { return; }
+
+        gameSmallText.text = message;
+
+        gst_active = setEnabled;
+        if (setEnabled && time > 0.0f)
         {
-            ChangeMenuTo(previousMenuIndex);
+            gst_activeTimer = time;
         }
     }
 }

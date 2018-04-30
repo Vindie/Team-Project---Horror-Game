@@ -5,6 +5,8 @@ using UnityEngine;
 public class FPS_Controller : PlayerController {
 
     MenuScript ms;
+    public bool allowPausing = true;
+    public bool allowControl = true;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -29,6 +31,7 @@ public class FPS_Controller : PlayerController {
         Cancel(Input.GetButtonDown("Cancel"));
     }
 
+    #region Controls Related
     public override void DefaultBinds()
     {
         AddAxis("LookHorizontal", LookHorizontal);
@@ -45,7 +48,7 @@ public class FPS_Controller : PlayerController {
     public virtual void LookHorizontal(float value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if(FPP)
+        if(FPP && allowControl)
         {
             FPP.LookHorizontal(value);
         }
@@ -54,7 +57,7 @@ public class FPS_Controller : PlayerController {
     public virtual void LookVertical(float value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.LookVertical(value);
         }
@@ -63,7 +66,7 @@ public class FPS_Controller : PlayerController {
     public override void Horizontal(float value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.MoveHorizontal(value);
         }
@@ -72,7 +75,7 @@ public class FPS_Controller : PlayerController {
     public override void Vertical(float value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.MoveVertical(value);
         }
@@ -81,20 +84,19 @@ public class FPS_Controller : PlayerController {
     public override void Fire1(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.Fire1(value);
-        }
-
-        if(!ms)
-        {
-            FPP.SetCursorLock(true);
-        }
-        else
-        {
-            if(!ms.IsPaused)
+            if (!ms)
             {
                 FPP.SetCursorLock(true);
+            }
+            else
+            {
+                if (!ms.IsPaused)
+                {
+                    FPP.SetCursorLock(true);
+                }
             }
         }
     }
@@ -102,7 +104,7 @@ public class FPS_Controller : PlayerController {
     public override void Fire2(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.Fire2(value);
         }
@@ -111,7 +113,7 @@ public class FPS_Controller : PlayerController {
     public override void Fire3(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.Fire3(value);
         }
@@ -120,7 +122,7 @@ public class FPS_Controller : PlayerController {
     public override void Fire4(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.Fire4(value);
         }
@@ -129,7 +131,7 @@ public class FPS_Controller : PlayerController {
     public virtual void Fire5(bool value)
     {
         FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-        if (FPP)
+        if (FPP && allowControl)
         {
             FPP.Fire5(value);
         }
@@ -140,12 +142,30 @@ public class FPS_Controller : PlayerController {
         if(value)
         {
             FPS_Pawn FPP = (FPS_Pawn)PossesedPawn;
-            if (FPP && ms)
+            if (FPP && ms && allowPausing)
             {
                 ms.TogglePause();
                 FPP.SetCursorLock(!ms.IsPaused);
                 //LOG("Escape");
             }
         }
+    }
+    #endregion
+
+    public virtual void PawnHasDied()
+    {
+        UnPossesPawn(PossesedPawn);
+        HorrorGame hg = FindObjectOfType<HorrorGame>();
+        if(!hg) { return; }
+
+        hg.EndGame(false);
+    }
+
+    public virtual void PawnHasEscaped()
+    {
+        HorrorGame hg = FindObjectOfType<HorrorGame>();
+        if (!hg) { return; }
+
+        hg.EndGame(true);
     }
 }

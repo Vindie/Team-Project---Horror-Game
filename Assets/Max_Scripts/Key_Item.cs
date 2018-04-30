@@ -2,21 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key_Item : Item {
+public class Key_Item : Interactable {
 
-    public override bool Use(Actor user)
+    public float hintPopupTime = 5.0f;
+    public string popupHint = "Picked up mine key";
+
+    protected float hintPopupTimeRemaining = 0.0f;
+
+    protected override bool ProcessInteraction(Actor source, Controller instigator)
     {
-        FPS_Pawn FPP = (FPS_Pawn)user;
+        FPS_Pawn FPP = (FPS_Pawn)source;
         if(!FPP) { return false; }
 
-        GameObject objectKeyIsBeingUsedOn = FPP.GetInteractableObject();
-        if(!objectKeyIsBeingUsedOn) { return false; }
+        FindObjectOfType<MenuScript>().SetGameSmallText(true, popupHint, hintPopupTime);
 
-        ExitDoor door = objectKeyIsBeingUsedOn.GetComponent<ExitDoor>();
-        if(!door) { return false; }
-
-        door.isLocked = false;
-        //Delete this item, or remove this component from the object.
+        FPP.hasKey = true;
+        Destroy(gameObject);
         return true;
+    }
+
+    protected virtual IEnumerator ShowPopupHint()
+    {
+        MenuScript ms = FindObjectOfType<MenuScript>();
+        if (ms)
+        {
+            ms.SetGameSmallText(true, popupHint);
+            hintPopupTimeRemaining = hintPopupTime;
+            while (hintPopupTimeRemaining > 0)
+            {
+                Debug.Log("Timer: " + hintPopupTimeRemaining);
+                hintPopupTimeRemaining -= Time.deltaTime;
+                yield return null;
+            }
+            LOG("Exit Popup");
+            ms.SetGameSmallText(false);
+        }
     }
 }

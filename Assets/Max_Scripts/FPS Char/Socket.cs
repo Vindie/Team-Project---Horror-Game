@@ -35,6 +35,7 @@ public class Socket : MonoBehaviour {
         }
 
         _equippedItem = item;
+        _equippedItem.beingHeld = true;
 
         //Check for and disable collision collider.
         Collider[] colliders = item.GetComponents<Collider>();
@@ -57,7 +58,7 @@ public class Socket : MonoBehaviour {
             _itemRB.detectCollisions = false;
             _itemRB.isKinematic = true;
         }
-        
+
         return true;
     }
 
@@ -68,6 +69,7 @@ public class Socket : MonoBehaviour {
             return false;
         }
 
+        _equippedItem.beingHeld = false;
         _equippedItem = null;
 
         //Re-enable collision collider if it exists

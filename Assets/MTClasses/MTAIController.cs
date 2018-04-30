@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class MTAIController : MonoBehaviour
+public class MTAIController : AIController
 {
+    public GameObject eye;
     public GameObject playerPawn;
+    Animator Eanimator;
     public int fieldOfViewDegrees = 180;
     public int damageFactor = 10;
     public int sightRadius = 10;
@@ -15,19 +17,25 @@ public class MTAIController : MonoBehaviour
     public int locationIndex = 0;
     public Transform[] locations;
     Vector3 torchLocation;
-    NavMeshAgent agent;
+    //NavMeshAgent agent;
 
     
-
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        locationLastPlayerSeen = playerPawn.transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
+        Eanimator = eye.GetComponent<Animator>();
+        Eanimator.SetBool("IsOpen", false);
     }
 
-    public void Update()
+    public override void Update()
     {
+        if(playerPawn == null)
+        {
+            playerPawn = GameObject.FindGameObjectWithTag("Player");
+            locationLastPlayerSeen = playerPawn.transform.position;
+        }
+
         CanSeePlayer("Player"); //if cant see player move randomly
     }
 
@@ -37,10 +45,14 @@ public class MTAIController : MonoBehaviour
         if (!CanSeePlayer("Player"))
         {
             moveToRandomLocations();
+            Eanimator.SetBool("IsOpen", false);
+            //print("IsOpen == false");
         }
         else
         { 
             moveTowards(locationLastPlayerSeen, moveSpeed);
+            Eanimator.SetBool("IsOpen",true);
+            //print("IsOpen == true");
         }
         checkDamageDistance();
     }
@@ -54,7 +66,7 @@ public class MTAIController : MonoBehaviour
         if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees * 1f)
         {
             // Checks if an object with a given tag is within the given field of view
-            if (Physics.Raycast(transform.position, rayDirection, out hit))
+            if (Physics.Raycast(transform.position, rayDirection, out hit, 100.0f, Physics.AllLayers, QueryTriggerInteraction.Ignore))  //Added QueryTriggerInteraction.Ignore because raycast by default can hit triggers, which was making the monster not see the player very well.
             {
                 if (hit.transform.CompareTag(tag))
                 {
@@ -89,15 +101,17 @@ public class MTAIController : MonoBehaviour
 
     public void checkDamageDistance()
     {
-        Pawn pp = playerPawn.GetComponent<Pawn>();
+        FPS_Pawn pp = playerPawn.GetComponent<FPS_Pawn>();
         float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
-        print("Distance to player: " + distanceToPlayer);
+        //print("Distance to player: " + distanceToPlayer);
         if (pp)
         {
+            //print("got pp");
             if (distanceToPlayer < armsReach)
             {
-                //print("Distance to player: " + distanceToPlayer);
+                print("Distance to player: " + distanceToPlayer);
                 pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
+                //print("Get Hurt");
             }
         }
     }
@@ -113,7 +127,7 @@ public class MTAIController : MonoBehaviour
                 Torch ts = hitColliders[index].gameObject.GetComponent<Torch>();
                 if (ts)
                 {
-                    print("Got Light");
+                    //print("Got Light");
                     ts.LightOff();                    
                 }        
             }
@@ -127,8 +141,8 @@ public class MTAIController : MonoBehaviour
         if (agent.remainingDistance <= 2)
         {
             moveTowards(locations[locationIndex].position, moveSpeed);
-        Debug.Log("(" + locationIndex + ") :" + agent.destination);
-        Debug.Log("remainingDistance: " + agent.remainingDistance);
+        //Debug.Log("(" + locationIndex + ") :" + agent.destination);
+        //Debug.Log("remainingDistance: " + agent.remainingDistance);
        
             locationIndex++;
             if (locationIndex >= locations.Length)

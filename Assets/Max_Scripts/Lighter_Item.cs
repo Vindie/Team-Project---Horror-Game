@@ -5,11 +5,39 @@ using UnityEngine;
 public class Lighter_Item : Item {
 
     public bool isOpen = false;
+    Animator anim;
+    public GameObject flame;
+
+    protected override void Start()
+    {
+        base.Start();
+        anim = gameObject.GetComponent<Animator>();
+        if(anim)
+        {
+            anim.SetBool("IsOpen", isOpen);
+        }
+
+        if(!flame)
+        {
+            Light l = GetComponentInChildren<Light>();
+            if(l)
+            {
+                flame = l.gameObject;
+            }
+        }
+        if(flame)
+        {
+            flame.SetActive(isOpen);
+        }
+    }
 
     public override bool Use(Actor user)
     {
         isOpen = !isOpen;
-        //animation toggling open lighter;
+
+        anim.SetBool("IsOpen", isOpen);
+        flame.SetActive(isOpen);
+
         return isOpen;
     }
 
@@ -17,19 +45,34 @@ public class Lighter_Item : Item {
     {
         if(!isOpen) { return false; }
 
-        //Ignition animation
+        //Light torch animation
 
         FPS_Pawn FPP = (FPS_Pawn)user;
         if(!FPP) { return false; }
 
-        GameObject target = FPP.GetInteractableObject();
-        if(!target) { return false; }
+        bool lookForTorch = true;
+        Torch t = null;
+        if(FPP.handDominant.EquippedItem)
+        {
+            t = FPP.handDominant.EquippedItem.GetComponent<Torch>();
+            if (t)
+            {
+                if (!t.LightActive) { lookForTorch = false; }
+            }
+        }
 
-        Torch t = target.GetComponent<Torch>();
-        if(!t) { return false; }
-        if(t.LightActive) { return false; }
+        if (lookForTorch)
+        {
+            GameObject target = FPP.GetInteractableObject();
+            if(!target) { return false; }
+            t = target.GetComponent<Torch>();
+
+            if (!t) { return false; }
+            if (t.LightActive) { return false; }
+        }
 
         t.LightOn();
+        t.getLit = true;
         return true;
     }
 }
