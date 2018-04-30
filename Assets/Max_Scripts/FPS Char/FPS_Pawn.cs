@@ -14,6 +14,8 @@ public class FPS_Pawn : Pawn
     public float defaultFOV = 60.0f;
 
     public float Health = 100.0f;
+    public float MaxBloodyTime = 7.0f;
+    public float MaxHealthBloodiness = 0.5f;
 
     public float moveSpeed = 1.0f;
     public bool allowSprint = false;
@@ -56,6 +58,7 @@ public class FPS_Pawn : Pawn
     protected Rigidbody _rb;
     protected GameObject _highlightedObject;
     protected CapsuleCollider _col;
+    protected ImageEffectManager _iem;
 
     protected bool _lighterActive = false;
     protected bool _isCrouching = false;
@@ -70,6 +73,9 @@ public class FPS_Pawn : Pawn
     protected float _playerInitialScale;
     protected float _crouchPercent = 0.0f;
 
+    protected float _maxHealth;
+    protected float _timeSinceDamaged = 7.0f;
+
     protected ModifierTable _fovMultipliers;
 
     protected int[] _fovKeys; //[0] = modifier given by crouching, [1] = modifier given by sprinting
@@ -83,13 +89,16 @@ public class FPS_Pawn : Pawn
 
     protected virtual void Start()
     {
-        HeadBobY = head.transform.position.y;
-
         IsSpectator = false;
         IgnoresDamage = false;
         LogDamageEvents = false;
 
+        HeadBobY = head.transform.position.y;
+        _iem = head.GetComponent<ImageEffectManager>();
+        if(!_iem) { LOG("No ImageEffectManager found on head."); }
+
         footSteps = gameObject.GetComponent<AudioSource>(); //gets audio
+        if(!footSteps) { LOG_ERROR("FPS_Pawn of \"" + name + "\" has no audio source!"); }
 
         _fovMultipliers = new ModifierTable();
         _fovKeys = new int[2];
@@ -113,6 +122,8 @@ public class FPS_Pawn : Pawn
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
 
+        _maxHealth = Health;
+
         SpawnOffhandItem();
 
         SetCursorLock(_cursorIsLocked);
@@ -125,7 +136,6 @@ public class FPS_Pawn : Pawn
 
         if (CheckIfDead())
         {
-            
             // Check for Head bob
             if (_rb.velocity.magnitude > 0)
             {
@@ -176,8 +186,6 @@ public class FPS_Pawn : Pawn
                        new Vector3(head.transform.position.x, HeadBobY + HeadBobDelta, head.transform.position.z);
 
             }
-
-
         }
     }
 
@@ -203,6 +211,7 @@ public class FPS_Pawn : Pawn
                 footSteps.Stop();
             }
 
+            ManageDamageEffect();
             HandleCrouching();
             HandleLookRotation();
         }
@@ -513,6 +522,7 @@ public class FPS_Pawn : Pawn
     protected override bool ProcessDamage(Actor Source, float Value, DamageEventInfo EventInfo, Controller Instigator)
     {
         Health -= Value;
+        _timeSinceDamaged = 0.0f;
 
         return CheckIfDead();
     }
@@ -561,6 +571,24 @@ public class FPS_Pawn : Pawn
         }
 
         //Destroy(gameObject, 5.0f);
+    }
+
+    protected virtual void ManageDamageEffect()
+    {
+        _timeSinceDamaged += Time.fixedDeltaTime;
+
+        if (!_iem) { return; }
+
+        float baseBloodiness = MaxHealthBloodiness * (1.0f - (Health / _maxHealth));
+
+        if(_timeSinceDamaged <= MaxBloodyTime)
+        {
+            _iem.targetBloodiness = Mathf.Lerp(baseBloodiness, 1.0f - 0.5f * MaxHealthBloodiness, _timeSinceDamaged / MaxBloodyTime);
+        }
+        else
+        {
+            _iem.targetBloodiness = baseBloodiness;
+        }
     }
     #endregion
 }

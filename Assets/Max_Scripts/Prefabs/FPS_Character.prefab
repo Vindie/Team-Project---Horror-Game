@@ -333,6 +333,8 @@ MonoBehaviour:
   IsSpectator: 1
   defaultFOV: 60
   Health: 500
+  MaxBloodyTime: 7
+  MaxHealthBloodiness: 0.5
   moveSpeed: 3.5
   allowSprint: 1
   sprintMultiplier: 2
@@ -346,9 +348,12 @@ MonoBehaviour:
   look_maxVerticalRotation: 90
   look_minVerticalRotation: -90
   HeadBobY: 0
+  HeadBobDelta: 0
   HeadBobAmplitude: 0.2
+  HeadBobSpeed: 0
   distanceTraveled: 0
   HeadBobValue: 50
+  PerformHeadBob: 0
   interactRange: 2
   interactSensitivity: 0.1
   crouchSpeed: 5
@@ -365,8 +370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bbf1f02901a684abee50a55cd18259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaterialList:
-  - {fileID: 0}
+  imageEffect: {fileID: 0}
+  targetBloodiness: 0
+  bloodySpeed: 0.1
+  BloodyScreenColor: {r: 1, g: 0, b: 0, a: 0.105882354}
+  DefaultVignetteColor: {r: 0, g: 0, b: 0, a: 0.11764706}
+  _currentBloodiness: 0
 --- !u!124 &124277855601861912
 Behaviour:
   m_ObjectHideFlags: 1
