@@ -93,7 +93,7 @@ public class FPS_Pawn : Pawn
         IgnoresDamage = false;
         LogDamageEvents = false;
 
-        HeadBobY = head.transform.position.y;
+        HeadBobY = head.transform.localPosition.y;
         _iem = head.GetComponent<ImageEffectManager>();
         if(!_iem) { LOG("No ImageEffectManager found on head."); }
 
