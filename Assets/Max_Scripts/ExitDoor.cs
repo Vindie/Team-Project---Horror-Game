@@ -7,7 +7,7 @@ public class ExitDoor : Interactable {
     public bool isLocked = true;
     public float hintPopupTime = 5.0f;
     public string popupHint = "The exit seems to be locked, perhaps there is a key somewhere?";
-
+    public AudioSource DoorOpen;
     MenuScript _ms;
 
     private void Start()
@@ -30,7 +30,7 @@ public class ExitDoor : Interactable {
                 if (FPP.hasKey)
                 {
                     isLocked = false;
-                    //Unlock sound
+                    DoorOpen.Play();
                     return false;
                 }
             }
