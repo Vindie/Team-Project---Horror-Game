@@ -66,7 +66,7 @@ public class MTAIController : AIController
         if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees * 1f)
         {
             // Checks if an object with a given tag is within the given field of view
-            if (Physics.Raycast(transform.position, rayDirection, out hit))
+            if (Physics.Raycast(transform.position, rayDirection, out hit, 100.0f, Physics.AllLayers, QueryTriggerInteraction.Ignore))  //Added QueryTriggerInteraction.Ignore because raycast by default can hit triggers, which was making the monster not see the player very well.
             {
                 if (hit.transform.CompareTag(tag))
                 {

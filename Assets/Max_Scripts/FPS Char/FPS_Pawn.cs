@@ -583,7 +583,7 @@ public class FPS_Pawn : Pawn
 
         if(_timeSinceDamaged <= MaxBloodyTime)
         {
-            _iem.targetBloodiness = Mathf.Lerp(baseBloodiness, 1.0f - 0.5f * MaxHealthBloodiness, _timeSinceDamaged / MaxBloodyTime);
+            _iem.targetBloodiness = Mathf.Lerp(1.0f - 0.5f * MaxHealthBloodiness, baseBloodiness, _timeSinceDamaged / MaxBloodyTime);
         }
         else
         {
