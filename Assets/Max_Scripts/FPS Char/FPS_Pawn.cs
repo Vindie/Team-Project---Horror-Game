@@ -16,6 +16,7 @@ public class FPS_Pawn : Pawn
     public float moveSpeed = 1.0f;
     public bool allowSprint = false;
     public float sprintMultiplier = 2.0f;
+    public float minFootstepVelocity = 0.1f;
 
     public GameObject head;
     public Socket handDominant;
@@ -136,7 +137,7 @@ public class FPS_Pawn : Pawn
         if (CheckIfDead())
         {
             // Check for Head bob
-            if (_rb.velocity.magnitude > 0)
+            if (_rb.velocity.magnitude > 0.0f)
             {
                 //LOG("Footsteps playing");
                 //Head bob
@@ -195,7 +196,7 @@ public class FPS_Pawn : Pawn
         {
             _rb.velocity = GetMoveVelocity();
 
-            if (_rb.velocity.magnitude > 0)
+            if (_rb.velocity.magnitude > minFootstepVelocity)
             {
                 //footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
                 if (!footSteps.isPlaying && !footStepsFast.isPlaying)

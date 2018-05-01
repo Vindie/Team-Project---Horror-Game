@@ -81,7 +81,7 @@ public class HorrorGame : Game {
             return;
         }
 
-        GameObject key = Factory(keyPrefab, transform.position, transform.rotation);
+        GameObject key = Factory(keyPrefab, keySpawnPosition.position, keySpawnPosition.rotation);
         if(!key) { LOG_ERROR("HorrorGame: Key failed to spawn."); }
     }
 
