@@ -385,4 +385,5 @@ MonoBehaviour:
   LogDamageEvents: 1
   IgnoresInteraction: 0
   LogInteractEvents: 1
-  beingHeld: 0
+  hintPopupTime: 5
+  popupHint: Picked up mine key
