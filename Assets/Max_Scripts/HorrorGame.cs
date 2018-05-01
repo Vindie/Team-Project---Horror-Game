@@ -10,6 +10,7 @@ public class HorrorGame : Game {
     public string loseText = "Y  o  u    h  a  v  e    d  i  e  d  .";   //A E S T H E T I C
     public string winText = "Y  o  u    h  a  v  e    e  s  c  a  p  e  d    t  h  e    m  i  n  e  .";
 
+    public bool doKeySpawning = true;
     public GameObject keyPrefab;
 
     protected MenuScript _ms;
@@ -19,8 +20,11 @@ public class HorrorGame : Game {
     {
         base.Awake();
         _ms = FindObjectOfType<MenuScript>();
-        RefreshKey_SpawnList();
-        SpawnTheKeyAt(GetRandomKey_Spawn());
+        if (doKeySpawning)
+        {
+            RefreshKey_SpawnList();
+            SpawnTheKeyAt(GetRandomKey_Spawn());
+        }
     }
 
     protected virtual void Update()
