@@ -466,7 +466,7 @@ MonoBehaviour:
   startActive: 1
   lifeSpan: 0
   maxLifeSpan: 30
-  lifeKeptPercentOnRelight: 0.8
+  lifeKeptPercentOnRelight: 0.7
   getLit: 0
 --- !u!136 &136317128281048416
 CapsuleCollider:
