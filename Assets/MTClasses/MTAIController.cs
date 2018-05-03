@@ -33,7 +33,7 @@ public class MTAIController : AIController
     {
         //LOG(playerPawn.name);
         playerPawn = GameObject.FindGameObjectWithTag("Player");
-        locationLastPlayerSeen = playerPawn.transform.position;
+        //locationLastPlayerSeen = playerPawn.transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
         Eanimator = eye.GetComponent<Animator>();
         Eanimator.SetBool("IsOpen", false);
