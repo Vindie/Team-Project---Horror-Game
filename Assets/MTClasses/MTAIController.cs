@@ -19,6 +19,7 @@ public class MTAIController : AIController
     Vector3 torchLocation;
     Vector3 playerPosition;
     public GameObject oppositeQuad;
+    public GameObject playerQuad;
     public bool movingTowardsPlayer;
     public bool movingTowardsOppQuad;
     public GameObject[] Quadrants;
@@ -44,6 +45,7 @@ protected override void Start()
         getOppositeQuadrant();
         timer = maxTime;
         playerInArms = false;
+        getPlayerQuad();
         //tortureTimer = maxTortureTime;
     }
 
@@ -80,12 +82,30 @@ protected override void Start()
 
         if (movingTowardsPlayer)
         {
-            Debug.Log("MOVING TOWARDS PLAYER");
+            getPlayerQuad();
             Eanimator.SetBool("IsOpen", true);
-            moveTowards(playerPosition, moveSpeed);
-            if (getDistanceTo(playerPawn.transform.position) < armsReach)
-            {
-                playerInArms = true;
+            if (playerInArms == false)
+            {               
+                if (!CanSeePlayer("Player"))//if can't see player
+                {
+                    moveTowards(playerQuad.transform.position, moveSpeed); //move towards player quad
+                    if((getDistanceTo(playerQuad.transform.position) < armsReach))
+                    {
+                        getPlayerQuad();
+                    }
+                }
+                else//if can see player
+                {
+                    moveTowards(locationLastPlayerSeen, moveSpeed);
+                    Eanimator.SetBool("IsOpen", true);
+                    //print("IsOpen == true");
+                }
+                //Debug.Log("MOVING TOWARDS PLAYER");
+                //moveTowards(playerPosition, moveSpeed);
+                if (getDistanceTo(playerPawn.transform.position) < armsReach)
+                {
+                    playerInArms = true;
+                }
             }
 
             if(playerInArms == true)
@@ -103,9 +123,9 @@ protected override void Start()
 
         if (movingTowardsOppQuad && timer >= 0)
         {
+            Eanimator.SetBool("IsOpen", false);
             timer -= Time.deltaTime;
-            Debug.Log("MOVING TOWARDS OPPQUAD");
-            Eanimator.SetBool("IsOpen", false);      
+            Debug.Log("MOVING TOWARDS OPPQUAD");   
             moveTowards(oppositeQuad.transform.position, moveSpeed);
             if (getDistanceTo(oppositeQuad.transform.position) < armsReach)
             {
@@ -146,7 +166,7 @@ protected override void Start()
     {
         if(agent)
         {
-            Debug.Log("LocationToMoveTowards: " + LocationToMoveTowards);
+            //Debug.Log("LocationToMoveTowards: " + LocationToMoveTowards);
             //Vector3 movepoint = new Vector3(-691.58f, 124f, -110f);
             //agent.SetDestination(movepoint);
             //PlaceMoveToSphereAt(movepoint); 
@@ -232,6 +252,23 @@ protected override void Start()
 
         oppositeQuad = Quadrants[currentQuad];
         //oppositeQuad.tag = "OppQuad";
+    }
+
+    public void getPlayerQuad()
+    {
+        float closestQuadDistance = getDistanceTo(Quadrants[0].transform.position);
+        float currentQuadDistance = getDistanceTo(Quadrants[0].transform.position);
+        int currentQuad = 0;
+        for (int index = 0; index < Quadrants.Length; index++)
+        {
+            currentQuadDistance = getDistanceTo(Quadrants[index].transform.position);
+            if (closestQuadDistance < currentQuadDistance)
+            {
+                closestQuadDistance = currentQuadDistance;
+                currentQuad = index;
+            }
+        }
+        playerQuad = Quadrants[currentQuad];
     }
 
     public float getDistanceTo(Vector3 location)
