@@ -50,7 +50,7 @@ public class MTAIController : AIController
     public override void Update()
     {
         //UnityEngine.Debug.LogError("error");
-        if (playerPawn == null)
+        if (playerPawn == null) //checks for player pawn and gets it
         {
             playerPawn = GameObject.FindGameObjectWithTag("Player");
             locationLastPlayerSeen = playerPawn.transform.position;
@@ -63,7 +63,7 @@ public class MTAIController : AIController
     public void FixedUpdate()
     {
         putTorchesOut();
-        playerPosition = playerPawn.transform.position;
+        playerPosition = playerPawn.transform.position; //gets player postion into variable
         /*
          *         if (!CanSeePlayer("Player"))
         {
@@ -79,21 +79,21 @@ public class MTAIController : AIController
         }
          * */
 
-        if (movingTowardsPlayer)
+        if (movingTowardsPlayer) //bool to determine if he should be moving toward player
         {
-            for (int i = 0; i < agent.path.corners.Length - 1; i++)
+            for (int i = 0; i < agent.path.corners.Length - 1; i++) //gets path
             {
                 Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red, 5);
             }
 
-            Eanimator.SetBool("IsOpen", true);
+            Eanimator.SetBool("IsOpen", true); //sets animation to on
             
-            if (playerInArms == false)
+            if (playerInArms == false) //checks if player is in reach
             {
                 if (CanSeePlayer("Player"))//if can see player
                 {
                     Debug.Log("CAN see player");
-                    moveTowards(locationLastPlayerSeen, moveSpeed);
+                    moveTowards(locationLastPlayerSeen, moveSpeed); 
                     Eanimator.SetBool("IsOpen", true);
                 }
                 else//if can see player
