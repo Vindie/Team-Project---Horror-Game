@@ -17,15 +17,23 @@ public class MTAIController : AIController
     public int locationIndex = 0;
     public Transform[] locations;
     Vector3 torchLocation;
+    Vector3 playerPosition;
+    public Vector3 oppositeQuad;
+    public bool movingTowardsPlayer;
+    public bool movingTowardsOppQuad;
+    public Transform[] Quadrants;
     //NavMeshAgent agent;
 
-    
+
     // Use this for initialization
     protected override void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         Eanimator = eye.GetComponent<Animator>();
         Eanimator.SetBool("IsOpen", false);
+        movingTowardsPlayer = true;
+        movingTowardsOppQuad = false;
+        getOppositeQuadrant();
     }
 
     public override void Update()
@@ -34,6 +42,7 @@ public class MTAIController : AIController
         {
             playerPawn = GameObject.FindGameObjectWithTag("Player");
             locationLastPlayerSeen = playerPawn.transform.position;
+            playerPosition = playerPawn.transform.position;
         }
 
         CanSeePlayer("Player"); //if cant see player move randomly
@@ -42,7 +51,8 @@ public class MTAIController : AIController
     public void FixedUpdate()
     {
         putTorchesOut();
-        if (!CanSeePlayer("Player"))
+        /*
+         *         if (!CanSeePlayer("Player"))
         {
             moveToRandomLocations();
             Eanimator.SetBool("IsOpen", false);
@@ -54,6 +64,21 @@ public class MTAIController : AIController
             Eanimator.SetBool("IsOpen",true);
             //print("IsOpen == true");
         }
+         * */
+
+        if (movingTowardsPlayer)
+        {
+            Eanimator.SetBool("IsOpen", true);
+            moveTowards(playerPosition, moveSpeed);
+        }
+
+        if(movingTowardsOppQuad)
+        {
+            Eanimator.SetBool("IsOpen", false);
+            getOppositeQuadrant();
+            moveTowards(oppositeQuad, moveSpeed);
+        }
+ 
         checkDamageDistance();
     }
 
@@ -150,5 +175,45 @@ public class MTAIController : AIController
                 locationIndex = 0; 
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag=="Player")
+        {
+            movingTowardsPlayer = false;
+            movingTowardsOppQuad = true;
+        }
+
+        if(col.gameObject.tag == "OppQuad")
+        {
+            movingTowardsPlayer = true;
+            movingTowardsOppQuad = false;
+        }
+    }
+
+    public void getOppositeQuadrant()
+    {
+        float farthestQuadDistance = getDistanceTo(Quadrants[0].position);
+        float currentQuadDistance = getDistanceTo(Quadrants[0].position);
+        int currentQuad = 0;
+        for (int index = 0;index<Quadrants.Length;index++)
+        {
+            currentQuadDistance = getDistanceTo(Quadrants[index].position);
+            if (farthestQuadDistance < currentQuadDistance)
+            {
+                farthestQuadDistance = currentQuadDistance;
+                currentQuad = index;
+            }
+        }
+
+        oppositeQuad = Quadrants[currentQuad].position;       
+    }
+
+    public float getDistanceTo(Vector3 location)
+    {
+        float distance = -1;
+        distance = Vector3.Distance(location, gameObject.transform.position);
+        return distance;
     }
 }
