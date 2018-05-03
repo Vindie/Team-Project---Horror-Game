@@ -206,14 +206,24 @@ public class FPS_Pawn : Pawn
                     if(_isSprinting)
                     {
                         footSteps.Stop();
-                        footStepsFast.clip = SelectClipFrom(sprintFootStepClips);
-                        footStepsFast.Play();
+                        AudioClip ac = SelectClipFrom(sprintFootStepClips);
+                        if (ac)
+                        {
+                            footStepsFast.clip = ac;
+                            footStepsFast.Play();
+                        }
+                        else { LOG_ERROR("Array Index out of range on FPS_pawn footsteps."); }
                     }
                     else
                     {
                         footStepsFast.Stop();
-                        footSteps.clip = SelectClipFrom(walkFootStepClips);
-                        footSteps.Play();
+                        AudioClip ac = SelectClipFrom(walkFootStepClips);
+                        if(ac)
+                        {
+                            footSteps.clip = ac;
+                            footSteps.Play();
+                        }
+                        else { LOG_ERROR("Array Index out of range on FPS_pawn running footsteps."); }
                     }   
                 }
             }
@@ -533,7 +543,7 @@ public class FPS_Pawn : Pawn
 
     AudioClip SelectClipFrom(AudioClip[] arr)
     {
-        int index = (int)(Random.value * arr.Length) - 1;
+        int index = (int)Random.Range(0, arr.Length - 1);
 
         return arr[index];
     }
