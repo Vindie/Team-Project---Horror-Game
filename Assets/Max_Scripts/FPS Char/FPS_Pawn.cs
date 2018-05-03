@@ -152,7 +152,7 @@ public class FPS_Pawn : Pawn
                     if (!PerformHeadBob)
                     {
                         HeadBobSpeed = distanceTraveled / HeadBobValue;
-                        Debug.Log("distanceTraveled:" + distanceTraveled); 
+                        //Debug.Log("distanceTraveled:" + distanceTraveled); 
                         PerformHeadBob = true;
                     }
                     distanceTraveled = 0;
@@ -184,8 +184,7 @@ public class FPS_Pawn : Pawn
                 }
 
 
-                head.transform.localPosition =
-                       new Vector3(head.transform.localPosition.x, HeadBobY + HeadBobDelta, head.transform.localPosition.z);
+                head.transform.localPosition = new Vector3(head.transform.localPosition.x, HeadBobY + HeadBobDelta, head.transform.localPosition.z);
 
             }
         }
@@ -193,41 +192,10 @@ public class FPS_Pawn : Pawn
 
     protected virtual void FixedUpdate()
     {
-
         if (CheckIfDead())
         {
+            HandleFootStepAudio();
             _rb.velocity = GetMoveVelocity();
-
-            if (_rb.velocity.magnitude > minFootstepVelocity)
-            {
-                //footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
-                if (!footSteps.isPlaying && !footStepsFast.isPlaying)
-                {
-                    if(_isSprinting)
-                    {
-                        footSteps.Stop();
-                        AudioClip ac = SelectClipFrom(sprintFootStepClips);
-                        if (ac)
-                        {
-                            footStepsFast.clip = ac;
-                            footStepsFast.Play();
-                        }
-                        else { LOG_ERROR("Array Index out of range on FPS_pawn footsteps."); }
-                    }
-                    else
-                    {
-                        footStepsFast.Stop();
-                        AudioClip ac = SelectClipFrom(walkFootStepClips);
-                        if(ac)
-                        {
-                            footSteps.clip = ac;
-                            footSteps.Play();
-                        }
-                        else { LOG_ERROR("Array Index out of range on FPS_pawn running footsteps."); }
-                    }   
-                }
-            }
-
             ManageDamageEffect();
             HandleCrouching();
             HandleLookRotation();
@@ -539,6 +507,39 @@ public class FPS_Pawn : Pawn
             return;
         }
         handSubordinate.Equip(spawnedItem);
+    }
+
+    void HandleFootStepAudio()
+    {
+        if (_rb.velocity.magnitude > minFootstepVelocity)
+        {
+            //footSteps.pitch = _rb.velocity.magnitude / 3; //adjusts pitch based on velocity
+            if (!footSteps.isPlaying && !footStepsFast.isPlaying)
+            {
+                if (_isSprinting)
+                {
+                    footSteps.Stop();
+                    AudioClip ac = SelectClipFrom(sprintFootStepClips);
+                    if (ac)
+                    {
+                        footStepsFast.clip = ac;
+                        footStepsFast.Play();
+                    }
+                    else { LOG_ERROR("Array Index out of range on FPS_pawn footsteps."); }
+                }
+                else
+                {
+                    footStepsFast.Stop();
+                    AudioClip ac = SelectClipFrom(walkFootStepClips);
+                    if (ac)
+                    {
+                        footSteps.clip = ac;
+                        footSteps.Play();
+                    }
+                    else { LOG_ERROR("Array Index out of range on FPS_pawn running footsteps."); }
+                }
+            }
+        }
     }
 
     AudioClip SelectClipFrom(AudioClip[] arr)

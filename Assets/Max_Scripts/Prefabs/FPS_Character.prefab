@@ -581,7 +581,7 @@ MonoBehaviour:
   moveSpeed: 3.5
   allowSprint: 1
   sprintMultiplier: 2
-  minFootstepVelocity: 0.1
+  minFootstepVelocity: 2
   head: {fileID: 1330231263068620}
   handDominant: {fileID: 114404318855027572}
   handSubordinate: {fileID: 114426674438448680}
