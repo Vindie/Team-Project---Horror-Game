@@ -86,7 +86,7 @@ public class MTAIController : AIController
                 Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red, 5);
             }
             //Debug.Log("Movingtoplayer");
-            getPlayerQuad();
+            //getPlayerQuad();
             //Debug.Log("Player Quad " + playerQuad);
             Eanimator.SetBool("IsOpen", true);
             //Debug.Log("MOVING TO player");
