@@ -229,7 +229,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4a4dc332dd357174eb071be96dfa4e24, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -469,7 +469,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42ff65f0deb520d4c97311f4f6c9cf86, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -603,7 +603,15 @@ MonoBehaviour:
   crouchSpeed: 5
   hasKey: 0
   footSteps: {fileID: 82748153042512242}
+  walkFootStepClips:
+  - {fileID: 8300000, guid: 02dd5c8b6ad0d274ba1169c3196ae019, type: 3}
+  - {fileID: 8300000, guid: 722f614bc5c4e7445958f3d6e3b01878, type: 3}
+  - {fileID: 8300000, guid: 9b01667652c60504391b7dc47660c5c6, type: 3}
   footStepsFast: {fileID: 82448670568419908}
+  sprintFootStepClips:
+  - {fileID: 8300000, guid: 844f491290952ca48947d84e8d9f3af3, type: 3}
+  - {fileID: 8300000, guid: 31f8b7832e7e69e4983fc985cafdc280, type: 3}
+  - {fileID: 8300000, guid: bba6c3ef807ceb34898c62f39f5638d0, type: 3}
   lighterOpen: {fileID: 82535139066572914}
   lighterUse: {fileID: 82734689011916590}
 --- !u!114 &114994475537219252
