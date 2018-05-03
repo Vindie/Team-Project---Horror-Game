@@ -76,14 +76,14 @@ public class MTAIController : AIController
             {
                 movingTowardsPlayer = false;
                 movingTowardsOppQuad = true;
+                getOppositeQuadrant();
             }
         }
 
         if (movingTowardsOppQuad)
         {
             Debug.Log("MOVING TOWARDS OPPQUAD");
-            Eanimator.SetBool("IsOpen", false);
-            getOppositeQuadrant();
+            Eanimator.SetBool("IsOpen", false);      
             moveTowards(oppositeQuad.transform.position, moveSpeed);
             if (getDistanceTo(oppositeQuad.transform.position) < armsReach)
             {
@@ -128,7 +128,7 @@ public class MTAIController : AIController
             //PlaceMoveToSphereAt(movepoint); 
             agent.SetDestination(LocationToMoveTowards);
             //PlaceMoveToSphereAt(LocationToMoveTowards);
-            agent.speed = moveSpeed * 5;
+            agent.speed = moveSpeed;
             //Debug.Log(agent.destination);
             //Debug.Log(agent.speed);
         }
