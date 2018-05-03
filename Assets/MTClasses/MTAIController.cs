@@ -20,23 +20,19 @@ public class MTAIController : AIController
     Vector3 playerPosition;
     public GameObject oppositeQuad;
     public GameObject playerQuad;
-    public bool movingTowardsPlayer;
-    public bool movingTowardsOppQuad;
+    public bool movingTowardsPlayer = true;
+    public bool movingTowardsOppQuad = false;
     public GameObject[] Quadrants;
     public float maxTime = 60.0f;
     public float timer;
     public bool playerInArms;
-    //AudioSource Ambiance;
-    //public float maxTortureTime = 10.0f;
-    //public float tortureTimer;
 
-
-//NavMeshAgent agent;
-
-
-// Use this for initialization
-protected override void Start()
+    // Use this for initialization
+    protected override void Start()
     {
+        //LOG(playerPawn.name);
+        playerPawn = GameObject.FindGameObjectWithTag("Player");
+        locationLastPlayerSeen = playerPawn.transform.position;
         agent = gameObject.GetComponent<NavMeshAgent>();
         Eanimator = eye.GetComponent<Animator>();
         Eanimator.SetBool("IsOpen", false);
@@ -46,12 +42,15 @@ protected override void Start()
         timer = maxTime;
         playerInArms = false;
         getPlayerQuad();
+        getOppositeQuadrant();
         //tortureTimer = maxTortureTime;
+        //LOG(playerPawn.name);
     }
 
     public override void Update()
     {
-        if(playerPawn == null)
+        //UnityEngine.Debug.LogError("error");
+        if (playerPawn == null)
         {
             playerPawn = GameObject.FindGameObjectWithTag("Player");
             locationLastPlayerSeen = playerPawn.transform.position;
@@ -82,36 +81,52 @@ protected override void Start()
 
         if (movingTowardsPlayer)
         {
-            getPlayerQuad();
+            for (int i = 0; i < agent.path.corners.Length - 1; i++)
+            {
+                Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red, 5);
+            }
+            //Debug.Log("Movingtoplayer");
+            //getPlayerQuad();
+            //Debug.Log("Player Quad " + playerQuad);
             Eanimator.SetBool("IsOpen", true);
+            //Debug.Log("MOVING TO player");
+            
             if (playerInArms == false)
-            {               
-                if (!CanSeePlayer("Player"))//if can't see player
+            {
+                if (CanSeePlayer("Player"))//if can see player
                 {
-                    moveTowards(playerQuad.transform.position, moveSpeed); //move towards player quad
-                    if((getDistanceTo(playerQuad.transform.position) < armsReach))
-                    {
-                        getPlayerQuad();
-                    }
+                    Debug.Log("CAN see player");
+                    moveTowards(locationLastPlayerSeen, moveSpeed);
+                    Eanimator.SetBool("IsOpen", true);
                 }
                 else//if can see player
                 {
-                    moveTowards(locationLastPlayerSeen, moveSpeed);
-                    Eanimator.SetBool("IsOpen", true);
-                    //print("IsOpen == true");
+                    Debug.Log("Cant see player");
+                    //agent.SetDestination(playerQuad.transform.position);
+                    moveTowards(playerPawn.transform.position, moveSpeed); //move towards player quad
+                    //Debug.Log("Player move tooooo"+ playerQuad);
+                 
+                    if ((getDistanceTo(playerQuad.transform.position) < armsReach))
+                    {
+                        Debug.Log("Touched Player Quad updating new player quad");
+                        //getPlayerQuad();
+                    }
                 }
+
                 //Debug.Log("MOVING TOWARDS PLAYER");
                 //moveTowards(playerPosition, moveSpeed);
                 if (getDistanceTo(playerPawn.transform.position) < armsReach)
                 {
+                    Debug.Log("TOUCHING player");
                     playerInArms = true;
                 }
             }
 
-            if(playerInArms == true)
+            if (playerInArms == true)
             {
-                if(getDistanceTo(playerPawn.transform.position) >= armsReach)
+                if (getDistanceTo(playerPawn.transform.position) >= armsReach)
                 {
+                    Debug.Log("No LONGer touching player");
                     playerInArms = false;
                     movingTowardsPlayer = false;
                     movingTowardsOppQuad = true;
@@ -125,21 +140,21 @@ protected override void Start()
         {
             Eanimator.SetBool("IsOpen", false);
             timer -= Time.deltaTime;
-            Debug.Log("MOVING TOWARDS OPPQUAD");   
+            Debug.Log("MOVING TOWARDS OPPQUAD");
             moveTowards(oppositeQuad.transform.position, moveSpeed);
             if (getDistanceTo(oppositeQuad.transform.position) < armsReach)
             {
                 movingTowardsPlayer = true;
                 movingTowardsOppQuad = false;
                 timer = maxTime;
-                Debug.Log("Time Left: " + timer);
+                Debug.Log("TOUCHING QUAD");
             }
         }
 
         checkDamageDistance();
     }
 
-   
+
     public bool CanSeePlayer(string tag)
     {
         RaycastHit hit;
@@ -164,21 +179,17 @@ protected override void Start()
 
     public void moveTowards(Vector3 LocationToMoveTowards, float moveSpeed)
     {
-        if(agent)
+        if (agent)
         {
-            //Debug.Log("LocationToMoveTowards: " + LocationToMoveTowards);
-            //Vector3 movepoint = new Vector3(-691.58f, 124f, -110f);
-            //agent.SetDestination(movepoint);
-            //PlaceMoveToSphereAt(movepoint); 
-            agent.SetDestination(LocationToMoveTowards);
-            //PlaceMoveToSphereAt(LocationToMoveTowards);
+            Debug.Log(agent.pathStatus);
+            if (!agent.pathPending && LocationToMoveTowards != agent.destination)
+            {
+                Debug.Log(agent.pathStatus);
+                agent.SetDestination(LocationToMoveTowards);
+            }          
             agent.speed = moveSpeed;
-            //Debug.Log(agent.destination);
-            //Debug.Log(agent.speed);
+            Debug.Log(LocationToMoveTowards);
         }
-        //agent.isStopped = true; 
-
-        //transform.position = Vector3.MoveTowards(transform.position, LocationToMoveTowards, moveSpeed * Time.deltaTime);
     }
 
     public void checkDamageDistance()
@@ -210,8 +221,8 @@ protected override void Start()
                 if (ts)
                 {
                     //print("Got Light");
-                    ts.LightOff();                    
-                }        
+                    ts.LightOff();
+                }
             }
 
             index++;
@@ -223,13 +234,13 @@ protected override void Start()
         if (agent.remainingDistance <= 2)
         {
             moveTowards(locations[locationIndex].position, moveSpeed);
-        //Debug.Log("(" + locationIndex + ") :" + agent.destination);
-        //Debug.Log("remainingDistance: " + agent.remainingDistance);
-       
+            //Debug.Log("(" + locationIndex + ") :" + agent.destination);
+            //Debug.Log("remainingDistance: " + agent.remainingDistance);
+
             locationIndex++;
             if (locationIndex >= locations.Length)
             {
-                locationIndex = 0; 
+                locationIndex = 0;
             }
         }
     }
@@ -240,7 +251,7 @@ protected override void Start()
         float farthestQuadDistance = getDistanceTo(Quadrants[0].transform.position);
         float currentQuadDistance = getDistanceTo(Quadrants[0].transform.position);
         int currentQuad = 0;
-        for (int index = 0;index<Quadrants.Length;index++)
+        for (int index = 0; index < Quadrants.Length; index++)
         {
             currentQuadDistance = getDistanceTo(Quadrants[index].transform.position);
             if (farthestQuadDistance < currentQuadDistance)
@@ -256,19 +267,19 @@ protected override void Start()
 
     public void getPlayerQuad()
     {
-        float closestQuadDistance = getDistanceTo(Quadrants[0].transform.position);
-        float currentQuadDistance = getDistanceTo(Quadrants[0].transform.position);
+        float closestQuadDistance = getDistanceTo(locations[0].position);
+        float currentQuadDistance = getDistanceTo(locations[0].position);
         int currentQuad = 0;
-        for (int index = 0; index < Quadrants.Length; index++)
+        for (int index = 0; index < locations.Length; index++)
         {
-            currentQuadDistance = getDistanceTo(Quadrants[index].transform.position);
+            currentQuadDistance = getDistanceTo(locations[index].position);
             if (closestQuadDistance < currentQuadDistance)
             {
                 closestQuadDistance = currentQuadDistance;
                 currentQuad = index;
             }
         }
-        playerQuad = Quadrants[currentQuad];
+        playerQuad = locations[currentQuad].gameObject;
     }
 
     public float getDistanceTo(Vector3 location)
