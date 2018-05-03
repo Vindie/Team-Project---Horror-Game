@@ -22,11 +22,18 @@ public class MTAIController : AIController
     public bool movingTowardsPlayer;
     public bool movingTowardsOppQuad;
     public GameObject[] Quadrants;
-    //NavMeshAgent agent;
+    public float maxTime = 60.0f;
+    public float timer;
+    public bool playerInArms;
+    //public float maxTortureTime = 10.0f;
+    //public float tortureTimer;
 
 
-    // Use this for initialization
-    protected override void Start()
+//NavMeshAgent agent;
+
+
+// Use this for initialization
+protected override void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         Eanimator = eye.GetComponent<Animator>();
@@ -34,6 +41,9 @@ public class MTAIController : AIController
         movingTowardsPlayer = true;
         movingTowardsOppQuad = false;
         getOppositeQuadrant();
+        timer = maxTime;
+        playerInArms = false;
+        //tortureTimer = maxTortureTime;
     }
 
     public override void Update()
@@ -74,14 +84,25 @@ public class MTAIController : AIController
             moveTowards(playerPosition, moveSpeed);
             if (getDistanceTo(playerPawn.transform.position) < armsReach)
             {
-                movingTowardsPlayer = false;
-                movingTowardsOppQuad = true;
-                getOppositeQuadrant();
+                playerInArms = true;
+            }
+
+            if(playerInArms == true)
+            {
+                if(getDistanceTo(playerPawn.transform.position) >= armsReach)
+                {
+                    playerInArms = false;
+                    movingTowardsPlayer = false;
+                    movingTowardsOppQuad = true;
+                    getOppositeQuadrant();
+                    timer = maxTime;
+                }
             }
         }
 
-        if (movingTowardsOppQuad)
+        if (movingTowardsOppQuad && timer >= 0)
         {
+            timer -= Time.deltaTime;
             Debug.Log("MOVING TOWARDS OPPQUAD");
             Eanimator.SetBool("IsOpen", false);      
             moveTowards(oppositeQuad.transform.position, moveSpeed);
@@ -89,6 +110,8 @@ public class MTAIController : AIController
             {
                 movingTowardsPlayer = true;
                 movingTowardsOppQuad = false;
+                timer = maxTime;
+                Debug.Log("Time Left: " + timer);
             }
         }
 
