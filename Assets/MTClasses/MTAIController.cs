@@ -26,6 +26,7 @@ public class MTAIController : AIController
     public float maxTime = 60.0f;
     public float timer;
     public bool playerInArms;
+    public float chaseRadius = 25.0f;
 
     // Use this for initialization
     protected override void Start()
@@ -90,7 +91,7 @@ public class MTAIController : AIController
             
             if (playerInArms == false) //checks if player is in reach
             {
-                if (CanSeePlayer("Player"))//if can see player
+                if (CanSeePlayer("Player") || getDistanceTo(playerPawn.transform.position) < chaseRadius)//if can see player
                 {
                     Debug.Log("CAN see player");
                     moveTowards(locationLastPlayerSeen, moveSpeed); 
