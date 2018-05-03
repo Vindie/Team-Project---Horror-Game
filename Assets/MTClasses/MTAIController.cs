@@ -25,6 +25,7 @@ public class MTAIController : AIController
     public float maxTime = 60.0f;
     public float timer;
     public bool playerInArms;
+    //AudioSource Ambiance;
     //public float maxTortureTime = 10.0f;
     //public float tortureTimer;
 
