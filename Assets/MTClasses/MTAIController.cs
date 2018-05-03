@@ -18,10 +18,10 @@ public class MTAIController : AIController
     public Transform[] locations;
     Vector3 torchLocation;
     Vector3 playerPosition;
-    public Vector3 oppositeQuad;
+    public GameObject oppositeQuad;
     public bool movingTowardsPlayer;
     public bool movingTowardsOppQuad;
-    public Transform[] Quadrants;
+    public GameObject[] Quadrants;
     //NavMeshAgent agent;
 
 
@@ -51,6 +51,7 @@ public class MTAIController : AIController
     public void FixedUpdate()
     {
         putTorchesOut();
+        playerPosition = playerPawn.transform.position;
         /*
          *         if (!CanSeePlayer("Player"))
         {
@@ -68,17 +69,29 @@ public class MTAIController : AIController
 
         if (movingTowardsPlayer)
         {
+            Debug.Log("MOVING TOWARDS PLAYER");
             Eanimator.SetBool("IsOpen", true);
             moveTowards(playerPosition, moveSpeed);
+            if (getDistanceTo(playerPawn.transform.position) < armsReach)
+            {
+                movingTowardsPlayer = false;
+                movingTowardsOppQuad = true;
+            }
         }
 
-        if(movingTowardsOppQuad)
+        if (movingTowardsOppQuad)
         {
+            Debug.Log("MOVING TOWARDS OPPQUAD");
             Eanimator.SetBool("IsOpen", false);
             getOppositeQuadrant();
-            moveTowards(oppositeQuad, moveSpeed);
+            moveTowards(oppositeQuad.transform.position, moveSpeed);
+            if (getDistanceTo(oppositeQuad.transform.position) < armsReach)
+            {
+                movingTowardsPlayer = true;
+                movingTowardsOppQuad = false;
+            }
         }
- 
+
         checkDamageDistance();
     }
 
@@ -177,29 +190,15 @@ public class MTAIController : AIController
         }
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.tag=="Player")
-        {
-            movingTowardsPlayer = false;
-            movingTowardsOppQuad = true;
-        }
-
-        if(col.gameObject.tag == "OppQuad")
-        {
-            movingTowardsPlayer = true;
-            movingTowardsOppQuad = false;
-        }
-    }
 
     public void getOppositeQuadrant()
     {
-        float farthestQuadDistance = getDistanceTo(Quadrants[0].position);
-        float currentQuadDistance = getDistanceTo(Quadrants[0].position);
+        float farthestQuadDistance = getDistanceTo(Quadrants[0].transform.position);
+        float currentQuadDistance = getDistanceTo(Quadrants[0].transform.position);
         int currentQuad = 0;
         for (int index = 0;index<Quadrants.Length;index++)
         {
-            currentQuadDistance = getDistanceTo(Quadrants[index].position);
+            currentQuadDistance = getDistanceTo(Quadrants[index].transform.position);
             if (farthestQuadDistance < currentQuadDistance)
             {
                 farthestQuadDistance = currentQuadDistance;
@@ -207,7 +206,8 @@ public class MTAIController : AIController
             }
         }
 
-        oppositeQuad = Quadrants[currentQuad].position;       
+        oppositeQuad = Quadrants[currentQuad];
+        //oppositeQuad.tag = "OppQuad";
     }
 
     public float getDistanceTo(Vector3 location)
