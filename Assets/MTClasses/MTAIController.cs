@@ -85,11 +85,8 @@ public class MTAIController : AIController
             {
                 Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red, 5);
             }
-            //Debug.Log("Movingtoplayer");
-            //getPlayerQuad();
-            //Debug.Log("Player Quad " + playerQuad);
+
             Eanimator.SetBool("IsOpen", true);
-            //Debug.Log("MOVING TO player");
             
             if (playerInArms == false)
             {
@@ -102,9 +99,7 @@ public class MTAIController : AIController
                 else//if can see player
                 {
                     Debug.Log("Cant see player");
-                    //agent.SetDestination(playerQuad.transform.position);
                     moveTowards(playerQuad.transform.position, moveSpeed); //move towards player quad
-                    //Debug.Log("Player move tooooo"+ playerQuad);
                  
                     if ((getDistanceTo(playerQuad.transform.position) < armsReach))
                     {
@@ -113,7 +108,6 @@ public class MTAIController : AIController
                     }
                 }
 
-                //Debug.Log("MOVING TOWARDS PLAYER");
                 if (getDistanceTo(playerPawn.transform.position) < armsReach)
                 {
                     Debug.Log("TOUCHING player");
@@ -152,7 +146,6 @@ public class MTAIController : AIController
 
         checkDamageDistance();
     }
-
 
     public bool CanSeePlayer(string tag)
     {
@@ -195,15 +188,12 @@ public class MTAIController : AIController
     {
         FPS_Pawn pp = playerPawn.GetComponent<FPS_Pawn>();
         float distanceToPlayer = Vector3.Distance(playerPawn.transform.position, gameObject.transform.position);
-        //print("Distance to player: " + distanceToPlayer);
         if (pp)
         {
-            //print("got pp");
             if (distanceToPlayer < armsReach)
             {
                 print("Distance to player: " + distanceToPlayer);
                 pp.TakeDamage(gameObject.GetComponent<Actor>(), damageFactor);
-                //print("Get Hurt");
             }
         }
     }
@@ -219,7 +209,6 @@ public class MTAIController : AIController
                 Torch ts = hitColliders[index].gameObject.GetComponent<Torch>();
                 if (ts)
                 {
-                    //print("Got Light");
                     ts.LightOff();
                 }
             }
@@ -233,8 +222,6 @@ public class MTAIController : AIController
         if (agent.remainingDistance <= 2)
         {
             moveTowards(locations[locationIndex].position, moveSpeed);
-            //Debug.Log("(" + locationIndex + ") :" + agent.destination);
-            //Debug.Log("remainingDistance: " + agent.remainingDistance);
 
             locationIndex++;
             if (locationIndex >= locations.Length)
@@ -261,7 +248,6 @@ public class MTAIController : AIController
         }
 
         oppositeQuad = Quadrants[currentQuad];
-        //oppositeQuad.tag = "OppQuad";
     }
 
     public void getPlayerQuad()
