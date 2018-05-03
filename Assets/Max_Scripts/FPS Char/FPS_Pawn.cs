@@ -49,7 +49,9 @@ public class FPS_Pawn : Pawn
     public bool hasKey = false;
 
     public AudioSource footSteps;
+    public AudioClip[] walkFootStepClips;
     public AudioSource footStepsFast;
+    public AudioClip[] sprintFootStepClips;
     public AudioSource lighterOpen;
     public AudioSource lighterUse;
     #endregion
@@ -203,20 +205,17 @@ public class FPS_Pawn : Pawn
                 {
                     if(_isSprinting)
                     {
+                        footSteps.Stop();
+                        footStepsFast.clip = SelectClipFrom(sprintFootStepClips);
                         footStepsFast.Play();
                     }
                     else
                     {
+                        footStepsFast.Stop();
+                        footSteps.clip = SelectClipFrom(walkFootStepClips);
                         footSteps.Play();
                     }   
                 }
-            }
-            else
-            {
-                //LOG("Footsteps  NOT playing");
-
-                footSteps.Stop();
-                footStepsFast.Stop();
             }
 
             ManageDamageEffect();
@@ -530,6 +529,13 @@ public class FPS_Pawn : Pawn
             return;
         }
         handSubordinate.Equip(spawnedItem);
+    }
+
+    AudioClip SelectClipFrom(AudioClip[] arr)
+    {
+        int index = (int)(Random.value * arr.Length) - 1;
+
+        return arr[index];
     }
 
     #region Health and Dying
