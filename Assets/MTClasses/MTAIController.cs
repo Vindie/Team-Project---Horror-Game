@@ -86,7 +86,7 @@ public class MTAIController : AIController
                 Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red, 5);
             }
             //Debug.Log("Movingtoplayer");
-            //getPlayerQuad();
+            getPlayerQuad();
             //Debug.Log("Player Quad " + playerQuad);
             Eanimator.SetBool("IsOpen", true);
             //Debug.Log("MOVING TO player");
@@ -103,18 +103,17 @@ public class MTAIController : AIController
                 {
                     Debug.Log("Cant see player");
                     //agent.SetDestination(playerQuad.transform.position);
-                    moveTowards(playerPawn.transform.position, moveSpeed); //move towards player quad
+                    moveTowards(playerQuad.transform.position, moveSpeed); //move towards player quad
                     //Debug.Log("Player move tooooo"+ playerQuad);
                  
                     if ((getDistanceTo(playerQuad.transform.position) < armsReach))
                     {
                         Debug.Log("Touched Player Quad updating new player quad");
-                        //getPlayerQuad();
+                        getPlayerQuad();
                     }
                 }
 
                 //Debug.Log("MOVING TOWARDS PLAYER");
-                //moveTowards(playerPosition, moveSpeed);
                 if (getDistanceTo(playerPawn.transform.position) < armsReach)
                 {
                     Debug.Log("TOUCHING player");
