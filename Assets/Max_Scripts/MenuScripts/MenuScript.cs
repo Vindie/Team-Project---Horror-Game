@@ -13,6 +13,10 @@ public class MenuScript : MonoBehaviour
 
     public bool PauseMenuExists = false;
 
+    protected GameManager _gm;
+    public int settingsMenuIndex = -1;
+
+    //FPSPawn is set from FPS_Controller Start() function
     public FPS_Pawn FPSPawn;
     public float runtimeTimeScale;
 
@@ -97,6 +101,18 @@ public class MenuScript : MonoBehaviour
         //Debug.Log("Previous:" + previousMenuIndex + ", Active:" + activeMenuIndex + ", New:" + newMenuIndex);
         if (newMenuIndex != activeMenuIndex)
         {
+            if(activeMenuIndex == settingsMenuIndex)
+            {
+                //Settings menu is closing: save settings data
+                if(!_gm)
+                {
+                    _gm = FindObjectOfType<GameManager>();
+                }
+                if(_gm)
+                {
+                    _gm.SaveSettings();
+                }
+            }
             if (0 <= activeMenuIndex && activeMenuIndex < MenuScreens.Length)
             {
                 if (MenuScreens[activeMenuIndex])
@@ -128,6 +144,7 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
     //
     //
     //PAUSE MENU FUNCTIONALITY

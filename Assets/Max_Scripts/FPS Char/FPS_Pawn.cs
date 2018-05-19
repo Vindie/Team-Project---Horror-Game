@@ -84,6 +84,9 @@ public class FPS_Pawn : Pawn
 
     protected float _inputXRotation = 0.0f;
     protected float _inputYRotation = 0.0f;
+    
+    protected float _default_look_xSensitivity;
+    protected float _default_look_ySensitivity;
 
     protected Quaternion _desiredBodyRotation;
     protected Quaternion _desiredCameraRotation;
@@ -120,6 +123,9 @@ public class FPS_Pawn : Pawn
             LOG_ERROR("No head object assigned to " + name);
         }
         _desiredCameraRotation = Quaternion.Euler(Vector3.zero);
+        _default_look_xSensitivity = look_xSensitivity;
+        _default_look_ySensitivity = look_ySensitivity;
+        CheckSettings();
 
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
         _playerHeight = _col.height;
@@ -620,6 +626,16 @@ public class FPS_Pawn : Pawn
         {
             _iem.targetBloodiness = baseBloodiness;
         }
+    }
+
+    public virtual void CheckSettings()
+    {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        float mouseSensitivity = gameManager.gameSettings.MouseSensitivity;
+        look_xSensitivity = _default_look_xSensitivity * mouseSensitivity;
+        look_ySensitivity = _default_look_ySensitivity * mouseSensitivity;
+
+        //Update material on camera head.
     }
     #endregion
 }

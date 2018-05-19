@@ -4,9 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 public class Settings {
-    public float MouseSensitivity;
-    public float Volume;
-    public float Brightness;
+    public float MouseSensitivity = 1.0f;
+    public float Volume = 1.0f;
+    public float Brightness = 1.0f;
     
     public void ResetToDefaultSettings()
     {
