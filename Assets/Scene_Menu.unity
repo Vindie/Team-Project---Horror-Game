@@ -18848,7 +18848,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1140917992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9fd757e132a39f4fb95a988adabc61e, type: 3}
+  m_Script: {fileID: 11500000, guid: 09a4459ea7690c04dbe3ea74f11e9b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ControlledSetting: 0
@@ -18898,8 +18898,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1420842332}
-        m_MethodName: ChangeMouseSensitivity
+      - m_Target: {fileID: 1140917994}
+        m_MethodName: UpdateSetting
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
