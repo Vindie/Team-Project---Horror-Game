@@ -12217,7 +12217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a4459ea7690c04dbe3ea74f11e9b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlledSetting: 0
+  ControlledSetting: 1
   label: {fileID: 560502605}
   labelText: Volume
 --- !u!114 &721619618
@@ -19361,7 +19361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a4459ea7690c04dbe3ea74f11e9b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlledSetting: 0
+  ControlledSetting: 2
   label: {fileID: 101069763}
   labelText: Brightness
 --- !u!114 &1124086074

@@ -71,7 +71,7 @@ public class MenuSlider : MonoBehaviour
     #region Setting Action Methods
     protected virtual void UpdateMouseSensitivity(float value)
     {
-        Debug.Log ("Updating mouse sensitivity to " + value);
+        //Debug.Log ("Updating mouse sensitivity to " + value);
         if(!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
         if(_gm)
         {
@@ -82,11 +82,23 @@ public class MenuSlider : MonoBehaviour
     }
     protected virtual void UpdateVolume(float value)
     {
-        Debug.Log("Updating volume to " + value);
+        //Debug.Log("Updating volume to " + value);
+        if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
+        if (_gm)
+        {
+            _gm.gameSettings.Volume = value;
+            AudioListener.volume = value;
+        }
     }
     protected virtual void UpdateBrightness(float value)
     {
-        Debug.Log("Updating mouse sensitivity to " + value);
+        //Debug.Log("Updating mouse sensitivity to " + value);
+        if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
+        if (_gm)
+        {
+            _gm.gameSettings.Brightness = value;
+            //Most likely the functionality of this will need to be done through a shader.
+        }
     }
     #endregion
 }
