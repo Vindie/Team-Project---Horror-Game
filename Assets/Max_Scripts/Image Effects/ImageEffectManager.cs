@@ -13,6 +13,7 @@ public class ImageEffectManager : MonoBehaviour {
     public float bloodySpeed = 5.0f;
     public Color BloodyScreenColor;
     public Color DefaultVignetteColor;
+    public static float brightness = 2.0f;
 
     protected float _timer;
     protected float _currentBloodiness = 0.0f;
@@ -25,12 +26,6 @@ public class ImageEffectManager : MonoBehaviour {
 
     private void Update()
     {
-        /*if(toggleScreenBlack)
-        {
-            CrossFadeBlack(!_screenIsBlack, setFadeSpeed);
-            toggleScreenBlack = false;
-        }*/
-
         _currentBloodiness = Mathf.MoveTowards(_currentBloodiness, targetBloodiness, bloodySpeed * Time.deltaTime);
         _currentFadeAmount = Mathf.MoveTowards(_currentFadeAmount, _targetFadeAmount, _screenFadeSpeed * Time.deltaTime);
         
@@ -40,6 +35,7 @@ public class ImageEffectManager : MonoBehaviour {
         if (imageEffect)
         {
             imageEffect.SetColor("_VColor", FinalColor);
+            imageEffect.SetFloat("_Brightness", brightness);
         }
     }
 

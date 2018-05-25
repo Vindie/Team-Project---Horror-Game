@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_VColor("Vignette Color", COLOR) = (0,0,0,0.5)
+		_Brightness("Brightness", Range(0, 2)) = 1.0
 	}
 	SubShader
 	{
@@ -40,6 +41,7 @@
 			
 			sampler2D _MainTex;
 			fixed4 _VColor;
+			fixed _Brightness;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -49,7 +51,7 @@
 				d = pow(d, _VColor.a * 6);
 				fixed4 col = tex2D(_MainTex, coord);
 				
-				col = lerp(col, _VColor, d);
+				col = lerp(col, _VColor, d) * _Brightness;
 				return col;// *1 - (_VColor * d);
 			}
 			ENDCG

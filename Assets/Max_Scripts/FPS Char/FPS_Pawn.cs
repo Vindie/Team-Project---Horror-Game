@@ -637,6 +637,8 @@ public class FPS_Pawn : Pawn
 
         AudioListener al = head.GetComponent<AudioListener>();
         AudioListener.volume = gameManager.gameSettings.Volume;
+
+        ImageEffectManager.brightness = gameManager.gameSettings.Brightness;
     }
     #endregion
 }

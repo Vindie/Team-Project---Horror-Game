@@ -139,6 +139,26 @@ public class MenuScript : MonoBehaviour
         ChangeMenuTo(previousMenuIndex);
     }
 
+    //Reset game settings to defaults
+    public void ResetSettings()
+    {
+        if (!_gm)
+        {
+            _gm = FindObjectOfType<GameManager>();
+        }
+        if (_gm)
+        {
+            _gm.gameSettings.ResetToDefaultSettings();
+            Debug.Log("Settings reset to: " + _gm.gameSettings.Brightness + ", " + _gm.gameSettings.MouseSensitivity + ", " + _gm.gameSettings.Volume);
+        }
+
+        MenuSlider[] msCollection = FindObjectsOfType<MenuSlider>();
+        foreach(MenuSlider ms in msCollection)
+        {
+            ms.SliderCheckValue();
+        }
+    }
+
     //Also used in pause menu
     public void QuitGame()
     {

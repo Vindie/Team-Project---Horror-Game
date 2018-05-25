@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
             gameSettings = new Settings();
             gameSettings.ResetToDefaultSettings();
         }
+
+        AudioListener.volume = gameSettings.Volume;
     }
 
     public void SaveSettings()

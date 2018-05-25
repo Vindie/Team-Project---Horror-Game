@@ -21,7 +21,6 @@ public class MenuSlider : MonoBehaviour
     {
         InitializeSettingsDictionary();
         InitializeSlider();
-        UpdateLabel();
     }
 
     public virtual void UpdateSetting(float value)
@@ -34,7 +33,7 @@ public class MenuSlider : MonoBehaviour
     {
         if (!label) { return; }
 
-        int percentage = (int)(100.0f * (_sl.value / (_sl.maxValue - _sl.minValue)));
+        int percentage = (int)(100.0f * (_sl.value / 1.0f));
 
         label.text = labelText + ":" + percentage + "%"; 
     }
@@ -49,23 +48,30 @@ public class MenuSlider : MonoBehaviour
         };
     }
 
-    protected void InitializeSlider()
+    public void SliderCheckValue()
     {
-        if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
-        if (!_gm) { return; }
-        _sl = gameObject.GetComponent<Slider>();
-        if(ControlledSetting == SettingType.MOUSESENSITIVITY)
+        if(!_gm) { return;  }
+        if (ControlledSetting == SettingType.MOUSESENSITIVITY)
         {
             _sl.value = _gm.gameSettings.MouseSensitivity;
         }
-        else if(ControlledSetting == SettingType.VOLUME)
+        else if (ControlledSetting == SettingType.VOLUME)
         {
             _sl.value = _gm.gameSettings.Volume;
         }
-        else if(ControlledSetting == SettingType.BRIGHTNESS)
+        else if (ControlledSetting == SettingType.BRIGHTNESS)
         {
             _sl.value = _gm.gameSettings.Brightness;
         }
+
+        UpdateSetting(_sl.value);
+    }
+
+    protected void InitializeSlider()
+    {
+        if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
+        _sl = gameObject.GetComponent<Slider>();
+        SliderCheckValue();
     }
 
     #region Setting Action Methods
@@ -76,28 +82,31 @@ public class MenuSlider : MonoBehaviour
         if(_gm)
         {
             _gm.gameSettings.MouseSensitivity = value;
-            FPS_Pawn FPP = FindObjectOfType<FPS_Pawn>();
-            if(FPP) { FPP.CheckSettings(); }
+            FPS_Pawn[] AllFPP = FindObjectsOfType<FPS_Pawn>();
+            foreach(FPS_Pawn FPP in AllFPP)
+            {
+                FPP.CheckSettings();
+            }
         }
     }
     protected virtual void UpdateVolume(float value)
     {
-        //Debug.Log("Updating volume to " + value);
         if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
         if (_gm)
         {
+            //Debug.Log("Updating volume to " + value);
             _gm.gameSettings.Volume = value;
             AudioListener.volume = value;
         }
     }
     protected virtual void UpdateBrightness(float value)
     {
-        //Debug.Log("Updating mouse sensitivity to " + value);
+        //Debug.Log("Updating mouse brightness to " + value);
         if (!_gm) { _gm = GameObject.FindObjectOfType<GameManager>(); }
         if (_gm)
         {
             _gm.gameSettings.Brightness = value;
-            //Most likely the functionality of this will need to be done through a shader.
+            ImageEffectManager.brightness = value;
         }
     }
     #endregion
