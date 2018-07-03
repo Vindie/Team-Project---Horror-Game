@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameManager : MonoBehaviour {
 
+    public bool showDebugMessages = true;
     public Settings gameSettings;
     protected string settingsFilePath = "settings.binary";
 
@@ -26,7 +27,12 @@ public class GameManager : MonoBehaviour {
 
     protected void InitializeSettings()
     {
-        if(!LoadSettings())
+        if (showDebugMessages)
+        {
+            Debug.Log("Initializing settings.");
+        }
+
+        if (!LoadSettings())
         {
             gameSettings = new Settings();
             gameSettings.ResetToDefaultSettings();
@@ -37,6 +43,11 @@ public class GameManager : MonoBehaviour {
 
     public void SaveSettings()
     {
+        if (showDebugMessages)
+        {
+            Debug.Log("Saving settings.");
+        }
+
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream settingsFile = File.Create(settingsFilePath);
 
@@ -48,6 +59,11 @@ public class GameManager : MonoBehaviour {
     //Returns true if there is a file to load.
     public bool LoadSettings()
     {
+        if (showDebugMessages)
+        {
+            Debug.Log("Loading settings.");
+        }
+
         if (!File.Exists(settingsFilePath)) { return false; }
 
         BinaryFormatter formatter = new BinaryFormatter();
