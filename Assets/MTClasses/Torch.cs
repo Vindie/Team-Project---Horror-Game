@@ -9,7 +9,7 @@ public class Torch : Item
     public float lifeSpan;
     public int maxLifeSpan = 100;
     public float lifeKeptPercentOnRelight = 0.75f;
-    int fallingVelocity = 1000000;
+    //int fallingVelocity = 1000000;
     AudioSource sound;
 
     public bool getLit; //refers to if player has relit the torch after the torch died

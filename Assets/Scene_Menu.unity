@@ -3228,6 +3228,7 @@ GameObject:
   - component: {fileID: 296252674}
   - component: {fileID: 296252673}
   - component: {fileID: 296252672}
+  - component: {fileID: 296252675}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3298,6 +3299,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &296252675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 296252670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bbf1f02901a684abee50a55cd18259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageEffect: {fileID: 2100000, guid: bc2cdf5018bf9044cb26dbb59755ea49, type: 2}
+  targetBloodiness: 0
+  bloodySpeed: 5
+  BloodyScreenColor: {r: 0, g: 0, b: 0, a: 0}
+  DefaultVignetteColor: {r: 0, g: 0, b: 0, a: 0.11764706}
 --- !u!43 &301861013
 Mesh:
   m_ObjectHideFlags: 0
@@ -12723,6 +12740,9 @@ MonoBehaviour:
   ControlledSetting: 1
   label: {fileID: 560502605}
   labelText: Volume
+  displayCustomValueRange: 0
+  minValue: 0
+  maxValue: 100
 --- !u!114 &721619618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20104,6 +20124,9 @@ MonoBehaviour:
   ControlledSetting: 2
   label: {fileID: 101069763}
   labelText: Brightness
+  displayCustomValueRange: 0
+  minValue: 0
+  maxValue: 100
 --- !u!114 &1124086074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20215,6 +20238,9 @@ MonoBehaviour:
   ControlledSetting: 0
   label: {fileID: 1341578278}
   labelText: Mouse Sensitivity
+  displayCustomValueRange: 1
+  minValue: 1
+  maxValue: 100
 --- !u!114 &1140917995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20254,8 +20280,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 493015616}
   m_HandleRect: {fileID: 677350908}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.01
+  m_MaxValue: 2
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:

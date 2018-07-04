@@ -9,6 +9,9 @@ public class MenuSlider : MonoBehaviour
     public SettingType ControlledSetting;
     public Text label;
     public string labelText = "Undefined";
+    public bool displayCustomValueRange = false;
+    public int minValue = 0;
+    public int maxValue = 100;
 
     protected delegate void delegateMethod(float value);
     protected Dictionary<SettingType, delegateMethod> SettingDictionary;
@@ -33,9 +36,22 @@ public class MenuSlider : MonoBehaviour
     {
         if (!label) { return; }
 
-        int percentage = (int)(100.0f * (_sl.value / 1.0f));
+        float percentage = _sl.value;
+        if(displayCustomValueRange)
+        {
+            //Convert percentage to a value between 0% and 100%
+            percentage -= _sl.minValue;
+            percentage /= _sl.maxValue - _sl.minValue;
+            //Convert value to fit custom range.
+            percentage *= maxValue - minValue;
+            percentage += minValue;
+        }
+        else
+        {
+            percentage *= 100.0f;
+        }
 
-        label.text = labelText + ":" + percentage + "%"; 
+        label.text = labelText + ":" + (int)percentage + "%"; 
     }
 
     protected virtual void InitializeSettingsDictionary()

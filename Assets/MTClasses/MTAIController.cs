@@ -17,7 +17,7 @@ public class MTAIController : AIController
     public int locationIndex = 0;
     public Transform[] locations;
     Vector3 torchLocation;
-    Vector3 playerPosition;
+    //Vector3 playerPosition;
     public GameObject oppositeQuad;
     public GameObject playerQuad;
     public bool movingTowardsPlayer = true;
@@ -55,7 +55,7 @@ public class MTAIController : AIController
         {
             playerPawn = GameObject.FindGameObjectWithTag("Player");
             locationLastPlayerSeen = playerPawn.transform.position;
-            playerPosition = playerPawn.transform.position;
+            //playerPosition = playerPawn.transform.position;
         }
 
         CanSeePlayer("Player"); //if cant see player move randomly
@@ -64,7 +64,7 @@ public class MTAIController : AIController
     public void FixedUpdate()
     {
         putTorchesOut();
-        playerPosition = playerPawn.transform.position; //gets player postion into variable
+        //playerPosition = playerPawn.transform.position; //gets player postion into variable
         /*
          *         if (!CanSeePlayer("Player"))
         {

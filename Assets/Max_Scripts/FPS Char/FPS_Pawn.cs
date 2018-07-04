@@ -635,7 +635,6 @@ public class FPS_Pawn : Pawn
         look_xSensitivity = _default_look_xSensitivity * mouseSensitivity;
         look_ySensitivity = _default_look_ySensitivity * mouseSensitivity;
 
-        AudioListener al = head.GetComponent<AudioListener>();
         AudioListener.volume = gameManager.gameSettings.Volume;
 
         ImageEffectManager.brightness = gameManager.gameSettings.Brightness;
